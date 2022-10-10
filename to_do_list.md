@@ -1,0 +1,2 @@
+- parsing (path_to_textures, rgb toit et sol, minimap toujours dernier, utiliser syntaxe NO/SO/WE/EA etc)
+- minimap (bresenham, rotations, raycasting)

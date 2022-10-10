@@ -1,4 +1,5 @@
-SRCS		= 	main.c
+SRCS		= 	main.c \
+				bresenham.c
 
 SRCS		:= $(addprefix src/,$(SRCS))
 
@@ -15,7 +16,7 @@ RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -Iinclude
 
 $(NAME):	$(OBJS)
-			$(CC) ${CFLAGS} -o $(NAME) $(OBJS)
+			$(CC) ${CFLAGS} -o $(NAME) -lmlx -framework OpenGL -framework AppKit $(OBJS)
 
 all:		$(NAME)
 
