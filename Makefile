@@ -1,5 +1,7 @@
 SRCS		= 	main.c \
-				bresenham.c
+				bresenham.c \
+				init.c \
+				utils.c
 
 SRCS		:= $(addprefix src/,$(SRCS))
 
@@ -27,5 +29,7 @@ fclean:		clean
 			${RM} $(NAME)
 
 re:			fclean all
+
+noice:		all clean
 
 .PHONY:		all clean fclean re bonus

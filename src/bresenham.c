@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:24:15 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/11 15:06:01 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:44:25 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	dr_line(t_line line, t_data *data)
 	int dy = 2 * ey;
 	int dex = ex;
 	int dey = ey;
-	int	i = 0;
 	int xincr = 1;
 	int yincr = 1;
+	int	i = 0;
 
 	if (line.x1 > line.x2)
 		xincr = -1;

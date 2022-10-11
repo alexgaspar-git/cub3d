@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/11 15:43:51 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:27:51 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,25 @@ typedef struct s_line {
 	int color;
 }	t_line;
 
+typedef struct s_bres
+{
+	int	ex;
+	int	ey;
+	int	dx;
+	int	dy;
+	int	xincr;
+	int	yincr;
+	int	cex;
+	int	cey;
+}	t_bres;
+
+typedef struct s_draw
+{
+	int x;
+	int y;
+	int px;
+}	t_draw;
+
 typedef struct s_key {
 	unsigned int w;
 	unsigned int a;
@@ -73,5 +92,10 @@ typedef struct s_cub {
 
 void	dr_line(t_line line, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_data	*init_data(void);
+t_cub	*init_cub(void);
+void	*xalloc(size_t size);
+int		key_press(int keycode, t_cub *cub);
+int		close_window(t_data *data);
 
 #endif
