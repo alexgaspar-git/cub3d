@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/10 20:43:57 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:43:51 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,25 @@ enum {
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
+	KEY_Q = 12,
+	KEY_E = 14,
 };
+
+typedef struct s_line {
+	int x1;
+	int y1;
+	int x2;
+	int y2;
+	int color;
+}	t_line;
 
 typedef struct s_key {
 	unsigned int w;
 	unsigned int a;
 	unsigned int s;
 	unsigned int d;
+	unsigned int q;
+	unsigned int e;
 }	t_key;
 
 typedef struct s_data {
@@ -55,11 +67,11 @@ typedef struct s_data {
 }	t_data;
 
 typedef struct s_cub {
-	t_data data;
-	t_key key;
+	t_data	*data;
+	t_key	*key;
 }	t_cub;
 
-void	dr_line(int x1, int y1, int x2, int y2, t_data *data);
+void	dr_line(t_line line, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
