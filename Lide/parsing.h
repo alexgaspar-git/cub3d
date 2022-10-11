@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/10 17:15:22 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/11 18:29:24 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ typedef struct s_parsing
 	char *F;
 	char *C;
 	char **map;
-}				t_parcing;
+}				t_parsing;
+
+typedef struct s_list
+{
+	void *adr;
+	struct s_list *next;
+	struct s_list *before;
+}				t_list;
+
+t_list	*lstnew(void);
+void	*l_malloc(size_t size, t_list **adr);
+void	free_list(t_list *adr);
 
 #endif
