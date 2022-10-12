@@ -6,7 +6,9 @@ void	free_list(t_list *adr)
 	t_list *tmp;
 
 	while(adr->before != NULL)
+	{
 		adr = adr->before;
+	}
 	while(adr->next != NULL)
 	{
 		tmp = adr;
@@ -18,7 +20,7 @@ void	free_list(t_list *adr)
 	free(adr);
 }
 
-t_list	*lstnew(void)
+t_list	*ft_lstnew(void)
 {
 	t_list	*list;
 
@@ -38,7 +40,10 @@ void	*l_malloc(size_t size, t_list **adr)
 
 	ptr = malloc(size);
 	if (!ptr)
+	{
 		free_list(*adr);
+		return (NULL);
+	}
 	if ((*adr)->adr == NULL)
 	{
 		(*adr)->adr = ptr;
@@ -46,7 +51,7 @@ void	*l_malloc(size_t size, t_list **adr)
 	}
 	else
 	{
-		new = lstnew();
+		new = ft_lstnew();
 		if (!new)
 			free_list(*adr);
 		new->adr = ptr;

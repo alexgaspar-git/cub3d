@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/11 19:11:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/12 17:59:02 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,16 @@ int	check_name(char *argv)
 
 void	init_parsing(t_parsing	**map, t_list *l_map)
 {
-	*map = malloc(sizeof(t_parsing));
+	t_list *mlc;
+
+	mlc = ft_lstnew();
+	if (!mlc)
+	{
+		perror("lstnew");
+		free_list(l_map);
+		exit(EXIT_FAILURE);
+	}
+	*map = l_malloc(sizeof(t_parsing), &mlc);
 	if (!*map)
 	{
 		perror("init_parsing");
@@ -69,6 +78,7 @@ void	init_parsing(t_parsing	**map, t_list *l_map)
 	(*map)->EA = NULL;
 	(*map)->F = NULL;
 	(*map)->C = NULL;
+	(*map)->mlc = mlc;
 }
 
 int	ft_cmp(const char *s1, const char *s2, int start, int len)
@@ -84,7 +94,7 @@ int	ft_cmp(const char *s1, const char *s2, int start, int len)
 	return ((unsigned char)s1[start] - (unsigned char)s2[i]);
 }
 
-char	*ft_substr(char *s, int start, int len)
+char	*ft_substr(char *s, int start, int len, t_list **adr)
 {
 	char	*s2;
 	int		len2;
@@ -97,7 +107,7 @@ char	*ft_substr(char *s, int start, int len)
 		start = len2;
 	if (len2 - start < len)
 		len = len2 - start;
-	s2 = (char *)malloc(sizeof(char) * (len + 1));
+	s2 = l_malloc(sizeof(char) * (len + 1), adr);
 	if (!s2)
 		return (NULL);
 	i = 0;
@@ -111,7 +121,7 @@ char	*ft_substr(char *s, int start, int len)
 	return (s2);
 }
 
-void	get_path(char **info, char *line, int i)
+void	get_path(char **info, char *line, int i, t_list **adr)
 {
 	int len;
 	char *new;
@@ -121,12 +131,15 @@ void	get_path(char **info, char *line, int i)
 	len = path_len(&line[i]);
 	if (len == -1 || *info)
 	{
+		free_list(*adr);
+		free(line);
 		printf("only one path is accepted for each direction\n");
 		exit(EXIT_FAILURE);
 	}
-	new = ft_substr(line, i, len);
+	new = ft_substr(line, i, len, adr);
 	if (!new)
 	{
+		free(line);
 		perror("ft_substr");
 		exit (EXIT_FAILURE);
 	}
@@ -134,34 +147,76 @@ void	get_path(char **info, char *line, int i)
 	*info = new;
 }
 
-int	is_map(char *line, t_parsing *map)
+int	is_map(char *line, t_parsing *map, t_list *l_map)
 {
 	int i;
 
 	i = 0;
 	while(line[i])
 	{
-		if (line[i] == ' ' || line[i] == '0' || line[1] == 'N'
-		|| line[1] == 'S' || line[1] == 'E'|| line[1] == 'W')
+		if (line[i] == ' ' || line[i] == '0' || line[i] == '1'
+		|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'|| line[i] == 'W')
 			i++;
 		else if (!(map->NO) || !(map->SO) || !(map->WE)
 		|| !(map->EA) || !(map->F) || !(map->C))
 		{
 			printf("Cub3d need NO/SO/WE/EA texture and F/C color. the map content has to be in the last place\n");
-			// free_all
-			//exit
+			free_list(map->mlc);
+			free_list(l_map);
+			free(line);
+			exit(EXIT_FAILURE);
 		}
 		else
 		{
 			printf("there is a wrong charactere in the map\n");
-			//free all
-			//exit
+			free_list(map->mlc);
+			free_list(l_map);
+			free(line);
+			exit(EXIT_FAILURE);
 		}
 	}
 	return (0);
 }
 
-void	check_line(char *line, t_parsing **map)
+void	put_l_map(char *line, t_parsing **map, t_list **l_map)
+{
+	t_list	*new;
+	static int empty;
+
+	if (line[0] == 0 && !empty)
+	{
+		empty = 1;
+		return ;
+	}
+	if (empty)
+	{
+		if (line[0] != 0)
+		{
+			printf("map can't be separeted and must be the last argument\n");
+			free_list((*map)->mlc);
+			free_list(*l_map);
+			free(line);
+			exit(EXIT_FAILURE);
+		}
+		else
+			return ;
+	}
+	printf("%s\n", line);
+	(*l_map)->adr = line;
+	new = ft_lstnew();
+	if (!new)
+	{
+		free_list((*map)->mlc);
+		free_list(*l_map);
+		free(line);
+		perror("lstnew");
+		exit(EXIT_FAILURE);
+	}
+	(*l_map)->next = new;
+	*l_map = (*l_map)->next;
+}
+
+void	check_line(char *line, t_parsing **map, t_list **l_map)
 {
 	static int	check;
 	int			i;
@@ -171,27 +226,29 @@ void	check_line(char *line, t_parsing **map)
 	i = 0;
 	while(line[i] == ' ')
 		i++;
-	if (!ft_cmp(line, "NO ", i, 2))
-		get_path(&(*map)->NO, line, i + 2);
-	else if (!ft_cmp(line, "SO ", i, 2))
-		get_path(&(*map)->SO, line, i + 2);
-	else if (!ft_cmp(line, "WE ", i, 2))
-		get_path(&(*map)->WE, line, i + 2);
-	else if (!ft_cmp(line, "EA ", i, 2))
-		get_path(&(*map)->EA, line, i + 2);
-	else if (!ft_cmp(line, "F ", i, 1))
-		get_path(&(*map)->F, line, i + 2);
-	else if (!ft_cmp(line, "C ", i, 1))
-		get_path(&(*map)->C, line, i + 2);
-	else if (is_map(line, *map))
+	if (!ft_cmp(line, "NO ", i, 2) && !check)
+		get_path(&(*map)->NO, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "SO ", i, 2) && !check)
+		get_path(&(*map)->SO, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "WE ", i, 2) && !check)
+		get_path(&(*map)->WE, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "EA ", i, 2) && !check)
+		get_path(&(*map)->EA, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "F ", i, 1) && !check)
+		get_path(&(*map)->F, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "C ", i, 1) && !check)
+		get_path(&(*map)->C, line, i + 2, &(*map)->mlc);
+	else if (!is_map(line, *map, *l_map))
 	{
-
+		put_l_map(line, map, l_map);
+		check = 1;
 	}
 }
 
-t_parsing	*parsing(int argc, char **argv)
+t_parsing	*parsing(char **argv)
 {
 	t_parsing	*map;
+	char		**c_map;
 	t_list		*l_map;
 	char *line;
 	int	fd;
@@ -204,8 +261,8 @@ t_parsing	*parsing(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	i = 1;
-	l_map = lstnew();
-	if (l_map)
+	l_map = ft_lstnew();
+	if (!l_map)
 	{
 		perror("lstnew");
 		exit(EXIT_FAILURE);
@@ -215,11 +272,18 @@ t_parsing	*parsing(int argc, char **argv)
 	{
 		i = get_next_line(fd, &line);
 		if (i == -1)
+		{
+			free_list(map->mlc);
+			free_list(l_map);
 			exit(EXIT_FAILURE);
+		}
 		else if (i == 0)
 			break;
-		check_line(line, &map);
+		check_line(line, &map, &l_map);
 	}
+	//transformer map en char ** puis check si map good
+	free_list(l_map);
+	return (map);
 }
 
 int main(int argc, char **argv)
@@ -238,6 +302,7 @@ int main(int argc, char **argv)
 	}
 	if (check_name(argv[1]))
 		exit(EXIT_FAILURE);
-	map = parsing(argc, argv);
+	map = parsing(argv);
 	printf("|NO = %s|\n|SO = %s|\n|WE = %s|\n|EA = %s|\n|F = %s|\n|C = %s|\n", map->NO, map->SO, map->WE, map->EA, map->F, map->C);
+	free_list(map->mlc);
 }
