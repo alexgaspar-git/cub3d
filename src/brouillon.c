@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_brouillon.c                                   :+:      :+:    :+:   */
+/*   brouillon.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:37:30 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/11 17:42:32 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:53:47 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int	key_move(t_cub *cub)
 	draw_triangle(xi, yi, cub->data, 0xFFFFFF, alpha);
 	return (0);
 }
-int main()
-{
-	mlx_hook(cub->data->win, ON_KEYUP, 1L<<1, key_release, cub);
-	mlx_loop_hook(cub->data->mlx, &key_move, cub);
-}
+// int main()
+// {
+	// mlx_hook(cub->data->win, ON_KEYUP, 1L<<1, key_release, cub);
+	// mlx_loop_hook(cub->data->mlx, &key_move, cub);
+// }

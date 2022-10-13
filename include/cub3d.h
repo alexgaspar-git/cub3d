@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/11 18:27:51 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:23:05 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define CUB3D_H
 # define W 1600
 # define H 900
+# define MW 400
+# define MH 250
+# define BG 0x424b52
+# define border 0x0a3042
 
 # include <stdio.h>
 # include <math.h>
@@ -88,14 +92,26 @@ typedef struct s_data {
 typedef struct s_cub {
 	t_data	*data;
 	t_key	*key;
+	char	**map;
+	int ox;
+	int oy;
+	int playerx;
+	int	playery;
+	int	grid;
+	int	grid_gap;
 }	t_cub;
 
 void	dr_line(t_line line, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_data	*init_data(void);
-t_cub	*init_cub(void);
+t_cub	*init_cub(char **map);
 void	*xalloc(size_t size);
 int		key_press(int keycode, t_cub *cub);
+int		key_release(int keycode, t_cub *cub);
 int		close_window(t_data *data);
+void	init_hooks(t_cub *cub);
+int		render(t_cub *cub);
+void	find_player(char **map, t_cub *cub);
+void	frame_map(t_cub *cub);
 
 #endif
