@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   malloc_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/13 15:37:34 by lide              #+#    #+#             */
+/*   Updated: 2022/10/13 18:46:09 by lide             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "parsing.h"
 
 void	free_list(t_list *adr)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
-	while(adr->before != NULL)
-	{
+	while (adr->before != NULL)
 		adr = adr->before;
-	}
-	while(adr->next != NULL)
+	while (adr->next != NULL)
 	{
 		tmp = adr;
 		adr = adr->next;
@@ -35,8 +44,8 @@ t_list	*ft_lstnew(void)
 
 void	*l_malloc(size_t size, t_list **adr)
 {
-	void *ptr;
-	t_list *new;
+	void	*ptr;
+	t_list	*new;
 
 	ptr = malloc(size);
 	if (!ptr)

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/12 17:59:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/13 18:47:49 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	len1(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
-	while(str[len])
+	while (str[len])
 		len++;
 	return (len);
 }
 
-int path_len(char *str)
+int	path_len(char *str)
 {
 	int	len;
 	int	i;
@@ -56,7 +56,7 @@ int	check_name(char *argv)
 
 void	init_parsing(t_parsing	**map, t_list *l_map)
 {
-	t_list *mlc;
+	t_list	*mlc;
 
 	mlc = ft_lstnew();
 	if (!mlc)
@@ -72,12 +72,12 @@ void	init_parsing(t_parsing	**map, t_list *l_map)
 		free_list(l_map);
 		exit(EXIT_FAILURE);
 	}
-	(*map)->NO = NULL;
-	(*map)->SO = NULL;
-	(*map)->WE = NULL;
-	(*map)->EA = NULL;
-	(*map)->F = NULL;
-	(*map)->C = NULL;
+	(*map)->no = NULL;
+	(*map)->so = NULL;
+	(*map)->we = NULL;
+	(*map)->ea = NULL;
+	(*map)->f = NULL;
+	(*map)->c = NULL;
 	(*map)->mlc = mlc;
 }
 
@@ -123,10 +123,10 @@ char	*ft_substr(char *s, int start, int len, t_list **adr)
 
 void	get_path(char **info, char *line, int i, t_list **adr)
 {
-	int len;
-	char *new;
+	int		len;
+	char	*new;
 
-	while(line[i] == ' ')
+	while (line[i] == ' ')
 		i++;
 	len = path_len(&line[i]);
 	if (len == -1 || *info)
@@ -147,72 +147,80 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 	*info = new;
 }
 
+void	free_map_lmap(t_list *mlc, t_list *l_map)
+{
+	free_list(mlc);
+	free_list(l_map);
+	exit(EXIT_FAILURE);
+}
+
 int	is_map(char *line, t_parsing *map, t_list *l_map)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
-		if (line[i] == ' ' || line[i] == '0' || line[i] == '1'
-		|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'|| line[i] == 'W')
-			i++;
-		else if (!(map->NO) || !(map->SO) || !(map->WE)
-		|| !(map->EA) || !(map->F) || !(map->C))
+		if (!(map->no) || !(map->so) || !(map->we)
+			|| !(map->ea) || !(map->f) || !(map->c))
 		{
-			printf("Cub3d need NO/SO/WE/EA texture and F/C color. the map content has to be in the last place\n");
-			free_list(map->mlc);
-			free_list(l_map);
+			printf(ERROR1 ERROR1D);
 			free(line);
-			exit(EXIT_FAILURE);
+			free_map_lmap(map->mlc, l_map);
 		}
+		if (line[i] == ' ' || line[i] == '0' || line[i] == '1'
+			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
+			|| line[i] == 'W')
+			i++;
 		else
 		{
-			printf("there is a wrong charactere in the map\n");
-			free_list(map->mlc);
-			free_list(l_map);
+			printf("there is a wrong charactere in the map ->|%c|\n", line[i]);
 			free(line);
-			exit(EXIT_FAILURE);
+			free_map_lmap(map->mlc, l_map);
 		}
 	}
 	return (0);
 }
 
-void	put_l_map(char *line, t_parsing **map, t_list **l_map)
+int	check_last(char *line, t_parsing **map, t_list **l_map)
 {
-	t_list	*new;
-	static int empty;
+	static int	empty;
 
 	if (line[0] == 0 && !empty)
 	{
 		empty = 1;
-		return ;
+		return (1);
 	}
 	if (empty)
 	{
 		if (line[0] != 0)
 		{
 			printf("map can't be separeted and must be the last argument\n");
-			free_list((*map)->mlc);
-			free_list(*l_map);
 			free(line);
-			exit(EXIT_FAILURE);
+			free_map_lmap((*map)->mlc, *l_map);
 		}
 		else
-			return ;
+			return (1);
 	}
-	printf("%s\n", line);
+	return (0);
+}
+
+void	put_l_map(char *line, t_parsing **map, t_list **l_map)
+{
+	t_list		*new;
+
+	if (check_last(line, map, l_map))
+		return ;
 	(*l_map)->adr = line;
 	new = ft_lstnew();
 	if (!new)
 	{
-		free_list((*map)->mlc);
-		free_list(*l_map);
-		free(line);
 		perror("lstnew");
-		exit(EXIT_FAILURE);
+		free(line);
+		free_map_lmap((*map)->mlc, *l_map);
 	}
 	(*l_map)->next = new;
+	new->before = *l_map;
 	*l_map = (*l_map)->next;
 }
 
@@ -224,20 +232,20 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 	if (line[0] == 0 && !check)
 		return ;
 	i = 0;
-	while(line[i] == ' ')
+	while (line[i] == ' ')
 		i++;
-	if (!ft_cmp(line, "NO ", i, 2) && !check)
-		get_path(&(*map)->NO, line, i + 2, &(*map)->mlc);
-	else if (!ft_cmp(line, "SO ", i, 2) && !check)
-		get_path(&(*map)->SO, line, i + 2, &(*map)->mlc);
-	else if (!ft_cmp(line, "WE ", i, 2) && !check)
-		get_path(&(*map)->WE, line, i + 2, &(*map)->mlc);
-	else if (!ft_cmp(line, "EA ", i, 2) && !check)
-		get_path(&(*map)->EA, line, i + 2, &(*map)->mlc);
-	else if (!ft_cmp(line, "F ", i, 1) && !check)
-		get_path(&(*map)->F, line, i + 2, &(*map)->mlc);
-	else if (!ft_cmp(line, "C ", i, 1) && !check)
-		get_path(&(*map)->C, line, i + 2, &(*map)->mlc);
+	if (!ft_cmp(line, "NO ", i, 1) && !check)
+		get_path(&(*map)->no, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "SO ", i, 1) && !check)
+		get_path(&(*map)->so, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "WE ", i, 1) && !check)
+		get_path(&(*map)->we, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "EA ", i, 1) && !check)
+		get_path(&(*map)->ea, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "F ", i, 0) && !check)
+		get_path(&(*map)->f, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "C ", i, 0) && !check)
+		get_path(&(*map)->c, line, i + 2, &(*map)->mlc);
 	else if (!is_map(line, *map, *l_map))
 	{
 		put_l_map(line, map, l_map);
@@ -245,14 +253,131 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 	}
 }
 
+char	*ft_strdup(char *s1, t_list *mlc)
+{
+	char	*s2;
+	int		i;
+
+	s2 = l_malloc(sizeof(char) * (len1(s1) + 1), &mlc);
+	if (!s2)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = 0;
+	return (s2);
+}
+
+void	free_list_exit(t_list *adr)
+{
+	free_list(adr);
+	exit(EXIT_FAILURE);
+}
+
+void	list_to_char(t_parsing **map, t_list **l_map)
+{
+	char	**save;
+	t_list	*tmp;
+	int		len;
+	int		i;
+
+	len = 1;//verif
+	while ((*l_map)->before != NULL)
+	{
+		*l_map = (*l_map)->before;
+		len++;
+	}
+	save = l_malloc(sizeof(char *) * (len + 1), &(*map)->mlc);
+	if (!save)
+		free_list_exit(*l_map);
+	i = 0;
+	tmp = *l_map;
+	while (tmp->adr != NULL)
+	{
+		save[i] = ft_strdup(tmp->adr, (*map)->mlc);
+		if (!save[i++])
+			free_list_exit(*l_map);
+		tmp = tmp->next;
+	}
+	save[i] = NULL;
+	(*map)->map = save;
+}
+
+int	check_map_wall(char **map, const int y, const int x)
+{
+	int	y2;
+	int	x2;
+
+	y2 = y;
+	while (map[y2] && map[y2][x] && map[y2][x] != '1' && map[y2][x] != ' ')
+		y2--;
+	if (!map[y2] || !map[y2][x] || map[y2][x] == ' ')
+		return (1);
+	y2 = y;
+	while (map[y2] && map[y2][x] && map[y2][x] != '1' && map[y2][x] != ' ')
+		y2++;
+	if (!map[y2] || !map[y2][x] || map[y2][x] == ' ')
+		return (1);
+	x2 = x;
+	while (map[y][x2] && map[y][x2] != '1' && map[y][x2] != ' ')
+		x2--;
+	if (!map[y][x2] || map[y][x2] == ' ')
+		return (1);
+	x2 = x;
+	while (map[y][x2] && map[y][x2] != '1' && map[y][x2] != ' ')
+		x2++;
+	if (!map[y][x2] || map[y][x2] == ' ')
+		return (1);
+	return (0);
+}
+
+void	check_map(char **map, t_list *mlc)
+{
+	int	y;
+	int	x;
+	int	player;
+
+	y = 0;
+	player = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] != '0' && map[y][x] != ' ' && map[y][x] != '1')
+			{
+				if (++player > 1)
+				{
+					printf("only one player is accepted\n");
+					free_list(mlc);
+					exit(EXIT_FAILURE);
+				}
+			}
+			if (map[y][x] != ' ' && map[y][x] != '1')
+			{
+				if (check_map_wall(map, y, x))
+				{
+					printf("map is not closed\n");
+					free_list(mlc);
+					exit(EXIT_FAILURE);
+				}
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 t_parsing	*parsing(char **argv)
 {
 	t_parsing	*map;
-	char		**c_map;
 	t_list		*l_map;
-	char *line;
-	int	fd;
-	int	i;
+	char		*line;
+	int			fd;
+	int			i;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
@@ -278,15 +403,16 @@ t_parsing	*parsing(char **argv)
 			exit(EXIT_FAILURE);
 		}
 		else if (i == 0)
-			break;
+			break ;
 		check_line(line, &map, &l_map);
 	}
-	//transformer map en char ** puis check si map good
+	list_to_char(&map, &l_map);
 	free_list(l_map);
+	check_map(map->map, map->mlc);
 	return (map);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_parsing	*map;
 
@@ -303,6 +429,8 @@ int main(int argc, char **argv)
 	if (check_name(argv[1]))
 		exit(EXIT_FAILURE);
 	map = parsing(argv);
-	printf("|NO = %s|\n|SO = %s|\n|WE = %s|\n|EA = %s|\n|F = %s|\n|C = %s|\n", map->NO, map->SO, map->WE, map->EA, map->F, map->C);
+	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
+	for (int i = 0; map->map[i]; i++)
+		printf("%s\n", map->map[i]);
 	free_list(map->mlc);
 }
