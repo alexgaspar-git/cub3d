@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/13 18:47:56 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/14 12:15:57 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "get_next_line/get_next_line.h"
 // # include "wraloc/wraloc.h"
 
-# define ERROR1 "Cub3d need no/so/we/ea texture and F/C color."
+# define ERROR1 "Cub3d need NO/SO/WE/EA texture and F/C color."
 # define ERROR1D " the map content has to be in the last place\n"
 
 typedef struct s_list

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/13 18:47:49 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/14 12:13:13 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,8 +271,10 @@ char	*ft_strdup(char *s1, t_list *mlc)
 	return (s2);
 }
 
-void	free_list_exit(t_list *adr)
+void	free_list_exit(t_list *adr, char *str)
 {
+	if (str != NULL)
+		printf("%s", str);
 	free_list(adr);
 	exit(EXIT_FAILURE);
 }
@@ -292,14 +294,14 @@ void	list_to_char(t_parsing **map, t_list **l_map)
 	}
 	save = l_malloc(sizeof(char *) * (len + 1), &(*map)->mlc);
 	if (!save)
-		free_list_exit(*l_map);
+		free_list_exit(*l_map, NULL);
 	i = 0;
 	tmp = *l_map;
 	while (tmp->adr != NULL)
 	{
 		save[i] = ft_strdup(tmp->adr, (*map)->mlc);
 		if (!save[i++])
-			free_list_exit(*l_map);
+			free_list_exit(*l_map, NULL);
 		tmp = tmp->next;
 	}
 	save[i] = NULL;
@@ -348,60 +350,45 @@ void	check_map(char **map, t_list *mlc)
 		while (map[y][x])
 		{
 			if (map[y][x] != '0' && map[y][x] != ' ' && map[y][x] != '1')
-			{
 				if (++player > 1)
-				{
-					printf("only one player is accepted\n");
-					free_list(mlc);
-					exit(EXIT_FAILURE);
-				}
-			}
+					free_list_exit(mlc, "only one player is accepted\n");
 			if (map[y][x] != ' ' && map[y][x] != '1')
-			{
 				if (check_map_wall(map, y, x))
-				{
-					printf("map is not closed\n");
-					free_list(mlc);
-					exit(EXIT_FAILURE);
-				}
-			}
+					free_list_exit(mlc, "map is not closed\n");
 			x++;
 		}
 		y++;
 	}
 }
 
-t_parsing	*parsing(char **argv)
+void	print_exit(char *str, int verif)
+{
+	if (!verif)
+		printf("%s", str);
+	else
+		perror(str);
+	exit(EXIT_FAILURE);
+}
+
+t_parsing	*parsing(char **argv, int i)
 {
 	t_parsing	*map;
 	t_list		*l_map;
 	char		*line;
 	int			fd;
-	int			i;
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		perror("parcing");
-		exit(EXIT_FAILURE);
-	}
-	i = 1;
+		print_exit("parcing", 1);
 	l_map = ft_lstnew();
 	if (!l_map)
-	{
-		perror("lstnew");
-		exit(EXIT_FAILURE);
-	}
+		print_exit("lstnew", 1);
 	init_parsing(&map, l_map);
 	while (i)
 	{
 		i = get_next_line(fd, &line);
 		if (i == -1)
-		{
-			free_list(map->mlc);
-			free_list(l_map);
-			exit(EXIT_FAILURE);
-		}
+			free_map_lmap(map->mlc, l_map);
 		else if (i == 0)
 			break ;
 		check_line(line, &map, &l_map);
@@ -428,7 +415,7 @@ int	main(int argc, char **argv)
 	}
 	if (check_name(argv[1]))
 		exit(EXIT_FAILURE);
-	map = parsing(argv);
+	map = parsing(argv, 1);
 	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
 	for (int i = 0; map->map[i]; i++)
 		printf("%s\n", map->map[i]);

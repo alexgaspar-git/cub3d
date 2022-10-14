@@ -6,7 +6,7 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:13:19 by lide              #+#    #+#              #
-#    Updated: 2022/10/13 18:48:17 by lide             ###   ########.fr        #
+#    Updated: 2022/10/14 12:13:34 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -Iinclude
 
 $(NAME):	$(OBJS)
-			$(CC) ${CFLAGS} -o $(NAME) -lmlx -framework OpenGL -framework AppKit $(OBJS)
+			$(CC) ${CFLAGS} -o $(NAME) $(OBJS)
 
 all:		$(NAME)
 
