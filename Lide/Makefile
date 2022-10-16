@@ -6,14 +6,18 @@
 #    By: lide <lide@student.s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 16:13:19 by lide              #+#    #+#              #
-#    Updated: 2022/10/14 12:13:34 by lide             ###   ########.fr        #
+#    Updated: 2022/10/16 14:47:41 by lide             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= 	parsing.c\
+SRCS		= 	free.c\
+				list.c\
+				utils.c\
+				parsing.c\
+				parsing_map.c\
+				malloc_list.c\
 				get_next_line/get_next_line.c\
-				get_next_line/get_next_line_utils.c\
-				malloc_list.c
+				get_next_line/get_next_line_utils.c
 
 OBJS		= ${SRCS:.c=.o}
 

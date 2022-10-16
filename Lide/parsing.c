@@ -6,39 +6,29 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/14 12:13:13 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/16 14:50:39 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	len1(char *str)
-{
-	int	len;
+// int	path_len(char *str)
+// {
+// 	int	len;
+// 	int	i;
 
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-int	path_len(char *str)
-{
-	int	len;
-	int	i;
-
-	len = 0;
-	while (str[len] && str[len] != ' ')
-		len++;
-	i = len;
-	while (str[i])
-	{
-		if (str[i] != ' ')
-			return (-1);
-		i++;
-	}
-	return (len);
-}
+// 	len = 0;
+// 	while (str[len] && str[len] != ' ')
+// 		len++;
+// 	i = len;
+// 	while (str[i])
+// 	{
+// 		if (str[i] != ' ')
+// 			return (-1);
+// 		i++;
+// 	}
+// 	return (len);
+// }
 
 int	check_name(char *argv)
 {
@@ -54,89 +44,20 @@ int	check_name(char *argv)
 	return (0);
 }
 
-void	init_parsing(t_parsing	**map, t_list *l_map)
-{
-	t_list	*mlc;
-
-	mlc = ft_lstnew();
-	if (!mlc)
-	{
-		perror("lstnew");
-		free_list(l_map);
-		exit(EXIT_FAILURE);
-	}
-	*map = l_malloc(sizeof(t_parsing), &mlc);
-	if (!*map)
-	{
-		perror("init_parsing");
-		free_list(l_map);
-		exit(EXIT_FAILURE);
-	}
-	(*map)->no = NULL;
-	(*map)->so = NULL;
-	(*map)->we = NULL;
-	(*map)->ea = NULL;
-	(*map)->f = NULL;
-	(*map)->c = NULL;
-	(*map)->mlc = mlc;
-}
-
-int	ft_cmp(const char *s1, const char *s2, int start, int len)
-{
-	int	i;
-
-	i = 0;
-	while (s1[start] && s2[i] && s1[start] == s2[i] && i < len)
-	{
-		i++;
-		start++;
-	}
-	return ((unsigned char)s1[start] - (unsigned char)s2[i]);
-}
-
-char	*ft_substr(char *s, int start, int len, t_list **adr)
-{
-	char	*s2;
-	int		len2;
-	int		i;
-
-	if (!s)
-		return (NULL);
-	len2 = len1(s);
-	if (start >= len2)
-		start = len2;
-	if (len2 - start < len)
-		len = len2 - start;
-	s2 = l_malloc(sizeof(char) * (len + 1), adr);
-	if (!s2)
-		return (NULL);
-	i = 0;
-	while (s[start] && i < len)
-	{
-		s2[i] = s[start];
-		start++;
-		i++;
-	}
-	s2[i] = 0;
-	return (s2);
-}
-
 void	get_path(char **info, char *line, int i, t_list **adr)
 {
-	int		len;
 	char	*new;
 
 	while (line[i] == ' ')
 		i++;
-	len = path_len(&line[i]);
-	if (len == -1 || *info)
+	if (*info)
 	{
 		free_list(*adr);
 		free(line);
 		printf("only one path is accepted for each direction\n");
 		exit(EXIT_FAILURE);
 	}
-	new = ft_substr(line, i, len, adr);
+	new = ft_substr(line, i, adr);
 	if (!new)
 	{
 		free(line);
@@ -145,83 +66,6 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 	}
 	free(line);
 	*info = new;
-}
-
-void	free_map_lmap(t_list *mlc, t_list *l_map)
-{
-	free_list(mlc);
-	free_list(l_map);
-	exit(EXIT_FAILURE);
-}
-
-int	is_map(char *line, t_parsing *map, t_list *l_map)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!(map->no) || !(map->so) || !(map->we)
-			|| !(map->ea) || !(map->f) || !(map->c))
-		{
-			printf(ERROR1 ERROR1D);
-			free(line);
-			free_map_lmap(map->mlc, l_map);
-		}
-		if (line[i] == ' ' || line[i] == '0' || line[i] == '1'
-			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-			|| line[i] == 'W')
-			i++;
-		else
-		{
-			printf("there is a wrong charactere in the map ->|%c|\n", line[i]);
-			free(line);
-			free_map_lmap(map->mlc, l_map);
-		}
-	}
-	return (0);
-}
-
-int	check_last(char *line, t_parsing **map, t_list **l_map)
-{
-	static int	empty;
-
-	if (line[0] == 0 && !empty)
-	{
-		empty = 1;
-		return (1);
-	}
-	if (empty)
-	{
-		if (line[0] != 0)
-		{
-			printf("map can't be separeted and must be the last argument\n");
-			free(line);
-			free_map_lmap((*map)->mlc, *l_map);
-		}
-		else
-			return (1);
-	}
-	return (0);
-}
-
-void	put_l_map(char *line, t_parsing **map, t_list **l_map)
-{
-	t_list		*new;
-
-	if (check_last(line, map, l_map))
-		return ;
-	(*l_map)->adr = line;
-	new = ft_lstnew();
-	if (!new)
-	{
-		perror("lstnew");
-		free(line);
-		free_map_lmap((*map)->mlc, *l_map);
-	}
-	(*l_map)->next = new;
-	new->before = *l_map;
-	*l_map = (*l_map)->next;
 }
 
 void	check_line(char *line, t_parsing **map, t_list **l_map)
@@ -251,123 +95,6 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 		put_l_map(line, map, l_map);
 		check = 1;
 	}
-}
-
-char	*ft_strdup(char *s1, t_list *mlc)
-{
-	char	*s2;
-	int		i;
-
-	s2 = l_malloc(sizeof(char) * (len1(s1) + 1), &mlc);
-	if (!s2)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = 0;
-	return (s2);
-}
-
-void	free_list_exit(t_list *adr, char *str)
-{
-	if (str != NULL)
-		printf("%s", str);
-	free_list(adr);
-	exit(EXIT_FAILURE);
-}
-
-void	list_to_char(t_parsing **map, t_list **l_map)
-{
-	char	**save;
-	t_list	*tmp;
-	int		len;
-	int		i;
-
-	len = 1;//verif
-	while ((*l_map)->before != NULL)
-	{
-		*l_map = (*l_map)->before;
-		len++;
-	}
-	save = l_malloc(sizeof(char *) * (len + 1), &(*map)->mlc);
-	if (!save)
-		free_list_exit(*l_map, NULL);
-	i = 0;
-	tmp = *l_map;
-	while (tmp->adr != NULL)
-	{
-		save[i] = ft_strdup(tmp->adr, (*map)->mlc);
-		if (!save[i++])
-			free_list_exit(*l_map, NULL);
-		tmp = tmp->next;
-	}
-	save[i] = NULL;
-	(*map)->map = save;
-}
-
-int	check_map_wall(char **map, const int y, const int x)
-{
-	int	y2;
-	int	x2;
-
-	y2 = y;
-	while (map[y2] && map[y2][x] && map[y2][x] != '1' && map[y2][x] != ' ')
-		y2--;
-	if (!map[y2] || !map[y2][x] || map[y2][x] == ' ')
-		return (1);
-	y2 = y;
-	while (map[y2] && map[y2][x] && map[y2][x] != '1' && map[y2][x] != ' ')
-		y2++;
-	if (!map[y2] || !map[y2][x] || map[y2][x] == ' ')
-		return (1);
-	x2 = x;
-	while (map[y][x2] && map[y][x2] != '1' && map[y][x2] != ' ')
-		x2--;
-	if (!map[y][x2] || map[y][x2] == ' ')
-		return (1);
-	x2 = x;
-	while (map[y][x2] && map[y][x2] != '1' && map[y][x2] != ' ')
-		x2++;
-	if (!map[y][x2] || map[y][x2] == ' ')
-		return (1);
-	return (0);
-}
-
-void	check_map(char **map, t_list *mlc)
-{
-	int	y;
-	int	x;
-	int	player;
-
-	y = 0;
-	player = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] != '0' && map[y][x] != ' ' && map[y][x] != '1')
-				if (++player > 1)
-					free_list_exit(mlc, "only one player is accepted\n");
-			if (map[y][x] != ' ' && map[y][x] != '1')
-				if (check_map_wall(map, y, x))
-					free_list_exit(mlc, "map is not closed\n");
-			x++;
-		}
-		y++;
-	}
-}
-
-void	print_exit(char *str, int verif)
-{
-	if (!verif)
-		printf("%s", str);
-	else
-		perror(str);
-	exit(EXIT_FAILURE);
 }
 
 t_parsing	*parsing(char **argv, int i)

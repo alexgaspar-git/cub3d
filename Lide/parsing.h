@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/14 12:15:57 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/16 14:50:54 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,22 @@ typedef struct s_parsing
 t_list	*ft_lstnew(void);
 void	*l_malloc(size_t size, t_list **adr);
 void	free_list(t_list *adr);
+
+void	init_parsing(t_parsing	**map, t_list *l_map);
+void	list_to_char(t_parsing **map, t_list **l_map);
+
+int		len1(char *str);
+int		len_s(char *str);
+int		ft_cmp(const char *s1, const char *s2, int start, int len);
+char	*ft_substr(char *s, int start, t_list **adr);
+char	*ft_strdup(char *s1, t_list *mlc);
+
+void	check_map(char **map, t_list *mlc);
+void	put_l_map(char *line, t_parsing **map, t_list **l_map);
+int		is_map(char *line, t_parsing *map, t_list *l_map);
+
+void	print_exit(char *str, int verif);
+void	free_map_lmap(t_list *mlc, t_list *l_map);
+void	free_list_exit(t_list *adr, char *str);
 
 #endif
