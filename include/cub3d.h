@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 20:50:33 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 22:16:20 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,5 @@ void	move_map(t_cub *cub);
 void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub);
 void	dr_player(t_cub *cub);
 void	display_minimap(char **map, t_cub *cub);
-t_line	init_line(int x1, int y1, int x2, int y2);
+t_line	init_line(int x1, int y1, int x2, int y2, int color);
 #endif

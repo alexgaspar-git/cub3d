@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 21:26:37 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 22:19:29 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	move_player(t_cub *cub)
 	}
 }
 
-t_line	init_line(int x1, int y1, int x2, int y2)
+t_line	init_line(int x1, int y1, int x2, int y2, int color)
 {
 	t_line line;
 
@@ -156,10 +156,102 @@ t_line	init_line(int x1, int y1, int x2, int y2)
 	line.y1 = y1;
 	line.x2 = x2;
 	line.y2 = y2;
-	line.color = 0xFF0000;
+	line.color = color;
 
 	return (line);
 }
+
+// int	round_to_grid(float p_y)
+// {
+// 	return (((int)p_y>>5)<<5);
+// }
+
+// void	draw_ray(t_cub *cub, t_player *plr)
+// {
+// 	int	r;
+// 	int mx;
+// 	int my;
+// 	int dof;
+// 	float rx;
+// 	float ry;
+// 	float ra;
+// 	float xo;
+// 	float yo;
+// 	float aTan;
+// 	float nTan;
+	
+// 	ra = plr->p_a;
+// 	for (r = 0; r < 1; r++)
+// 	{
+// 		dof = 0;
+// 		aTan = -1/tan(ra);
+// 		if (ra > M_PI)
+// 		{
+// 			ry = round_to_grid(plr->p_y) - 0.0001;
+// 			rx = (plr->p_y - ry) * aTan + plr->p_x;
+// 			yo = -cub->grid;
+// 			xo = -yo * aTan;
+// 		}
+// 		if (ra < M_PI)
+// 		{
+// 			ry = round_to_grid(plr->p_y) + 32;
+// 			rx = (plr->p_y - ry) * aTan + plr->p_x;
+// 			yo = cub->grid;
+// 			xo = -yo * aTan;
+// 		}
+// 		if (ra == 0 || ra == M_PI)
+// 		{
+// 			rx = plr->p_x;
+// 			ry = plr->p_y;
+// 			dof = 8;
+// 		}
+// 		(void)mx;
+// 		(void)my;
+// 		// while (dof < 8)
+// 		// {
+// 		// 	mx = ((int)rx) / cub->grid;
+// 		// 	my = ((int)ry) / cub->grid;
+// 		// 	if ((my < 10 && mx < 10) && cub->map[my][mx] == '1')
+// 		// 		dof = 8;
+// 		// 	else
+// 		// 	{
+// 		// 		rx += xo;
+// 		// 		ry += yo;
+// 		// 		dof++;
+// 		// 	}
+// 		// }
+// 		if (rx < W && ry < H && rx > -1 && ry > -1)
+// 			dr_line(init_line(plr->p_x, plr->p_y, rx, ry, 0xFF0000), cub);
+
+// 		//vertical line
+// 		dof = 0;
+// 		nTan = -tan(ra);
+// 		if (ra > M_PI_2 && ra < 3 * M_PI_2)
+// 		{
+// 			rx = round_to_grid(plr->p_x) - 0.0001;
+// 			ry = (plr->p_x - rx) * nTan + plr->p_y;
+// 			xo = -cub->grid;
+// 			yo = -xo * nTan;
+// 		}
+// 		if (ra < M_PI_2 || ra > 3 * M_PI_2)
+// 		{
+// 			rx = round_to_grid(plr->p_x) + 32;
+// 			ry = (plr->p_x - rx) * nTan + plr->p_y;
+// 			xo = cub->grid;
+// 			yo = -xo * nTan;
+// 		}
+// 		if (ra == 0 || ra == M_PI)
+// 		{
+// 			rx = plr->p_x;
+// 			ry = plr->p_y;
+// 			dof = 8;
+// 		}
+// 		(void)mx;
+// 		(void)my;
+// 		if (rx < W && ry < H && rx > -1 && ry > -1)
+// 			dr_line(init_line(plr->p_x, plr->p_y, rx, ry, 0xFF00FF), cub);
+// 	}
+// }
 
 int	render(t_cub *cub)
 {
@@ -169,6 +261,7 @@ int	render(t_cub *cub)
 	move_player(cub);
 	draw_map(cub->map, cub);	
 	draw_player(cub);
+	// draw_ray(cub, cub->player);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
 	clear_window(cub->data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 20:35:43 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:29:20 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ t_cub	*init_cub(char **argv)
 	cub->data = init_data();
 	cub->pars = parsing(argv, 1);
 	cub->map = cub->pars->map;
-	cub->grid = 64;
-	cub->grid_gap = 0;
+	cub->grid = 32;
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
 	return (cub);
