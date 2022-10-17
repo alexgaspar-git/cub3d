@@ -3,7 +3,15 @@ SRCS		= 	main.c \
 				init.c \
 				utils.c \
 				frame.c \
-				minimap.c
+				minimap.c \
+				parsing/free.c\
+				parsing/list.c\
+				parsing/utils.c\
+				parsing/parsing.c\
+				parsing/parsing_map.c\
+				parsing/malloc_list.c\
+				parsing/get_next_line/get_next_line.c\
+				parsing/get_next_line/get_next_line_utils.c
 
 SRCS		:= $(addprefix src/,$(SRCS))
 

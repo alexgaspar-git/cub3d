@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 17:04:19 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:01:16 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	move_map(t_cub *cub)
 {
 	if (cub->key->w == 1)
-		cub->oy += 2;
+		cub->m_oy += 2;
 	if (cub->key->a == 1)
-		cub->ox += 2;
+		cub->m_ox += 2;
 	if (cub->key->s == 1)
-		cub->oy -= 2;
+		cub->m_oy -= 2;
 	if (cub->key->d == 1)
-		cub->ox -= 2;
+		cub->m_ox -= 2;
 }
 
 void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub)
@@ -34,8 +34,8 @@ void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub)
 		j = y;
 		while (j < cub->grid + y)
 		{
-			if (i + cub->ox < MW && j + cub->oy < MH && i + cub->ox >= 0 && j + cub->oy >= 0)
-				my_mlx_pixel_put(cub->data, i + cub->ox, j + cub->oy, color);
+			if (i + cub->m_ox < MW && j + cub->m_oy < MH && i + cub->m_ox >= 0 && j + cub->m_oy >= 0)
+				my_mlx_pixel_put(cub->data, i + cub->m_ox, j + cub->m_oy, color);
 			j++;
 		}
 		i++;
@@ -59,7 +59,6 @@ void	dr_player(t_cub *cub)
 		i++;
 	}
 }
-
 
 void	display_minimap(char **map, t_cub *cub)
 {

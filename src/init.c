@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/13 18:26:08 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:52:19 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,20 @@ void	init_hooks(t_cub *cub)
 {
 	mlx_hook(cub->data->win, ON_KEYUP, 1L<<1, key_release, cub);
 	mlx_hook(cub->data->win, ON_KEYDOWN, 1L<<0, key_press, cub);
-	mlx_hook(cub->data->win, ON_DESTROY, 1L<<2, close_window, cub->data);
+	mlx_hook(cub->data->win, ON_DESTRm_oy, 1L<<2, close_window, cub->data);
 	mlx_loop_hook(cub->data->mlx, &render, cub);
 	mlx_loop(cub->data->mlx);
 }
 
-t_cub	*init_cub(char **map)
+t_cub	*init_cub(char **argv)
 {
 	t_cub	*cub;
 	
 	cub = xalloc(sizeof(t_cub));
 	cub->key = xalloc(sizeof(t_key));
 	cub->data = init_data();
-	cub->map = map;
+	cub->pars = parsing(argv, 1);
+	cub->map = cub->pars->map;
 	cub->grid = 20;
 	cub->grid_gap = 0;
 	find_player(cub->map, cub);

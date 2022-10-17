@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 17:05:01 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:52:19 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "mlx.h"
+# include "../src/parsing/parsing.h"
 
 enum {
 	ON_KEYDOWN = 2,
@@ -33,7 +34,7 @@ enum {
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
-	ON_DESTROY = 17,
+	ON_DESTRm_oy = 17,
 	KEY_ESC = 53,
 	KEY_W = 13,
 	KEY_A = 0,
@@ -92,9 +93,10 @@ typedef struct s_data {
 typedef struct s_cub {
 	t_data	*data;
 	t_key	*key;
+	t_parsing *pars;
 	char	**map;
-	int ox;
-	int oy;
+	int m_ox;
+	int m_oy;
 	float p_x;
 	float p_y;
 	float p_dx;
