@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/17 14:05:38 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/17 17:01:42 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	check_map_wall(char **map, const int y, const int x)
 	int	x2;
 
 	y2 = y;
+	if (y == 0)
+		return (1);
 	while (map[y2] && map[y2][x] && map[y2][x] != '1' && map[y2][x] != ' ')
 		y2--;
 	if (!map[y2] || !map[y2][x] || map[y2][x] == ' ')
