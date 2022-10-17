@@ -2,7 +2,8 @@ SRCS		= 	main.c \
 				bresenham.c \
 				init.c \
 				utils.c \
-				frame.c
+				frame.c \
+				minimap.c
 
 SRCS		:= $(addprefix src/,$(SRCS))
 

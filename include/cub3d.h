@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/13 18:23:05 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:05:01 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,11 @@ typedef struct s_cub {
 	char	**map;
 	int ox;
 	int oy;
-	int playerx;
-	int	playery;
+	float p_x;
+	float p_y;
+	float p_dx;
+	float p_dy;
+	float p_a;
 	int	grid;
 	int	grid_gap;
 }	t_cub;
@@ -113,5 +116,9 @@ void	init_hooks(t_cub *cub);
 int		render(t_cub *cub);
 void	find_player(char **map, t_cub *cub);
 void	frame_map(t_cub *cub);
+void	move_map(t_cub *cub);
+void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub);
+void	dr_player(t_cub *cub);
+void	display_minimap(char **map, t_cub *cub);
 
 #endif
