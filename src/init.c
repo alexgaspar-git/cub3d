@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 17:52:19 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 20:35:43 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,66 @@ void	init_hooks(t_cub *cub)
 	mlx_loop(cub->data->mlx);
 }
 
+void	pos_player(char **map, t_player *player, t_cub *cub)
+{
+	int	x;
+	int y;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
+			{
+				player->p_x = x * cub->grid;
+				player->p_y = y * cub->grid;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+t_player *init_player(t_cub *cub)
+{
+	t_player *player;
+
+	player = xalloc(sizeof(t_player));
+	player->p_a = 0;
+	player->p_dx = cos(player->p_a) * 5;
+	player->p_dy = sin(player->p_a) * 5;
+	pos_player(cub->map, player, cub);
+	return (player);
+}
+
+t_mini *init_minimap()
+{
+	t_mini *mini;
+
+	mini = xalloc(sizeof(t_mini));
+	mini->m_ox = 0;
+	mini->m_oy = 0;
+	mini->p_mx = 0;
+	mini->p_mx = 0;
+	return (mini);
+}
+
 t_cub	*init_cub(char **argv)
 {
 	t_cub	*cub;
 	
 	cub = xalloc(sizeof(t_cub));
 	cub->key = xalloc(sizeof(t_key));
+	cub->mini = init_minimap();
 	cub->data = init_data();
 	cub->pars = parsing(argv, 1);
 	cub->map = cub->pars->map;
-	cub->grid = 20;
+	cub->grid = 64;
 	cub->grid_gap = 0;
-	find_player(cub->map, cub);
+	cub->player = init_player(cub);
+	find_player_mini(cub->map, cub);
 	return (cub);
 }

@@ -6,34 +6,11 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 18:00:36 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:26:37 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	find_player_minimap(char **map, t_cub *cub)
-{
-	int	x;
-	int y;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
-			{
-				cub->p_x = MW / 2 - x * cub->grid - (cub->grid/2);
-				cub->p_y = MH / 2 - y * cub->grid - (cub->grid/2);
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 void clear_window(t_data *data)
 {
@@ -62,7 +39,7 @@ void	dr_square(int x, int y, unsigned int color, t_cub *cub)
 		j = y;
 		while (j < cub->grid + y)
 		{
-			if (i + cub->m_ox < W && j + cub->m_oy < H && i >= 0 && j >= 0)
+			if (x < W && y < H && x > -1 && y > -1)
 				my_mlx_pixel_put(cub->data, i, j, color);
 			j++;
 		}
@@ -70,10 +47,10 @@ void	dr_square(int x, int y, unsigned int color, t_cub *cub)
 	}
 }
 
-void	display_map(char **map, t_cub *cub)
+void	draw_map(char **map, t_cub *cub)
 {
 	int	x = 0;
-	int	y = 0;
+	int y = 0;
 
 	while (map[y])
 	{
@@ -81,20 +58,107 @@ void	display_map(char **map, t_cub *cub)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				dr_square(x * (cub->grid + cub->grid_gap), y * (cub->grid + cub->grid_gap), 0xFFFFFF, cub);
+				dr_square(x * cub->grid, y * cub->grid, 0xFFFFFF, cub);
 			if (map[y][x] == '0')
-				dr_square(x * (cub->grid + cub->grid_gap), y * (cub->grid + cub->grid_gap), 0xAAAAAA, cub);
-			if ( map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
-				dr_square(x * (cub->grid + cub->grid_gap), y * (cub->grid + cub->grid_gap), 0xFF0000, cub);
+				dr_square(x * cub->grid, y * cub->grid, 0xAAAAAA, cub);
+			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
+				dr_square(x * cub->grid, y * cub->grid, 0xFF0000, cub);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	player(t_cub *cub)
+void	draw_player(t_cub *cub)
 {
-	
+	int	i = 0;
+	int j = 0;
+	int	p_size = 6;
+
+	while (i < p_size)
+	{
+		j = 0;
+		while (j < p_size)
+		{
+			if (i + cub->player->p_x < W && j + cub->player->p_y < H && i + cub->player->p_x > -1 && j + cub->player->p_y > -1)
+				my_mlx_pixel_put(cub->data, i + cub->player->p_x, j + cub->player->p_y, 0x0000FF);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	is_wall_front(t_cub *cub)
+{
+	int	x;
+	int	y;
+
+	x = (cub->player->p_x + cub->player->p_dx) / cub->grid;
+	y = (cub->player->p_y + cub->player->p_dy) / cub->grid;
+	if (cub->map[y][x] == '1')
+		return (1);
+	return (0);
+}
+
+int	is_wall_behind(t_cub *cub)
+{
+	int	x;
+	int	y;
+
+	x = (cub->player->p_x - cub->player->p_dx) / cub->grid;
+	y = (cub->player->p_y - cub->player->p_dy) / cub->grid;
+	if (cub->map[y][x] == '1')
+		return (1);
+	return (0);
+}
+
+void	move_player(t_cub *cub)
+{
+	if (cub->key->w == 1)
+	{
+		if (!is_wall_front(cub))
+		{
+			cub->player->p_x += cub->player->p_dx;
+			cub->player->p_y += cub->player->p_dy;
+		}
+	}
+	if (cub->key->s == 1)
+	{
+		if (!is_wall_behind(cub))
+		{
+			cub->player->p_x -= cub->player->p_dx;
+			cub->player->p_y -= cub->player->p_dy;
+		}
+	}
+	if (cub->key->a == 1)
+	{
+		if (cub->player->p_a < 0)
+			cub->player->p_a += 2 * M_PI;
+		cub->player->p_a -= 0.1;
+		cub->player->p_dx = cos(cub->player->p_a) * 5;
+		cub->player->p_dy = sin(cub->player->p_a) * 5;
+	}
+	if (cub->key->d == 1)
+	{
+		if (cub->player->p_a > 2 * M_PI)
+			cub->player->p_a -= 2 * M_PI;
+		cub->player->p_a += 0.1;
+		cub->player->p_dx = cos(cub->player->p_a) * 5;
+		cub->player->p_dy = sin(cub->player->p_a) * 5;
+	}
+}
+
+t_line	init_line(int x1, int y1, int x2, int y2)
+{
+	t_line line;
+
+	line.x1 = x1;
+	line.y1 = y1;
+	line.x2 = x2;
+	line.y2 = y2;
+	line.color = 0xFF0000;
+
+	return (line);
 }
 
 int	render(t_cub *cub)
@@ -102,8 +166,9 @@ int	render(t_cub *cub)
 	// display_minimap(cub->map, cub);
 	// dr_player(cub);
 	// move_map(cub);
-	display_map(cub->map, cub);
-	player();
+	move_player(cub);
+	draw_map(cub->map, cub);	
+	draw_player(cub);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
 	clear_window(cub->data);
 	return (0);
