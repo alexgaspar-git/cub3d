@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/18 16:33:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/18 22:16:09 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # define MH 250
 # define BG 0x424b52
 # define border 0x0a3042
+# define FOV M_PI/3
+# define HALF_FOV FOV/2
+# define CASTED_RAYS 1280
+# define STEP_ANGLE FOV/CASTED_RAYS
+
 
 # include <stdio.h>
 # include <math.h>
