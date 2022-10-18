@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/17 17:01:42 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/18 19:47:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int	check_map_wall(char **map, const int y, const int x)
 	int	x2;
 
 	y2 = y;
-	if (y == 0)
-		return (1);
 	while (map[y2] && map[y2][x] && map[y2][x] != '1' && map[y2][x] != ' ')
 		y2--;
 	if (!map[y2] || !map[y2][x] || map[y2][x] == ' ')
@@ -112,7 +110,29 @@ int	check_map_wall(char **map, const int y, const int x)
 	return (0);
 }
 
-void	check_map(char **map, t_list *mlc)
+void	check_xpm(char *line, t_list *adr)
+{
+	int	len;
+
+	len = len1(line);
+	if (line[len - 1] != 'm' || line[len - 2] != 'p'
+		|| line[len - 3] != 'x' || line[len - 4] != '.')
+	{
+		free_list(adr);
+		printf("only .xpm is accepted for texture\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_texture(t_parsing *map)
+{
+	check_xpm(map->no, map->mlc);
+	check_xpm(map->so, map->mlc);
+	check_xpm(map->we, map->mlc);
+	check_xpm(map->ea, map->mlc);
+}
+
+void	check_map(t_parsing *map)
 {
 	int	y;
 	int	x;
@@ -120,19 +140,21 @@ void	check_map(char **map, t_list *mlc)
 
 	y = 0;
 	player = 0;
-	while (map[y])
+	while (map->map[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (map->map[y][x])
 		{
-			if (map[y][x] != '0' && map[y][x] != ' ' && map[y][x] != '1')
+			if (map->map[y][x] != '0'
+			&& map->map[y][x] != ' ' && map->map[y][x] != '1')
 				if (++player > 1)
-					free_list_exit(mlc, "only one player is accepted\n");
-			if (map[y][x] != ' ' && map[y][x] != '1')
-				if (check_map_wall(map, y, x))
-					free_list_exit(mlc, "map is not closed\n");
+					free_list_exit(map->mlc, "only one player is accepted\n");
+			if (map->map[y][x] != ' ' && map->map[y][x] != '1')
+				if (y == 0 || check_map_wall(map->map, y, x))
+					free_list_exit(map->mlc, "map is not closed\n");
 			x++;
 		}
 		y++;
 	}
+	check_texture(map);
 }

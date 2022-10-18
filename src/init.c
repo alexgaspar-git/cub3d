@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 21:29:20 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/18 18:33:08 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ t_mini *init_minimap()
 t_cub	*init_cub(char **argv)
 {
 	t_cub	*cub;
-	
+
 	cub = xalloc(sizeof(t_cub));
 	cub->key = xalloc(sizeof(t_key));
 	cub->mini = init_minimap();
 	cub->data = init_data();
 	cub->pars = parsing(argv, 1);
 	cub->map = cub->pars->map;
-	cub->grid = 32;
+	cub->grid = 64;
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
 	return (cub);

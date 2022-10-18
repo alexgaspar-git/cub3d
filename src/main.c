@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/18 18:23:38 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/18 18:38:57 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ void	find_wall(t_cub *cub, int yf, int xf)
 	if (x > xf)
 		cub->player->p_x = ((xf + 1) * cub->grid) + 3;
 	else if(x < xf)
-		cub->player->p_x = (xf * cub->grid) - 3;
+		cub->player->p_x = (xf * cub->grid) - 4;
 	if (y > yf)
 		cub->player->p_y = ((yf + 1) * cub->grid) + 3;
 	else if(y < yf)
-		cub->player->p_y = (yf * cub->grid) - 3;
+		cub->player->p_y = (yf * cub->grid) - 4;
 }
 
 int	is_wall_front(t_cub *cub)
@@ -110,8 +110,14 @@ int	is_wall_front(t_cub *cub)
 	int	x;
 	int	y;
 
-	x = (cub->player->p_x + cub->player->p_dx) / cub->grid;
-	y = (cub->player->p_y + cub->player->p_dy) / cub->grid;
+	if (cub->player->p_dx >= 0)
+		x = (cub->player->p_x + cub->player->p_dx + 4) / cub->grid;
+	else
+		x = (cub->player->p_x + cub->player->p_dx - 3) / cub->grid;
+	if (cub->player->p_dy >= 0)
+		y = (cub->player->p_y + cub->player->p_dy + 4) / cub->grid;
+	else
+		y = (cub->player->p_y + cub->player->p_dy - 3) / cub->grid;
 	if (cub->map[y][x] == '1')
 	{
 		find_wall(cub, y, x);
@@ -125,8 +131,14 @@ int	is_wall_behind(t_cub *cub)
 	int	x;
 	int	y;
 
-	x = (cub->player->p_x - cub->player->p_dx) / cub->grid;
-	y = (cub->player->p_y - cub->player->p_dy) / cub->grid;
+	if (cub->player->p_dx >= 0)
+		x = (cub->player->p_x - cub->player->p_dx - 4) / cub->grid;
+	else
+		x = (cub->player->p_x - cub->player->p_dx + 3) / cub->grid;
+	if (cub->player->p_dy >= 0)
+		y = (cub->player->p_y - cub->player->p_dy - 4) / cub->grid;
+	else
+		y = (cub->player->p_y - cub->player->p_dy + 3) / cub->grid;
 	if (cub->map[y][x] == '1')
 	{
 		find_wall(cub, y, x);

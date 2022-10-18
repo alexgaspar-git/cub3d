@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/17 17:24:13 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:39:44 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_parsing	*parsing(char **argv, int i)
 	}
 	list_to_char(&map, &l_map);
 	free_list(l_map);
-	check_map(map->map, map->mlc);
+	check_map(map);
 	return (map);
 }
 
