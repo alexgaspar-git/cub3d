@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/18 17:11:20 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/18 18:23:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ void	draw_map(char **map, t_cub *cub)
 
 void	draw_player(t_cub *cub)
 {
-	int	i = 0;
-	int j = 0;
-	int	p_size = 6;
+	int	i = -3;
+	int j = -3;
+	int	p_size = 4;
 
 	while (i < p_size)
 	{
-		j = 0;
+		j = -3;
 		while (j < p_size)
 		{
 			if (i + cub->player->p_x < W && j + cub->player->p_y < H && i + cub->player->p_x > -1 && j + cub->player->p_y > -1)
@@ -96,13 +96,13 @@ void	find_wall(t_cub *cub, int yf, int xf)
 	x = (int)(cub->player->p_x / cub->grid);
 	y = (int)(cub->player->p_y / cub->grid);
 	if (x > xf)
-		cub->player->p_x = (xf + 1) * cub->grid;
+		cub->player->p_x = ((xf + 1) * cub->grid) + 3;
 	else if(x < xf)
-		cub->player->p_x = xf * cub->grid;
+		cub->player->p_x = (xf * cub->grid) - 3;
 	if (y > yf)
-		cub->player->p_y = (yf + 1) * cub->grid;
+		cub->player->p_y = ((yf + 1) * cub->grid) + 3;
 	else if(y < yf)
-		cub->player->p_y = yf * cub->grid;
+		cub->player->p_y = (yf * cub->grid) - 3;
 }
 
 int	is_wall_front(t_cub *cub)
