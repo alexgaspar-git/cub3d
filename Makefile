@@ -4,6 +4,8 @@ SRCS		= 	main.c \
 				utils.c \
 				frame.c \
 				minimap.c \
+				draw.c \
+				check_wall.c \
 				parsing/free.c\
 				parsing/list.c\
 				parsing/utils.c\

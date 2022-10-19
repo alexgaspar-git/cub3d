@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/18 22:42:43 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:34:37 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ t_data	*init_data(void)
 				&data->line_length, &data->endian);
 	}
 	return (data);
+}
+
+t_line	init_line(int x1, int y1, int x2, int y2, int color)
+{
+	t_line line;
+
+	line.x1 = x1;
+	line.y1 = y1;
+	line.x2 = x2;
+	line.y2 = y2;
+	line.color = color;
+
+	return (line);
 }
 
 void	init_hooks(t_cub *cub)
@@ -69,7 +82,7 @@ t_player *init_player(t_cub *cub)
 	t_player *player;
 
 	player = xalloc(sizeof(t_player));
-	player->p_a = 0;
+	player->p_a = 1;
 	player->p_dx = cos(player->p_a) * 5;
 	player->p_dy = sin(player->p_a) * 5;
 	pos_player(cub->map, player, cub);
@@ -98,7 +111,7 @@ t_cub	*init_cub(char **argv)
 	cub->data = init_data();
 	cub->pars = parsing(argv, 1);
 	cub->map = cub->pars->map;
-	cub->grid = 64;
+	cub->grid = GRID;
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
 	return (cub);
