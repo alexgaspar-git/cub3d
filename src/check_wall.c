@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/19 17:05:06 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:53:46 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	move_player(t_cub *cub)
 	}
 	if (cub->key->q == 1)
 	{
-		cub->player->p_a += 0.1;
+		cub->player->p_a += 0.05;
 		if (cub->player->p_a > 2 * M_PI)
 			cub->player->p_a = 0;
 		cub->player->p_dx = cos(cub->player->p_a) * 5;
@@ -109,7 +109,7 @@ void	move_player(t_cub *cub)
 	}
 	if (cub->key->e == 1)
 	{
-		cub->player->p_a -= 0.1;
+		cub->player->p_a -= 0.05;
 		if (cub->player->p_a < 0)
 			cub->player->p_a = 2 * M_PI;
 		cub->player->p_dx = cos(cub->player->p_a) * 5;

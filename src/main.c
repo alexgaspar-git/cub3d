@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/19 18:53:00 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:34:05 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,58 +29,55 @@ void clear_window(t_data *data)
 	}
 }
 
-//commente les dr_line si tu veux isoler une ligner pour tester
-
 void	check_horizontal(t_cub *cub)
 {
-	float ynearest = 0;
-	float xnearest = 0;
+	int	dof, mx, my;
+	float rx, ry, ra, xo, yo, aTan;
 
-	if (cub->player->p_a > 0 && cub->player->p_a < M_PI)
+	ra = cub->player->p_a;
+	aTan = -1/tan(ra);
+	rx = 0;
+	ry = 0;
+	dof = 0;
+	xo = 0;
+	yo = 0;
+	if (ra > 0 + 0.05 && ra < M_PI - 0.05)
 	{
-		ynearest = cub->player->p_y - ((int)(cub->player->p_y)/GRID) * GRID;
-		xnearest = ynearest/tan(cub->player->p_a);
-		//ligne jaune qui check les intersections horizontales que dans la moitié haut du rayon (entre 0 et 180 degrés)
-		dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + xnearest, cub->player->p_y - ynearest, 0xFFFF00), cub);
+		ry = ((int)(cub->player->p_y)/GRID) * GRID;
+		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
+		yo = -GRID;
+		xo = -yo * -aTan;
 	}
-	else if (cub->player->p_a > M_PI && cub->player->p_a <= 2 * M_PI)
+	else if (ra > M_PI + 0.05 && ra < 2 * M_PI - 0.05)
 	{
-		ynearest = cub->player->p_y - ((int)(cub->player->p_y)/GRID) * GRID;
-		xnearest = ynearest/tan(cub->player->p_a);
-		//ligne rouge moitié bas
-		dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x - xnearest, cub->player->p_y + ynearest, 0xFF0000), cub);
+		ry = (((int)(cub->player->p_y)/GRID) * GRID) + GRID;
+		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
+		yo = GRID;
+		xo = -yo * -aTan;
 	}
-	else if (cub->player->p_a == 0 || cub->player->p_a == M_PI)
+	else
 	{
-		ynearest = cub->player->p_y;
-		xnearest = cub->player->p_x;
-	}	
-}
-
-void	check_vertical(t_cub *cub)
-{
-	float ynearest = 0;
-	float xnearest = 0;
-
-	if (cub->player->p_a > M_PI_2 && cub->player->p_a < 3 * M_PI_2)
-	{
-		xnearest = cub->player->p_y - ((int)(cub->player->p_y)/GRID) * GRID;
-		ynearest = xnearest * tan(cub->player->p_a);
-		//ligne verte intersection verticales côté gauche
-		dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x - xnearest, cub->player->p_y + ynearest, 0x00FF00), cub);
+		rx = cub->player->p_x;
+		ry = cub->player->p_y;
 	}
-	else if (cub->player->p_a < M_PI_2 || cub->player->p_a > 3 * M_PI_2)
+	(void)mx;
+	(void)my;
+	while (dof < 8)
 	{
-		xnearest = cub->player->p_y - ((int)(cub->player->p_y)/GRID) * GRID;
-		ynearest = xnearest * tan(cub->player->p_a);
-		//ligne bleu ciel côté droit
-		dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + xnearest, cub->player->p_y - ynearest, 0x00FFFF), cub);
+		mx = (int)rx/GRID;
+		my = (int)ry/GRID;
+		if (mx > 0 && my > 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
+			break;
+		else
+		{
+			rx += xo;
+			ry += yo;
+			dof++;
+			printf("map[%d][%d]| dof = %d\n", my, mx, dof);
+		}
 	}
-	else if (cub->player->p_a == M_PI_2 || cub->player->p_a == 3 * M_PI_2)
-	{
-		ynearest = cub->player->p_y;
-		xnearest = cub->player->p_x;
-	}
+	t_line line = init_line(cub->player->p_x, cub->player->p_y, rx, ry, 0xFF0000);
+	dr_line(line, cub);
 }
 
 void	draw_rays(t_cub *cub)
@@ -103,9 +100,8 @@ int	render(t_cub *cub)
 	draw_player(cub);
 	// draw_rays(cub);
 	check_horizontal(cub);
-	check_vertical(cub);
-	// printf("p_x: %f | p_y: %f | p_dx: %f | p_dy: %f | p_a: %f\n", cub->player->p_x, cub->player->p_y, cub->player->p_dx, cub->player->p_dy, cub->player->p_a);
-	// printf("on tile: [%f,%f]\n", roundf(cub->player->p_x/64 - 0.5), roundf(cub->player->p_y/64 - 0.5));
+	printf("p_x: %f | p_y: %f | p_dx: %f | p_dy: %f | p_a: %f\n", cub->player->p_x, cub->player->p_y, cub->player->p_dx, cub->player->p_dy, cub->player->p_a);
+	// printf("on tile: [%d,%d]\n", (int)roundf(cub->player->p_x/64 - 0.5), (int)roundf(cub->player->p_y/64 - 0.5));
 	// dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
 	clear_window(cub->data);
