@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/18 19:43:27 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/20 18:34:53 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_list
 
 typedef struct s_parsing
 {
+	int				x_max;
+	int				y_max;
 	char			*no;
 	char			*so;
 	char			*we;

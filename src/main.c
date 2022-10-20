@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:34:05 by algaspar         ###   ########.fr       */
+/*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
+/*   Updated: 2022/10/20 19:34:59 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	check_horizontal(t_cub *cub)
 	t_line line = init_line(cub->player->p_x, cub->player->p_y, rx, ry, 0xFF0000);
 	dr_line(line, cub);
 }
+
 
 void	draw_rays(t_cub *cub)
 {
