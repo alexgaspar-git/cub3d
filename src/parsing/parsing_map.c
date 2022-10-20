@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/18 19:47:35 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/20 18:47:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,23 @@ void	check_texture(t_parsing *map)
 	check_xpm(map->ea, map->mlc);
 }
 
+void	find_map_limits(t_parsing *map)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x++])
+			if (x > map->x_max)
+				map->x_max = x;
+		y++;
+	}
+	map->y_max = y;
+}
+
 void	check_map(t_parsing *map)
 {
 	int	y;
@@ -157,4 +174,5 @@ void	check_map(t_parsing *map)
 		y++;
 	}
 	check_texture(map);
+	find_map_limits(map);
 }

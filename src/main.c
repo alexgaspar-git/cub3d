@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:44:38 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/19 18:53:00 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:47:17 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	check_horizontal(t_cub *cub)
 	{
 		ynearest = cub->player->p_y;
 		xnearest = cub->player->p_x;
-	}	
+	}
 }
 
 void	check_vertical(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:24 by lide              #+#    #+#             */
-/*   Updated: 2022/10/17 14:18:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/20 18:41:40 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init_parsing(t_parsing	**map, t_list *l_map)
 	(*map)->ea = NULL;
 	(*map)->f = NULL;
 	(*map)->c = NULL;
+	(*map)->x_max = 0;
+	(*map)->y_max = 0;
 	(*map)->mlc = mlc;
 }
 
