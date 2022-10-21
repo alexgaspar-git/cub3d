@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 15:02:13 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:15:35 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_hooks(t_cub *cub)
 {
 	mlx_hook(cub->data->win, ON_KEYUP, 1L<<1, key_release, cub);
 	mlx_hook(cub->data->win, ON_KEYDOWN, 1L<<0, key_press, cub);
-	mlx_hook(cub->data->win, ON_DESTRm_oy, 1L<<2, close_window, cub->data);
+	mlx_hook(cub->data->win, ON_DESTROY, 1L<<2, close_window, cub->data);
 	mlx_loop_hook(cub->data->mlx, &render, cub);
 	mlx_loop(cub->data->mlx);
 }
