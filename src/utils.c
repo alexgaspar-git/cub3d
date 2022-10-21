@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/18 22:43:13 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:15:49 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ int	key_press(int keycode, t_cub *cub)
 		cub->key->s = 1;
 	else if (keycode == KEY_D)
 		cub->key->d = 1;
-	else if (keycode == KEY_Q)
-		cub->key->q = 1;
-	else if (keycode == KEY_E)
-		cub->key->e = 1;
+	else if (keycode == KEY_LEFT)
+		cub->key->left = 1;
+	else if (keycode == KEY_RIGHT)
+		cub->key->right = 1;
 	else if (keycode == 69)
 		cub->grid_gap++;
 	else if (keycode == 78)
 		cub->grid_gap--;
-	else if (keycode == KEY_ESC)
+	else if (keycode == KEY_RIGHTSC)
 	{
 		mlx_destroy_window(cub->data->mlx, cub->data->win);
 		exit(EXIT_SUCCESS);
@@ -65,9 +65,9 @@ int	key_release(int keycode, t_cub *cub)
 		cub->key->s = 0;
 	else if (keycode == KEY_D)
 		cub->key->d = 0;
-	else if (keycode == KEY_Q)
-		cub->key->q = 0;
-	else if (keycode == KEY_E)
-		cub->key->e = 0;
+	else if (keycode == KEY_LEFT)
+		cub->key->left = 0;
+	else if (keycode == KEY_RIGHT)
+		cub->key->right = 0;
 	return (0);
 }
