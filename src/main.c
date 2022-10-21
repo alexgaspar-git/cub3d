@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/20 19:34:59 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:49:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ void	check_horizontal(t_cub *cub)
 
 	ra = cub->player->p_a;
 	aTan = -1/tan(ra);
-	rx = 0;
-	ry = 0;
 	dof = 0;
-	xo = 0;
-	yo = 0;
 	if (ra > 0 + 0.05 && ra < M_PI - 0.05)
 	{
 		ry = ((int)(cub->player->p_y)/GRID) * GRID;
@@ -60,22 +56,24 @@ void	check_horizontal(t_cub *cub)
 		rx = cub->player->p_x;
 		ry = cub->player->p_y;
 	}
-	(void)mx;
-	(void)my;
 	while (dof < 8)
 	{
 		mx = (int)rx/GRID;
 		my = (int)ry/GRID;
-		if (mx > 0 && my > 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
+		if (mx >= 0 && my >= 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
 			break;
 		else
 		{
 			rx += xo;
 			ry += yo;
 			dof++;
-			printf("map[%d][%d]| dof = %d\n", my, mx, dof);
+			// printf("map[%d][%d]| dof = %d\n", my, mx, dof);
 		}
 	}
+	if (ra > 0 + 0.05 && ra < M_PI - 0.05)
+		ry += 64;
+	else
+		ry -= 1;
 	t_line line = init_line(cub->player->p_x, cub->player->p_y, rx, ry, 0xFF0000);
 	dr_line(line, cub);
 }
