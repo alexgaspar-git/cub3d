@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/18 19:39:44 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/21 15:07:58 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	check_name(char *argv)
 void	get_path(char **info, char *line, int i, t_list **adr)
 {
 	char	*new;
+	int		len;
 
 	while (line[i] == ' ')
 		i++;
@@ -57,7 +58,8 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 		printf("only one path is accepted for each direction\n");
 		exit(EXIT_FAILURE);
 	}
-	new = ft_substr(line, i, adr);
+	len = len1(&line[i]);
+	new = ft_substr(line, i, len, adr);
 	if (!new)
 	{
 		free(line);
@@ -123,6 +125,8 @@ t_parsing	*parsing(char **argv, int i)
 	list_to_char(&map, &l_map);
 	free_list(l_map);
 	check_map(map);
+	// check_texture(map);
+	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
 	return (map);
 }
 

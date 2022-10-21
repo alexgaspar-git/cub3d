@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 13:49:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/21 14:56:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	render(t_cub *cub)
 	draw_player(cub);
 	// draw_rays(cub);
 	check_horizontal(cub);
-	printf("p_x: %f | p_y: %f | p_dx: %f | p_dy: %f | p_a: %f\n", cub->player->p_x, cub->player->p_y, cub->player->p_dx, cub->player->p_dy, cub->player->p_a);
+	// printf("p_x: %f | p_y: %f | p_dx: %f | p_dy: %f | p_a: %f\n", cub->player->p_x, cub->player->p_y, cub->player->p_dx, cub->player->p_dy, cub->player->p_a);
 	// printf("on tile: [%d,%d]\n", (int)roundf(cub->player->p_x/64 - 0.5), (int)roundf(cub->player->p_y/64 - 0.5));
 	// dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
