@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/19 17:05:25 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:18:35 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ enum {
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTRm_oy = 17,
-	KEY_ESC = 53,
+	KEY_RIGHTSC = 53,
 	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
-	KEY_Q = 12,
-	KEY_E = 14,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124,
 };
 
 typedef struct s_line {
@@ -82,8 +82,8 @@ typedef struct s_key {
 	unsigned int a;
 	unsigned int s;
 	unsigned int d;
-	unsigned int q;
-	unsigned int e;
+	unsigned int left;
+	unsigned int right;
 }	t_key;
 
 typedef struct s_data {
@@ -95,6 +95,12 @@ typedef struct s_data {
 	int		line_length;
 	int		endian;
 }	t_data;
+
+typedef struct s_ray
+{
+	float rx;
+	float ry;
+}	t_ray;
 
 typedef struct s_mini
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:02:18 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 13:50:16 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/21 14:39:18 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	draw_map(char **map, t_cub *cub)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				dr_square(x * (cub->grid + 1), y * (cub->grid + 1), 0xFFFFFF, cub);
+				dr_square(x * (cub->grid), y * (cub->grid), 0xFFFFFF, cub);
 			if (map[y][x] == '0')
-				dr_square(x * (cub->grid + 1), y * (cub->grid + 1), 0xAAAAAA, cub);
+				dr_square(x * (cub->grid), y * (cub->grid), 0xAAAAAA, cub);
 			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
-				dr_square(x * (cub->grid + 1), y * (cub->grid + 1), 0xFF0000, cub);
+				dr_square(x * (cub->grid), y * (cub->grid), 0xFF0000, cub);
 			x++;
 		}
 		y++;
