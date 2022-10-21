@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 18:18:35 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:15:05 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ enum {
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
-	ON_DESTRm_oy = 17,
-	KEY_RIGHTSC = 53,
+	ON_DESTROY = 17,
+	KEY_ESC = 53,
 	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
