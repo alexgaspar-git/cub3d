@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/21 15:07:58 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/21 19:26:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,64 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 		put_l_map(line, map, l_map);
 		check = 1;
 	}
+}
+
+int	check_space_t(char *texture)
+{
+	int	i;
+
+	i = 0;
+	while (texture[i] && texture[i] == ' ')
+		i++;
+	while (texture[i] && texture[i] != ' ')
+		i++;
+	while (texture[i] && texture[i] == ' ')
+		i++;
+	if (texture[i])
+		return (1);
+	return (0);
+
+}
+
+int	check_colours(char *colour)
+{
+	int	i;
+	int	len;
+	int	num;
+	int	comma;
+
+	len = len1(colour);
+	i = 0;
+	comma = 0;
+	num = 0;
+	while (colour[i] && (colour[i] == ',' || (colour[i] >= '0' && colour[i] <= '9')) && colour[i] == ' ')
+	{
+		i++;
+		if (colour[i] == ',')
+			comma++;
+		if (colour[i] >= '0' && colour[i] <= '9')
+			num++;
+	}
+	if (comma != 2 || num < 3 || num > 9 || len != i)
+		return (1);
+	i = 0;
+
+}
+
+void	check_texture(t_parsing *map)
+{
+	if (check_space_t(map->no))
+		exit(EXIT_FAILURE);//change free et exit
+	if (check_space_t(map->so))
+		exit(EXIT_FAILURE);//change free et exit
+	if (check_space_t(map->ea))
+		exit(EXIT_FAILURE);//change free et exit
+	if (check_space_t(map->we))
+		exit(EXIT_FAILURE);//change free et exit
+	if (check_colours(map->c))
+		exit(EXIT_FAILURE);//change free et exit
+	if (check_colours(map->f))
+		exit(EXIT_FAILURE);//change free et exit
 }
 
 t_parsing	*parsing(char **argv, int i)
