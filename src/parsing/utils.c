@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/21 14:50:13 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 19:39:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@ int	len1(char *str)
 	len = 0;
 	while (str[len])
 		len++;
-	return (len);
-}
-
-int	len_s(char *str)
-{
-	int	len;
-	int	i;
-
-	len = 0;
-	i = 0;
-	while (str[i])
-		if (str[i++] != ' ')
-			len++;
 	return (len);
 }
 
@@ -91,4 +78,10 @@ char	*ft_strdup(char *s1, t_list *mlc)
 	}
 	s2[i] = 0;
 	return (s2);
+}
+
+void	skip_w_space(char *str, int *i)
+{
+	while (str[*i] && ((str[*i] >= 9 && str[*i] <= 13) || str[*i] == ' '))
+		(*i)++;
 }

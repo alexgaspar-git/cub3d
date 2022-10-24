@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/20 18:47:20 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 19:13:58 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,14 @@ int	is_map(char *line, t_parsing *map, t_list *l_map)
 	{
 		if (!(map->no) || !(map->so) || !(map->we)
 			|| !(map->ea) || !(map->f) || !(map->c))
-		{
-			printf(ERROR1 ERROR1D);
-			free(line);
-			free_map_lmap(map->mlc, l_map);
-		}
+			error_map(map->mlc, l_map, line, ERROR1 ERROR1D);
 		if (line[i] == ' ' || line[i] == '0' || line[i] == '1'
 			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
 			|| line[i] == 'W')
 			i++;
 		else
 		{
+			printf("Error\n");
 			printf("there is a wrong charactere in the map ->|%c|\n", line[i]);
 			free(line);
 			free_map_lmap(map->mlc, l_map);
@@ -53,6 +50,7 @@ int	check_last(char *line, t_parsing **map, t_list **l_map)
 	{
 		if (line[0] != 0)
 		{
+			printf("Error\n");
 			printf("map can't be separeted and must be the last argument\n");
 			free(line);
 			free_map_lmap((*map)->mlc, *l_map);
@@ -73,6 +71,7 @@ void	put_l_map(char *line, t_parsing **map, t_list **l_map)
 	new = ft_lstnew();
 	if (!new)
 	{
+		printf("Error\n");
 		perror("lstnew");
 		free(line);
 		free_map_lmap((*map)->mlc, *l_map);
@@ -124,7 +123,7 @@ void	check_xpm(char *line, t_list *adr)
 	}
 }
 
-void	check_texture(t_parsing *map)
+void	check_texture_xpm(t_parsing *map)
 {
 	check_xpm(map->no, map->mlc);
 	check_xpm(map->so, map->mlc);
@@ -165,14 +164,14 @@ void	check_map(t_parsing *map)
 			if (map->map[y][x] != '0'
 			&& map->map[y][x] != ' ' && map->map[y][x] != '1')
 				if (++player > 1)
-					free_list_exit(map->mlc, "only one player is accepted\n");
+					free_list_exit(map->mlc, "only one player is accepted", 0);
 			if (map->map[y][x] != ' ' && map->map[y][x] != '1')
 				if (y == 0 || check_map_wall(map->map, y, x))
-					free_list_exit(map->mlc, "map is not closed\n");
+					free_list_exit(map->mlc, "map is not closed", 0);
 			x++;
 		}
 		y++;
 	}
-	check_texture(map);
+	check_texture_xpm(map);
 	find_map_limits(map);
 }

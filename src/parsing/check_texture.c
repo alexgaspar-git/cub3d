@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:45:54 by lide              #+#    #+#             */
+/*   Updated: 2022/10/24 19:49:44 by lide             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "parsing.h"
+
+int	check_space_t(char *texture)
+{
+	int	i;
+
+	i = 0;
+	skip_w_space(texture, &i);
+	while (texture[i]
+		&& !((texture[i] >= 9 && texture[i] <= 13) || texture[i] == ' '))
+		i++;
+	skip_w_space(texture, &i);
+	if (texture[i])
+		return (print_error("wrong texture path"));
+	return (0);
+}
+
+void	check_texture(t_parsing *map)
+{
+	if (check_space_t(map->no))
+		free_list_exit(map->mlc, NULL, 0);
+	if (check_space_t(map->so))
+		free_list_exit(map->mlc, NULL, 0);
+	if (check_space_t(map->ea))
+		free_list_exit(map->mlc, NULL, 0);
+	if (check_space_t(map->we))
+		free_list_exit(map->mlc, NULL, 0);
+	if (check_colours(map->c))
+		free_list_exit(map->mlc, NULL, 0);
+	if (check_colours(map->f))
+		free_list_exit(map->mlc, NULL, 0);
+}

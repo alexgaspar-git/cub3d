@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/21 14:49:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 19:52:24 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // # include "wraloc/wraloc.h"
 
 # define ERROR1 "Cub3d need NO/SO/WE/EA texture and F/C color."
-# define ERROR1D " the map content has to be in the last place\n"
+# define ERROR1D " the map content has to be in the last place"
 
 typedef struct s_list
 {
@@ -52,10 +52,10 @@ void		init_parsing(t_parsing	**map, t_list *l_map);
 void		list_to_char(t_parsing **map, t_list **l_map);
 
 int			len1(char *str);
-int			len_s(char *str);
 int			ft_cmp(const char *s1, const char *s2, int start, int len);
 char		*ft_substr(char *s, int start, int len, t_list **adr);
 char		*ft_strdup(char *s1, t_list *mlc);
+void		skip_w_space(char *str, int *i);
 
 void		check_map(t_parsing *map);
 void		put_l_map(char *line, t_parsing **map, t_list **l_map);
@@ -63,8 +63,14 @@ int			is_map(char *line, t_parsing *map, t_list *l_map);
 
 void		print_exit(char *str, int verif);
 void		free_map_lmap(t_list *mlc, t_list *l_map);
-void		free_list_exit(t_list *adr, char *str);
+void		error_map(t_list *mlc, t_list *l_map, char *line, char *str);
+void		free_list_exit(t_list *adr, char *str, int verif);
 int			check_name(char *argv);
 t_parsing	*parsing(char **argv, int i);
+
+int			check_colours(char *colour);
+int			print_error(char *str);
+
+void		check_texture(t_parsing *map);
 
 #endif

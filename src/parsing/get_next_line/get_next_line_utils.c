@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:17 by lide              #+#    #+#             */
-/*   Updated: 2022/10/13 18:46:09 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 16:16:01 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ char	*ft_line(char *save, int len)
 	s1 = malloc(sizeof(char) * (len));
 	if (!s1)
 	{
-		write(2, "Error : gnl/ft_line\n", 20);
+		write(2, "Error\n", 6);
+		write(2, "gnl/ft_line\n", 12);
 		free(save);
 		return (NULL);
 	}
@@ -82,7 +83,8 @@ char	*ft_save(char *save, int len)
 	s2 = malloc(sizeof(char) * (len_2 + 1));
 	if (!s2)
 	{
-		write(2, "Error : gnl/ft_save\n", 20);
+		write(2, "Error\n", 6);
+		write(2, "gnl/ft_save\n", 12);
 		free(save);
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:24 by lide              #+#    #+#             */
-/*   Updated: 2022/10/13 18:46:09 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 19:14:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*free_error(char *str, char *save)
 	if (save)
 		free(save);
 	free(str);
-	write(2, "Error : gnl/ft_read\n", 20);
+	write(2, "Error\n", 6);
+	write(2, "gnl/ft_read\n", 12);
 	return (NULL);
 }
 
@@ -61,7 +62,8 @@ char	*ft_read(int fd, char *save)
 	{
 		if (save)
 			free(save);
-		write(2, "Error : gnl/ft_read\n", 20);
+		write(2, "Error\n", 6);
+		write(2, "gnl/ft_read\n", 12);
 		return (NULL);
 	}
 	i = 1;
@@ -84,7 +86,10 @@ int	check_fd(int fd, char *save)
 	if (fd == -2)
 		free(save);
 	if (fd == -1)
-		write(2, "Error : wrong fd (probably nothing to read)\n", 44);
+	{
+		write(2, "Error\n", 6);
+		write(2, "wrong fd (probably nothing to read)\n", 36);
+	}
 	return (-1);
 }
 

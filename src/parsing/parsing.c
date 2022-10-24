@@ -6,29 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/21 19:28:17 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 19:52:15 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-// int	path_len(char *str)
-// {
-// 	int	len;
-// 	int	i;
-
-// 	len = 0;
-// 	while (str[len] && str[len] != ' ')
-// 		len++;
-// 	i = len;
-// 	while (str[i])
-// 	{
-// 		if (str[i] != ' ')
-// 			return (-1);
-// 		i++;
-// 	}
-// 	return (len);
-// }
 
 int	check_name(char *argv)
 {
@@ -38,7 +20,7 @@ int	check_name(char *argv)
 	if (argv[len - 1] != 'b' || argv[len - 2] != 'u'
 		|| argv[len - 3] != 'c' || argv[len - 4] != '.')
 	{
-		write(2, "Error : only .cub file is accepted\n", 35);
+		printf("Error\nonly .cub file is accepted\n");
 		return (1);
 	}
 	return (0);
@@ -49,13 +31,12 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 	char	*new;
 	int		len;
 
-	while (line[i] == ' ')
-		i++;
+	skip_w_space(line, &i);
 	if (*info)
 	{
 		free_list(*adr);
 		free(line);
-		printf("only one path is accepted for each direction\n");
+		printf("Error\nonly one path is accepted for each direction\n");
 		exit(EXIT_FAILURE);
 	}
 	len = len1(&line[i]);
@@ -63,6 +44,7 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 	if (!new)
 	{
 		free(line);
+		printf("Error\n");
 		perror("ft_substr");
 		exit (EXIT_FAILURE);
 	}
@@ -78,8 +60,7 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 	if (line[0] == 0 && !check)
 		return ;
 	i = 0;
-	while (line[i] == ' ')
-		i++;
+	skip_w_space(line, &i);
 	if (!ft_cmp(line, "NO ", i, 1) && !check)
 		get_path(&(*map)->no, line, i + 2, &(*map)->mlc);
 	else if (!ft_cmp(line, "SO ", i, 1) && !check)
@@ -97,64 +78,6 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 		put_l_map(line, map, l_map);
 		check = 1;
 	}
-}
-
-int	check_space_t(char *texture)
-{
-	int	i;
-
-	i = 0;
-	while (texture[i] && texture[i] == ' ')
-		i++;
-	while (texture[i] && texture[i] != ' ')
-		i++;
-	while (texture[i] && texture[i] == ' ')
-		i++;
-	if (texture[i])
-		return (1);
-	return (0);
-
-}
-
-int	check_colours(char *colour)
-{
-	int	i;
-	int	len;
-	int	num;
-	int	comma;
-
-	len = len1(colour);
-	i = 0;
-	comma = 0;
-	num = 0;
-	while (colour[i] && (colour[i] == ',' || (colour[i] >= '0' && colour[i] <= '9')) && colour[i] == ' ')
-	{
-		i++;
-		if (colour[i] == ',')
-			comma++;
-		if (colour[i] >= '0' && colour[i] <= '9')
-			num++;
-	}
-	if (comma != 2 || num < 3 || num > 9 || len != i)
-		return (1);
-	i = 0;
-
-}
-
-void	check_texture(t_parsing *map)
-{
-	if (check_space_t(map->no))
-		exit(EXIT_FAILURE);//change free et exit
-	if (check_space_t(map->so))
-		exit(EXIT_FAILURE);//change free et exit
-	if (check_space_t(map->ea))
-		exit(EXIT_FAILURE);//change free et exit
-	if (check_space_t(map->we))
-		exit(EXIT_FAILURE);//change free et exit
-	if (check_colours(map->c))
-		exit(EXIT_FAILURE);//change free et exit
-	if (check_colours(map->f))
-		exit(EXIT_FAILURE);//change free et exit
 }
 
 t_parsing	*parsing(char **argv, int i)
@@ -183,10 +106,11 @@ t_parsing	*parsing(char **argv, int i)
 	list_to_char(&map, &l_map);
 	free_list(l_map);
 	check_map(map);
-	// check_texture(map);
-	// printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
+	check_texture(map);
 	return (map);
 }
+
+	// printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
 
 // int	main(int argc, char **argv)
 // {

@@ -3,17 +3,16 @@ NO./path_to_the_north_texture.xpm
 SO./path_to_the_ssouth_texture.xpm
 WE./path_to_the_west_texture.xpm
 EA./path_to_the_east_texture.xpm
-F 220,100,0
+F 220,100,123
 C 225,30,0
 
 11111111111
 10000000001
-10011000001
-10000000001
+10010100001
+10001000001
 10000000001
 10000N00001
 10010001111
 10010000001
 10000000001
 11111111111
-

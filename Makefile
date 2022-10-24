@@ -12,6 +12,8 @@ SRCS		= 	main.c \
 				parsing/parsing.c\
 				parsing/parsing_map.c\
 				parsing/malloc_list.c\
+				parsing/check_colour.c\
+				parsing/check_texture.c\
 				parsing/get_next_line/get_next_line.c\
 				parsing/get_next_line/get_next_line_utils.c
 

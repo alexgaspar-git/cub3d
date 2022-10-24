@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:27:26 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/24 20:00:57 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_ray	check_horizontal(t_cub *cub, float ra)
 		return (ray);
 	if (ra > 0 && ra < M_PI)
 	{
-		ry = ((int)(cub->player->p_y)/GRID) * GRID - 1;
+		ry = ((int)(cub->player->p_y)/GRID) * GRID;
 		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
 		yo = -GRID;
 		xo = -yo * -aTan;
@@ -90,7 +90,7 @@ t_ray	check_vertical(t_cub *cub, float ra)
 	dof = 0;
 	if (ra > (M_PI / 2) && ra < (3 * (M_PI / 2)))
 	{
-		rx = ((int)(cub->player->p_x)/GRID) * GRID - 1;
+		rx = ((int)(cub->player->p_x)/GRID) * GRID;
 		ry = (cub->player->p_x - rx) * -nTan + cub->player->p_y;
 		xo = -GRID;
 		yo = -xo * -nTan;
