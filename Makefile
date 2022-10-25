@@ -6,6 +6,7 @@ SRCS		= 	main.c \
 				minimap.c \
 				draw.c \
 				check_wall.c \
+				raycasting.c \
 				parsing/free.c\
 				parsing/list.c\
 				parsing/utils.c\

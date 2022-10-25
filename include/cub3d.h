@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:15:05 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/25 19:35:14 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 # define MH 250
 # define BG 0x424b52
 # define border 0x0a3042
-# define FOV M_PI/3
-# define HALF_FOV FOV/2
+# define PI M_PI
+# define HPI PI / 2
+# define PI2 PI * 2 
+# define PI3 3 * (M_PI / 2)
+# define FOV PI / 3
+# define HALF_FOV FOV / 2
 # define CASTED_RAYS 1280
 # define STEP_ANGLE FOV/CASTED_RAYS
 # define GRID 64
-
 
 # include <stdio.h>
 # include <math.h>
@@ -98,8 +101,12 @@ typedef struct s_data {
 
 typedef struct s_ray
 {
-	float rx;
-	float ry;
+	float	rx;
+	float	ry;
+	float	xo;
+	float	yo;
+	float	aTan;
+	float	nTan;
 }	t_ray;
 
 typedef struct s_mini
@@ -146,6 +153,12 @@ void	draw_player(t_cub *cub);
 void	dr_square(int x, int y, unsigned int color, t_cub *cub);
 void	draw_map(char **map, t_cub *cub);
 void	move_player(t_cub *cub);
+void	draw_rays(t_cub *cub);
+void	draw_rays2(t_cub *cub);
+float	calc_dist(float ax, float ay, float bx, float by);
+/////	test
+void	draw_single_ray(t_cub *cub);
+/////
 
 //minimap
 void	move_map(t_cub *cub);
