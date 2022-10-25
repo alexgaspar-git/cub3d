@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/10/24 19:52:24 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/25 14:14:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int			check_colours(char *colour);
 int			print_error(char *str);
 
 void		check_texture(t_parsing *map);
+void		check_texture_xpm(t_parsing *map);
 
 #endif

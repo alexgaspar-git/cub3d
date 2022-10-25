@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/24 19:13:58 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/25 14:15:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,28 +107,6 @@ int	check_map_wall(char **map, const int y, const int x)
 	if (!map[y][x2] || map[y][x2] == ' ')
 		return (1);
 	return (0);
-}
-
-void	check_xpm(char *line, t_list *adr)
-{
-	int	len;
-
-	len = len1(line);
-	if (line[len - 1] != 'm' || line[len - 2] != 'p'
-		|| line[len - 3] != 'x' || line[len - 4] != '.')
-	{
-		free_list(adr);
-		printf("only .xpm is accepted for texture\n");
-		exit(EXIT_FAILURE);
-	}
-}
-
-void	check_texture_xpm(t_parsing *map)
-{
-	check_xpm(map->no, map->mlc);
-	check_xpm(map->so, map->mlc);
-	check_xpm(map->we, map->mlc);
-	check_xpm(map->ea, map->mlc);
 }
 
 void	find_map_limits(t_parsing *map)

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:45:54 by lide              #+#    #+#             */
-/*   Updated: 2022/10/24 19:49:44 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/25 14:14:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,26 @@ void	check_texture(t_parsing *map)
 		free_list_exit(map->mlc, NULL, 0);
 	if (check_colours(map->f))
 		free_list_exit(map->mlc, NULL, 0);
+}
+
+void	check_xpm(char *line, t_list *adr)
+{
+	int	len;
+
+	len = len1(line);
+	if (line[len - 1] != 'm' || line[len - 2] != 'p'
+		|| line[len - 3] != 'x' || line[len - 4] != '.')
+	{
+		free_list(adr);
+		printf("only .xpm is accepted for texture\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_texture_xpm(t_parsing *map)
+{
+	check_xpm(map->no, map->mlc);
+	check_xpm(map->so, map->mlc);
+	check_xpm(map->we, map->mlc);
+	check_xpm(map->ea, map->mlc);
 }
