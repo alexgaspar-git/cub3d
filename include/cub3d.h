@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/25 19:35:14 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:58:16 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PI3 3 * (M_PI / 2)
 # define FOV PI / 3
 # define HALF_FOV FOV / 2
-# define CASTED_RAYS 1280
+# define CASTED_RAYS 1600
 # define STEP_ANGLE FOV/CASTED_RAYS
 # define GRID 64
 

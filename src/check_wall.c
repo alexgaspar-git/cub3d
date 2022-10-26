@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/26 19:25:49 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/26 20:01:18 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	find_wall(t_cub *cub, int yf, int xf)
 			cub->player->p_y -= 1;
 		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
 			cub->player->p_y += 1;
-		printf("1 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+		// printf("1 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
 	}
 	else if(x < xf && cub->map[yf][x] != '1'/*yf != 0 && yf != cub->pars->y_max - 1*/)
 	{
@@ -35,7 +35,7 @@ void	find_wall(t_cub *cub, int yf, int xf)
 			cub->player->p_y -= 1;
 		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
 			cub->player->p_y += 1;
-		printf("2 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+		// printf("2 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
 	}
 	else if (y > yf)
 	{
@@ -44,7 +44,7 @@ void	find_wall(t_cub *cub, int yf, int xf)
 			cub->player->p_x -= 1;
 		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
 			cub->player->p_x += 1;
-		printf("3 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+		// printf("3 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
 	}
 	else if(y < yf)
 	{
@@ -55,7 +55,7 @@ void	find_wall(t_cub *cub, int yf, int xf)
 			cub->player->p_x += 1;
 		printf("4 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
 	}
-	printf("dx|dy %f|%f\n", cub->player->p_dx, cub->player->p_dy);
+	// printf("dx|dy %f|%f\n", cub->player->p_dx, cub->player->p_dy);
 }
 
 int	check_corner(t_cub *cub, int x, int y)
@@ -63,7 +63,7 @@ int	check_corner(t_cub *cub, int x, int y)
 	int	xi;
 	int	yi;
 
-	printf("yo\n");
+	// printf("yo\n");
 	xi = cub->player->p_x / cub->grid;
 	yi = cub->player->p_y / cub->grid;
 	if(cub->map[yi][x] == '1' || cub->map[y][xi] == '1')

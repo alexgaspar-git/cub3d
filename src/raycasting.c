@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/26 14:07:16 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/26 19:55:09 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ t_ray	cast_hor(t_cub *cub, float ang)
 	t_ray	ray;
 
 	ray = init_ray(ang);
-	if (ray.aTan > 20 || ray.aTan < -20)
-		return (ray);
 	if (ang > 0 && ang < PI)
 	{
-		ray.ry = round_to_grid(cub->player->p_y) - 0.001;
+		ray.ry = round_to_grid(cub->player->p_y);
 		ray.rx = (cub->player->p_y - ray.ry) * -ray.aTan + cub->player->p_x;
 		ray.yo = -GRID;
 		ray.xo = -ray.yo * -ray.aTan;
@@ -83,7 +81,16 @@ t_ray	cast_hor(t_cub *cub, float ang)
 		ray.yo = GRID;
 		ray.xo = -ray.yo * -ray.aTan;
 	}
-	cast_loop(&ray, cub);
+    int my = (int)ray.ry / GRID;
+    if (sin(ang) < 0) {my -= ray.yo / GRID; }
+	int mx;
+	for (int i = 0; i < 8; i++) {
+    	my += ray.yo / GRID;
+    	mx = (int)ray.rx / GRID;
+		if (is_wall(mx, my, cub)) { break; }
+		ray.rx += ray.xo;
+		ray.ry += ray.yo;
+	}
 	return (ray);
 }
 
@@ -94,7 +101,7 @@ t_ray	cast_ver(t_cub *cub, float ang)
 	ray = init_ray(ang);
 	if (ang > HPI && ang < PI3)
 	{
-		ray.rx = round_to_grid(cub->player->p_x) - 0.001;
+		ray.rx = round_to_grid(cub->player->p_x);
 		ray.ry = (cub->player->p_x - ray.rx) * -ray.nTan + cub->player->p_y;
 		ray.xo = -GRID;
 		ray.yo = -ray.xo * -ray.nTan;
@@ -106,7 +113,16 @@ t_ray	cast_ver(t_cub *cub, float ang)
 		ray.xo = GRID;
 		ray.yo = -ray.xo * -ray.nTan;
 	}
-	cast_loop(&ray, cub);
+	int mx = (int)ray.rx / GRID;
+    if (cos(ang) > 0) {mx -= ray.xo / GRID; }
+	int my;
+	for (int i = 0; i < 8; i++) {
+    	mx += ray.xo / GRID;
+    	my = (int)ray.ry / GRID;
+		if (is_wall(mx, my, cub)) { break; }
+		ray.rx += ray.xo;
+		ray.ry += ray.yo;
+	}
 	return (ray);
 }
 
@@ -164,144 +180,144 @@ void	draw_single_ray(t_cub *cub)
 
 ////////////////////////////////////////////////////////
 
-t_ray	check_horizontal(t_cub *cub, float ra)
-{
-	int	dof, mx, my;
-	float rx, ry, xo, yo, aTan;
-	t_ray ray;
+// t_ray	check_horizontal(t_cub *cub, float ra)
+// {
+// 	int	dof, mx, my;
+// 	float rx, ry, xo, yo, aTan;
+// 	t_ray ray;
 
-	ray.rx = 99999999;
-	ray.ry = 99999999;
-	dof = 0;
-	aTan = -1/tan(ra);
-	if (aTan > 20 || aTan < -20)
-		return (ray);
-	if (ra > 0 && ra < M_PI)
-	{
-		ry = ((int)(cub->player->p_y)/GRID) * GRID;
-		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
-		yo = -GRID;
-		xo = -yo * -aTan;
-	}
-	else if (ra > M_PI && ra < 2 * M_PI)
-	{
-		ry = (((int)(cub->player->p_y)/GRID) * GRID) + GRID;
-		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
-		yo = GRID;
-		xo = -yo * -aTan;
-	}
-	else if (ra == 0 || ra == 3.14)
-	{
-		rx = 100000;
-		ry = 100000;
-		dof = 8;
-	}
-	(void)mx;
-	(void)my;
-	while (dof < 8)
-	{
-		mx = (int)rx/GRID;
-		my = (int)ry/GRID;
-		if (ra > 0 && ra < M_PI)
-			my -= 1;
-		if (mx < cub->pars->x_max && my < cub->pars->y_max && mx >= 0 && my >= 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
-			break;
-		else
-		{
-			rx += xo;
-			ry += yo;
-			dof++;
-		}
-	}
-	ray.rx = rx;
-	ray.ry = ry;
-	if (ra > M_PI && ra < 2 * M_PI)
-		ray.ry = ry - 1;
-	return (ray);
-}
+// 	ray.rx = 99999999;
+// 	ray.ry = 99999999;
+// 	dof = 0;
+// 	aTan = -1/tan(ra);
+// 	if (aTan > 20 || aTan < -20)
+// 		return (ray);
+// 	if (ra > 0 && ra < M_PI)
+// 	{
+// 		ry = ((int)(cub->player->p_y)/GRID) * GRID;
+// 		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
+// 		yo = -GRID;
+// 		xo = -yo * -aTan;
+// 	}
+// 	else if (ra > M_PI && ra < 2 * M_PI)
+// 	{
+// 		ry = (((int)(cub->player->p_y)/GRID) * GRID) + GRID;
+// 		rx = (cub->player->p_y - ry) * -aTan + cub->player->p_x;
+// 		yo = GRID;
+// 		xo = -yo * -aTan;
+// 	}
+// 	else if (ra == 0 || ra == 3.14)
+// 	{
+// 		rx = 100000;
+// 		ry = 100000;
+// 		dof = 8;
+// 	}
+// 	(void)mx;
+// 	(void)my;
+// 	while (dof < 8)
+// 	{
+// 		mx = (int)rx/GRID;
+// 		my = (int)ry/GRID;
+// 		if (ra > 0 && ra < M_PI)
+// 			my -= 1;
+// 		if (mx < cub->pars->x_max && my < cub->pars->y_max && mx >= 0 && my >= 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
+// 			break;
+// 		else
+// 		{
+// 			rx += xo;
+// 			ry += yo;
+// 			dof++;
+// 		}
+// 	}
+// 	ray.rx = rx;
+// 	ray.ry = ry;
+// 	if (ra > M_PI && ra < 2 * M_PI)
+// 		ray.ry = ry - 1;
+// 	return (ray);
+// }
 
-t_ray	check_vertical(t_cub *cub, float ra)
-{
-	int	dof, mx, my;
-	float rx, ry, xo, yo, nTan;
+// t_ray	check_vertical(t_cub *cub, float ra)
+// {
+// 	int	dof, mx, my;
+// 	float rx, ry, xo, yo, nTan;
 
-	nTan = -tan(ra);
-	dof = 0;
-	if (ra > (M_PI / 2) && ra < (3 * (M_PI / 2)))
-	{
-		rx = ((int)(cub->player->p_x)/GRID) * GRID;
-		ry = (cub->player->p_x - rx) * -nTan + cub->player->p_y;
-		xo = -GRID;
-		yo = -xo * -nTan;
-	}
-	else if (ra < (M_PI / 2) || ra > (3 * (M_PI / 2)))
-	{
-		rx = (((int)(cub->player->p_x)/GRID) * GRID) + GRID;
-		ry = (cub->player->p_x - rx) * -nTan + cub->player->p_y;
-		xo = GRID;
-		yo = -xo * -nTan;
-	}
-	else
-	{
-		rx = 99999999;
-		ry = 99999999;
-	}
-	while (dof < 8)
-	{
-		mx = (int)rx/GRID;
-		if (ra > (M_PI / 2) && ra < (3 * (M_PI / 2)))
-			mx -= 1;
-		my = (int)ry/GRID;
-		if (mx <= cub->pars->x_max && my <= cub->pars->y_max && mx >= 0 && my >= 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
-			break;
-		else
-		{
-			rx += xo;
-			ry += yo;
-			dof++;
-		}
-	}
-	t_ray ray;
-	ray.rx = rx;
-	if (ra < (M_PI / 2) || ra > (3 * (M_PI / 2)))
-		ray.rx = rx - 1;
-	ray.ry = ry;
-	return (ray);
-}
+// 	nTan = -tan(ra);
+// 	dof = 0;
+// 	if (ra > (M_PI / 2) && ra < (3 * (M_PI / 2)))
+// 	{
+// 		rx = ((int)(cub->player->p_x)/GRID) * GRID;
+// 		ry = (cub->player->p_x - rx) * -nTan + cub->player->p_y;
+// 		xo = -GRID;
+// 		yo = -xo * -nTan;
+// 	}
+// 	else if (ra < (M_PI / 2) || ra > (3 * (M_PI / 2)))
+// 	{
+// 		rx = (((int)(cub->player->p_x)/GRID) * GRID) + GRID;
+// 		ry = (cub->player->p_x - rx) * -nTan + cub->player->p_y;
+// 		xo = GRID;
+// 		yo = -xo * -nTan;
+// 	}
+// 	else
+// 	{
+// 		rx = 99999999;
+// 		ry = 99999999;
+// 	}
+// 	while (dof < 8)
+// 	{
+// 		mx = (int)rx/GRID;
+// 		if (ra > (M_PI / 2) && ra < (3 * (M_PI / 2)))
+// 			mx -= 1;
+// 		my = (int)ry/GRID;
+// 		if (mx <= cub->pars->x_max && my <= cub->pars->y_max && mx >= 0 && my >= 0 && cub->map[my] && cub->map[my][mx] && cub->map[my][mx] == '1')
+// 			break;
+// 		else
+// 		{
+// 			rx += xo;
+// 			ry += yo;
+// 			dof++;
+// 		}
+// 	}
+// 	t_ray ray;
+// 	ray.rx = rx;
+// 	if (ra < (M_PI / 2) || ra > (3 * (M_PI / 2)))
+// 		ray.rx = rx - 1;
+// 	ray.ry = ry;
+// 	return (ray);
+// }
 
-t_ray	comp_dist(t_ray ver, t_ray hor, t_cub *cub)
-{
-	float distV;
-	float distH;
+// t_ray	comp_dist(t_ray ver, t_ray hor, t_cub *cub)
+// {
+// 	float distV;
+// 	float distH;
 
-	distV = calc_dist(cub->player->p_x, cub->player->p_y, ver.rx, ver.ry);
-	distH = calc_dist(cub->player->p_x, cub->player->p_y, hor.rx, hor.ry);
-	if (distV >= distH)
-		return (hor);
-	else
-		return (ver);
-}
+// 	distV = calc_dist(cub->player->p_x, cub->player->p_y, ver.rx, ver.ry);
+// 	distH = calc_dist(cub->player->p_x, cub->player->p_y, hor.rx, hor.ry);
+// 	if (distV >= distH)
+// 		return (hor);
+// 	else
+// 		return (ver);
+// }
 
-void	draw_rays(t_cub *cub)
-{
-	t_ray	ver;
-	t_ray	hor;
-	t_ray	final;
-	int	i = 0;
-	float	start_a = cub->player->p_a - HALF_FOV;
-	if (start_a < 0)
-		start_a += (2*M_PI);
+// void	draw_rays(t_cub *cub)
+// {
+// 	t_ray	ver;
+// 	t_ray	hor;
+// 	t_ray	final;
+// 	int	i = 0;
+// 	float	start_a = cub->player->p_a - HALF_FOV;
+// 	if (start_a < 0)
+// 		start_a += (2*M_PI);
 
 
-	while (i < CASTED_RAYS)
-	{
-		ver = check_vertical(cub, start_a);
-		hor = check_horizontal(cub, start_a);
-		final = comp_dist(ver, hor, cub);
-		start_a += STEP_ANGLE;
-		if (start_a > 2*M_PI)
-			start_a -= 2*M_PI;
-		dr_line(init_line(cub->player->p_x, cub->player->p_y, final.rx, final.ry, 0xAEFC02), cub);
-		i++;
-	}
-}
+// 	while (i < CASTED_RAYS)
+// 	{
+// 		ver = check_vertical(cub, start_a);
+// 		hor = check_horizontal(cub, start_a);
+// 		final = comp_dist(ver, hor, cub);
+// 		start_a += STEP_ANGLE;
+// 		if (start_a > 2*M_PI)
+// 			start_a -= 2*M_PI;
+// 		dr_line(init_line(cub->player->p_x, cub->player->p_y, final.rx, final.ry, 0xAEFC02), cub);
+// 		i++;
+// 	}
+// }
