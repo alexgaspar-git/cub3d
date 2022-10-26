@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/25 19:45:46 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:07:16 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_ray	cast_hor(t_cub *cub, float ang)
 		return (ray);
 	if (ang > 0 && ang < PI)
 	{
-		ray.ry = round_to_grid(cub->player->p_y) - 1;
+		ray.ry = round_to_grid(cub->player->p_y) - 0.001;
 		ray.rx = (cub->player->p_y - ray.ry) * -ray.aTan + cub->player->p_x;
 		ray.yo = -GRID;
 		ray.xo = -ray.yo * -ray.aTan;
@@ -94,7 +94,7 @@ t_ray	cast_ver(t_cub *cub, float ang)
 	ray = init_ray(ang);
 	if (ang > HPI && ang < PI3)
 	{
-		ray.rx = round_to_grid(cub->player->p_x) - 1;
+		ray.rx = round_to_grid(cub->player->p_x) - 0.001;
 		ray.ry = (cub->player->p_x - ray.rx) * -ray.nTan + cub->player->p_y;
 		ray.xo = -GRID;
 		ray.yo = -ray.xo * -ray.nTan;
@@ -112,7 +112,7 @@ t_ray	cast_ver(t_cub *cub, float ang)
 
 float	calc_dist(float ax, float ay, float bx, float by)
 {
-	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
+	return (sqrt((ax - bx) * (ax - bx) + (ay - by) * (ay - by)));
 }
 
 t_ray	get_ray(t_cub *cub, float ang)
@@ -156,7 +156,7 @@ void	draw_rays2(t_cub *cub)
 void	draw_single_ray(t_cub *cub)
 {
 	t_ray	ray;
-	
+
 	ray = get_ray(cub, cub->player->p_a);
 	dr_line(init_line(cub->player->p_x, cub->player->p_y,
 			ray.rx, ray.ry, 0xAEFC02), cub);
