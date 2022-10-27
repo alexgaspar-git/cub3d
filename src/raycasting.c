@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 22:30:42 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:45:45 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	draw_rays(t_cub *cub)
 	float	s_ang;
 	float	dist;
 	float	line;
-	float 	lineO;
+	float 	line_o;
 	float	cam_a;
 	
 	s_ang = cub->player->p_a + HALF_FOV;
@@ -148,11 +148,17 @@ void	draw_rays(t_cub *cub)
 		dist = calc_dist(cub->player->p_x, cub->player->p_y, ray.rx, ray.ry);
 		dist *= cos(cam_a);
 		line = (GRID * H)/dist;
-		lineO = (H / 2) - line / 2;
-		if (ray.dir == 0)
-			dr_line(init_line(i, lineO, i, line + lineO, 0xA6A6A6), cub);
+		if (line > 900)
+		{
+			line = 900;
+			line_o = 0;
+		}
 		else
-			dr_line(init_line(i, lineO, i, line + lineO, 0x7A7A7A), cub);
+			line_o = (H / 2) - line / 2;
+		if (ray.dir == 0)
+			dr_line(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub);
+		else
+			dr_line(init_line(i, line_o, i , line + line_o, 0x7A7A7A), cub);
 		s_ang -= STEP_ANGLE;
 		if (s_ang < 0)
 			s_ang += PI2;
