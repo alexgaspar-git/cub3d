@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:15:35 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:46:18 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_player *init_player(t_cub *cub)
 	t_player *player;
 
 	player = xalloc(sizeof(t_player));
-	player->p_a = 1;
+	player->p_a = HPI;
 	player->p_dx = cos(player->p_a) * 5;
 	player->p_dy = -sin(player->p_a) * 5;
 	pos_player(cub->map, player, cub);

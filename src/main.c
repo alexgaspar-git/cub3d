@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/25 19:43:29 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:59:18 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ void clear_window(t_data *data)
 int	render(t_cub *cub)
 {
 	move_player(cub);
-	draw_map(cub->map, cub);
-	draw_player(cub);
-	// draw_rays(cub);
-	draw_rays2(cub);
-	// draw_single_ray(cub);
-	dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
+	// draw_map(cub->map, cub);
+	// draw_player(cub);
+	draw_rays(cub);
+	move_map(cub);
+	// dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
 	clear_window(cub->data);
 	return (0);

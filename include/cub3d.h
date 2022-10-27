@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/26 19:58:16 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:23:35 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # define BG 0x424b52
 # define border 0x0a3042
 # define PI M_PI
-# define HPI PI / 2
-# define PI2 PI * 2 
-# define PI3 3 * (M_PI / 2)
+# define HPI (PI / 2)
+# define PI2 (PI * 2) 
+# define PI3 (3 * (M_PI / 2))
 # define FOV PI / 3
 # define HALF_FOV FOV / 2
 # define CASTED_RAYS 1600
