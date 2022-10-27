@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 22:28:23 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:17:45 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	draw_bg(t_cub *cub)
 		while (x < W)
 		{
 			if (y < H / 2)
-				my_mlx_pixel_put(cub->data, x, y, 0x58695D);
+				my_mlx_pixel_put(cub->data, x, y, cub->c);
 			else
-				my_mlx_pixel_put(cub->data, x, y, 0x65A69E);
+				my_mlx_pixel_put(cub->data, x, y, cub->f);
 			x++;
 		}
 		y++;

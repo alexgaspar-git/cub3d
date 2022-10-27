@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 12:41:00 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/28 00:16:35 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void	display_minimap(char **map, t_cub *cub)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				dr_square_mini(x * (cub->grid + cub->grid_gap) + cub->mini->p_mx, y * (cub->grid + cub->grid_gap) + cub->mini->p_my, 0xFFFFFF, cub);
+				dr_square_mini(x * (cub->grid) + cub->mini->p_mx, y * (cub->grid) + cub->mini->p_my, 0xFFFFFF, cub);
 			if (map[y][x] == '0')
-				dr_square_mini(x * (cub->grid + cub->grid_gap) + cub->mini->p_mx, y * (cub->grid + cub->grid_gap) + cub->mini->p_my, 0xAAAAAA, cub);
+				dr_square_mini(x * (cub->grid) + cub->mini->p_mx, y * (cub->grid) + cub->mini->p_my, 0xAAAAAA, cub);
 			if ( map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
-				dr_square_mini(x * (cub->grid + cub->grid_gap) + cub->mini->p_mx, y * (cub->grid + cub->grid_gap) + cub->mini->p_my, 0xFF0000, cub);
+				dr_square_mini(x * (cub->grid) + cub->mini->p_mx, y * (cub->grid) + cub->mini->p_my, 0xFF0000, cub);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:14:56 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:16:06 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ int	key_press(int keycode, t_cub *cub)
 		cub->key->left = 1;
 	else if (keycode == KEY_RIGHT)
 		cub->key->right = 1;
-	else if (keycode == 69)
-		cub->grid_gap++;
-	else if (keycode == 78)
-		cub->grid_gap--;
 	else if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(cub->data->mlx, cub->data->win);

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 19:46:18 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:20:54 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ void	init_hooks(t_cub *cub)
 	mlx_loop(cub->data->mlx);
 }
 
+// void	get_dir(char pos, t_player *player)
+// {
+// 	if (pos == 'N')
+// 		player->p_a = HPI;
+// 	else if (pos == 'E')
+// 		player->p_a = 0;
+// 	else if (pos == 'S')
+// 		player->p_a = PI3;
+// 	else
+// 		player->p_a = PI;
+// }
+
 void	pos_player(char **map, t_player *player, t_cub *cub)
 {
 	int	x;
@@ -82,8 +94,8 @@ t_player *init_player(t_cub *cub)
 	t_player *player;
 
 	player = xalloc(sizeof(t_player));
-	player->p_a = HPI;
 	player->p_dx = cos(player->p_a) * 5;
+	player->p_a = 0;
 	player->p_dy = -sin(player->p_a) * 5;
 	pos_player(cub->map, player, cub);
 	return (player);
@@ -112,6 +124,8 @@ t_cub	*init_cub(char **argv)
 	cub->pars = parsing(argv, 1);
 	cub->map = cub->pars->map;
 	cub->grid = GRID;
+	cub->f = rgb_to_hex(cub->pars->f);
+	cub->c = rgb_to_hex(cub->pars->c);
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
 	return (cub);

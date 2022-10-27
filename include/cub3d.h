@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 22:24:52 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:17:00 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define HPI (PI / 2)
 # define PI2 (PI * 2) 
 # define PI3 (3 * (M_PI / 2))
-# define FOV PI / 3
+# define FOV (PI / 3)
 # define HALF_FOV FOV / 2
 # define CASTED_RAYS 1600
 # define STEP_ANGLE FOV/CASTED_RAYS
@@ -135,7 +135,8 @@ typedef struct s_cub {
 	t_player *player;
 	char	**map;
 	int	grid;
-	int	grid_gap;
+	unsigned int f;
+	unsigned int c;
 }	t_cub;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
