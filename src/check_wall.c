@@ -3,15 +3,132 @@
 /*                                                        :::      ::::::::   */
 /*   check_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/26 20:01:18 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:39:29 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 //doit gerer s + corner et aussi map quand pas de joueur
+
+void	add_pixel(float *c, int key, int nb)
+{
+	if (!key)
+		*c += nb;
+	else
+		*c -= nb;
+}
+
+// void	find_wall(t_cub *cub, int yf, int xf)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = (int)(cub->player->p_x / cub->grid);
+// 	y = (int)(cub->player->p_y / cub->grid);
+// 	if (x > xf && cub->map[yf][x] != '1'/*!= 0 && yf != cub->pars->y_max - 1*/)
+// 	{
+// 		cub->player->p_x = ((xf + 1) * cub->grid) + 3;
+// 		if (cub->player->p_dy < -0.5 && cub->map[(int)((cub->player->p_y - 5) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_y), cub->key->s, -1);
+// 			// cub->player->p_y -= 1;
+// 		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_y), cub->key->s, 1);
+// 			// cub->player->p_y += 1;
+// 		// printf("1 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+// 	}
+// 	else if(x < xf && cub->map[yf][x] != '1'/*yf != 0 && yf != cub->pars->y_max - 1*/)
+// 	{
+// 		cub->player->p_x = (xf * cub->grid) - 4;
+// 		if (cub->player->p_dy < -0.5 && cub->map[(int)((cub->player->p_y - 5) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_y), cub->key->s, -1);
+// 			// cub->player->p_y -= 1;
+// 		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_y), cub->key->s, 1);
+// 			// cub->player->p_y += 1;
+// 		// printf("2 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+// 	}
+// 	else if (y > yf)
+// 	{
+// 		cub->player->p_y = ((yf + 1) * cub->grid) + 3;
+// 		if (cub->player->p_dx < -0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x - 5) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_x), cub->key->s, -1);
+// 			// cub->player->p_x -= 1;
+// 		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_x), cub->key->s, 1);
+// 			// cub->player->p_x += 1;
+// 		// printf("3 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+// 	}
+// 	else if(y < yf)
+// 	{
+// 		cub->player->p_y = (yf * cub->grid) - 4;
+// 		if (cub->player->p_dx < -0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x - 5) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_x), cub->key->s, -1);
+// 			// cub->player->p_x -= 1;
+// 		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
+// 			add_pixel(&(cub->player->p_x), cub->key->s, 1);
+// 			// cub->player->p_x += 1;
+// 		// printf("4 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
+// 	}
+// 	// printf("dx|dy %f|%f\n", cub->player->p_dx, cub->player->p_dy);
+// }
+
+void	move_pixel_n(t_cub *cub, int yf, int x, int y)
+{
+	int	y5;
+	int	y4;
+	int	x5;
+	int	x4;
+
+	y5 = (int)((cub->player->p_y - 5) / cub->grid);
+	y4 = (int)((cub->player->p_y + 4) / cub->grid);
+	x5 = (int)((cub->player->p_x - 5) / cub->grid);
+	x4 = (int)((cub->player->p_x + 4) / cub->grid);
+	if (cub->map[yf][x] != '1')
+	{
+		if (cub->player->p_dy < -0.5 && cub->map[y5][x] != '1')
+			add_pixel(&(cub->player->p_y), cub->key->s, -1);
+		else if (cub->player->p_dy > 0.5 && cub->map[y4][x] != '1')
+			add_pixel(&(cub->player->p_y), cub->key->s, 1);
+	}
+	else
+	{
+		if (cub->player->p_dx < -0.5 && cub->map[y][x5] != '1')
+			add_pixel(&(cub->player->p_x), cub->key->s, -1);
+		else if (cub->player->p_dx > 0.5 && cub->map[y][x4] != '1')
+			add_pixel(&(cub->player->p_x), cub->key->s, 1);
+	}
+}
+
+void	move_pixel_s(t_cub *cub, int yf, int x, int y)
+{
+	int	y5;
+	int	y4;
+	int	x5;
+	int	x4;
+
+	y5 = (int)((cub->player->p_y - 5) / cub->grid);
+	y4 = (int)((cub->player->p_y + 4) / cub->grid);
+	x5 = (int)((cub->player->p_x - 5) / cub->grid);
+	x4 = (int)((cub->player->p_x + 4) / cub->grid);
+	if (cub->map[yf][x] != '1')
+	{
+		if (cub->player->p_dy < -0.5 && cub->map[y4][x] != '1')
+			add_pixel(&(cub->player->p_y), cub->key->s, -1);
+		else if (cub->player->p_dy > 0.5 && cub->map[y5][x] != '1')
+			add_pixel(&(cub->player->p_y), cub->key->s, 1);
+	}
+	else
+	{
+		if (cub->player->p_dx < -0.5 && cub->map[y][x4] != '1')
+			add_pixel(&(cub->player->p_x), cub->key->s, -1);
+		else if (cub->player->p_dx > 0.5 && cub->map[y][x5] != '1')
+			add_pixel(&(cub->player->p_x), cub->key->s, 1);
+	}
+}
+
 void	find_wall(t_cub *cub, int yf, int xf)
 {
 	int	x;
@@ -19,51 +136,26 @@ void	find_wall(t_cub *cub, int yf, int xf)
 
 	x = (int)(cub->player->p_x / cub->grid);
 	y = (int)(cub->player->p_y / cub->grid);
-	if (x > xf && cub->map[yf][x] != '1'/*!= 0 && yf != cub->pars->y_max - 1*/)
-	{
+	if (x > xf && cub->map[yf][x] != '1')
 		cub->player->p_x = ((xf + 1) * cub->grid) + 3;
-		if (cub->player->p_dy < -0.5 && cub->map[(int)((cub->player->p_y - 5) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-			cub->player->p_y -= 1;
-		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-			cub->player->p_y += 1;
-		// printf("1 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-	}
-	else if(x < xf && cub->map[yf][x] != '1'/*yf != 0 && yf != cub->pars->y_max - 1*/)
-	{
+	else if(x < xf && cub->map[yf][x] != '1')
 		cub->player->p_x = (xf * cub->grid) - 4;
-		if (cub->player->p_dy < -0.5 && cub->map[(int)((cub->player->p_y - 5) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-			cub->player->p_y -= 1;
-		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-			cub->player->p_y += 1;
-		// printf("2 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-	}
 	else if (y > yf)
-	{
 		cub->player->p_y = ((yf + 1) * cub->grid) + 3;
-		if (cub->player->p_dx < -0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x - 5) / cub->grid)] != '1')
-			cub->player->p_x -= 1;
-		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
-			cub->player->p_x += 1;
-		// printf("3 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-	}
 	else if(y < yf)
-	{
 		cub->player->p_y = (yf * cub->grid) - 4;
-		if (cub->player->p_dx < -0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x - 5) / cub->grid)] != '1')
-			cub->player->p_x -= 1;
-		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
-			cub->player->p_x += 1;
-		printf("4 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-	}
-	// printf("dx|dy %f|%f\n", cub->player->p_dx, cub->player->p_dy);
+	if (!cub->key->s)
+		move_pixel_n(cub, yf, x, y);
+	else
+		move_pixel_s(cub, yf, x, y);
 }
+
 
 int	check_corner(t_cub *cub, int x, int y)
 {
 	int	xi;
 	int	yi;
 
-	// printf("yo\n");
 	xi = cub->player->p_x / cub->grid;
 	yi = cub->player->p_y / cub->grid;
 	if(cub->map[yi][x] == '1' || cub->map[y][xi] == '1')

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/25 14:15:38 by lide             ###   ########.fr       */
+/*   Updated: 2022/10/27 19:51:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ void	check_map(t_parsing *map)
 		}
 		y++;
 	}
+	if (player == 0)
+		free_list_exit(map->mlc, "one player is required", 0);
 	check_texture_xpm(map);
 	find_map_limits(map);
 }
