@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 19:23:35 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:24:52 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_ray
 	float	yo;
 	float	aTan;
 	float	nTan;
+	int		dir;
 }	t_ray;
 
 typedef struct s_mini
@@ -156,6 +157,7 @@ void	move_player(t_cub *cub);
 void	draw_rays(t_cub *cub);
 void	draw_rays2(t_cub *cub);
 float	calc_dist(float ax, float ay, float bx, float by);
+void	draw_3d(t_cub *cub);
 /////	test
 void	draw_single_ray(t_cub *cub);
 /////
