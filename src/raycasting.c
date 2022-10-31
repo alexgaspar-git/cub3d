@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 22:45:45 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:45:33 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_ray	cast_hor(t_cub *cub, float ang)
     int my = (int)ray.ry / GRID;
     if (sin(ang) < 0) {my -= ray.yo / GRID; }
 	int mx;
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < 50; i++) {
     	my += ray.yo / GRID;
     	mx = (int)ray.rx / GRID;
 		if (is_wall(mx, my, cub)) { break; }
@@ -96,7 +96,7 @@ t_ray	cast_ver(t_cub *cub, float ang)
 	int mx = (int)ray.rx / GRID;
     if (cos(ang) > 0) {mx -= ray.xo / GRID; }
 	int my;
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < 50; i++) {
     	mx += ray.xo / GRID;
     	my = (int)ray.ry / GRID;
 		if (is_wall(mx, my, cub)) { break; }
@@ -136,7 +136,7 @@ void	draw_rays(t_cub *cub)
 	float	line;
 	float 	line_o;
 	float	cam_a;
-	
+
 	s_ang = cub->player->p_a + HALF_FOV;
 	if (s_ang > PI2)
 		s_ang -= PI2;

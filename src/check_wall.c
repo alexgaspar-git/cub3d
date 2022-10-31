@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/27 22:24:47 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:22:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,60 +20,6 @@ void	add_pixel(float *c, int key, int nb)
 	else
 		*c -= nb;
 }
-
-// void	find_wall(t_cub *cub, int yf, int xf)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = (int)(cub->player->p_x / cub->grid);
-// 	y = (int)(cub->player->p_y / cub->grid);
-// 	if (x > xf && cub->map[yf][x] != '1'/*!= 0 && yf != cub->pars->y_max - 1*/)
-// 	{
-// 		cub->player->p_x = ((xf + 1) * cub->grid) + 3;
-// 		if (cub->player->p_dy < -0.5 && cub->map[(int)((cub->player->p_y - 5) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_y), cub->key->s, -1);
-// 			// cub->player->p_y -= 1;
-// 		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_y), cub->key->s, 1);
-// 			// cub->player->p_y += 1;
-// 		// printf("1 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-// 	}
-// 	else if(x < xf && cub->map[yf][x] != '1'/*yf != 0 && yf != cub->pars->y_max - 1*/)
-// 	{
-// 		cub->player->p_x = (xf * cub->grid) - 4;
-// 		if (cub->player->p_dy < -0.5 && cub->map[(int)((cub->player->p_y - 5) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_y), cub->key->s, -1);
-// 			// cub->player->p_y -= 1;
-// 		else if (cub->player->p_dy > 0.5 && cub->map[(int)((cub->player->p_y + 4) / cub->grid)][(int)((cub->player->p_x) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_y), cub->key->s, 1);
-// 			// cub->player->p_y += 1;
-// 		// printf("2 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-// 	}
-// 	else if (y > yf)
-// 	{
-// 		cub->player->p_y = ((yf + 1) * cub->grid) + 3;
-// 		if (cub->player->p_dx < -0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x - 5) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_x), cub->key->s, -1);
-// 			// cub->player->p_x -= 1;
-// 		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_x), cub->key->s, 1);
-// 			// cub->player->p_x += 1;
-// 		// printf("3 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-// 	}
-// 	else if(y < yf)
-// 	{
-// 		cub->player->p_y = (yf * cub->grid) - 4;
-// 		if (cub->player->p_dx < -0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x - 5) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_x), cub->key->s, -1);
-// 			// cub->player->p_x -= 1;
-// 		else if (cub->player->p_dx > 0.5 && cub->map[(int)((cub->player->p_y) / cub->grid)][(int)((cub->player->p_x + 4) / cub->grid)] != '1')
-// 			add_pixel(&(cub->player->p_x), cub->key->s, 1);
-// 			// cub->player->p_x += 1;
-// 		// printf("4 yf %d | y %d  xf %d | x %d\n", yf, y, xf, x);
-// 	}
-// 	// printf("dx|dy %f|%f\n", cub->player->p_dx, cub->player->p_dy);
-// }
 
 void	move_pixel_n(t_cub *cub, int yf, int x, int y)
 {
@@ -159,7 +105,13 @@ int	check_corner(t_cub *cub, int x, int y)
 	xi = cub->player->p_x / cub->grid;
 	yi = cub->player->p_y / cub->grid;
 	if(cub->map[yi][x] == '1' || cub->map[y][xi] == '1')
+	{
+		if (!cub->key->s)
+			move_pixel_n(cub, y, xi, yi);
+		else
+			move_pixel_s(cub, y, xi, yi);
 		return (1);
+	}
 	return (0);
 }
 

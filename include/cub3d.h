@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/28 00:17:00 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/31 18:24:31 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define border 0x0a3042
 # define PI M_PI
 # define HPI (PI / 2)
-# define PI2 (PI * 2) 
+# define PI2 (PI * 2)
 # define PI3 (3 * (M_PI / 2))
 # define FOV (PI / 3)
 # define HALF_FOV FOV / 2
@@ -99,6 +99,16 @@ typedef struct s_data {
 	int		endian;
 }	t_data;
 
+typedef struct s_tex {
+	void	*img;
+	char	*addr;
+	int		w;
+	int		h;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_tex;
+
 typedef struct s_ray
 {
 	float	rx;
@@ -120,24 +130,25 @@ typedef struct s_mini
 
 typedef struct s_player
 {
-	float p_x;
-	float p_y;
-	float p_dx;
-	float p_dy;
-	float p_a;
+	float	p_x;
+	float	p_y;
+	float	p_dx;
+	float	p_dy;
+	float	p_a;
 }	t_player;
 
 typedef struct s_cub {
-	t_data	*data;
-	t_key	*key;
-	t_parsing *pars;
-	t_mini *mini;
-	t_player *player;
-	char	**map;
-	int	grid;
-	unsigned int f;
-	unsigned int c;
-}	t_cub;
+	t_data			*data;
+	t_key			*key;
+	t_parsing		*pars;
+	t_mini			*mini;
+	t_player		*player;
+	char			**map;
+	int				grid;
+	unsigned int	f;
+	unsigned int	c;
+	t_tex			*tex;
+}					t_cub;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	dr_line(t_line line, t_cub *cub);

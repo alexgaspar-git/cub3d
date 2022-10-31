@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/28 00:20:54 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/10/31 18:26:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_player *init_player(t_cub *cub)
 
 	player = xalloc(sizeof(t_player));
 	player->p_dx = cos(player->p_a) * 5;
-	player->p_a = 0;
+	player->p_a = PI3;
 	player->p_dy = -sin(player->p_a) * 5;
 	pos_player(cub->map, player, cub);
 	return (player);
@@ -128,5 +128,6 @@ t_cub	*init_cub(char **argv)
 	cub->c = rgb_to_hex(cub->pars->c);
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
+	// cub->tex = get_texture(cub->data, cub->pars);
 	return (cub);
 }
