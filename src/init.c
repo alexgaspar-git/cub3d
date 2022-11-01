@@ -6,15 +6,15 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/31 18:26:35 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/01 14:20:30 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 t_data	*init_data(void)
 {
-	t_data	*data;
+	t_data	*data;//check si doit faire protection de img et addr
 
 	data = malloc(sizeof(t_data));
 	if (data != NULL)
