@@ -7,6 +7,8 @@ SRCS		= 	main.c \
 				draw.c \
 				check_wall.c \
 				raycasting.c \
+				open_texture.c\
+				dr_texture.c\
 				parsing/free.c\
 				parsing/list.c\
 				parsing/utils.c\

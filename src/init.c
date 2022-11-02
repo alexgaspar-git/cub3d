@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/01 14:20:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/02 17:14:28 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,6 @@ t_cub	*init_cub(char **argv)
 	cub->c = rgb_to_hex(cub->pars->c);
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
-	// cub->tex = get_texture(cub->data, cub->pars);
+	cub->tex = get_texture(cub->data, cub->pars);
 	return (cub);
 }

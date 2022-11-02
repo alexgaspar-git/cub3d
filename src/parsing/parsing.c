@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/10/28 00:09:20 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:16:45 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 	else if (!ft_cmp(line, "EA ", i, 1) && !check)
 		get_path(&(*map)->ea, line, i + 2, &(*map)->mlc);
 	else if (!ft_cmp(line, "F ", i, 0) && !check)
-		get_path(&(*map)->f, line, i + 2, &(*map)->mlc);
+		get_path(&(*map)->f, line, i + 1, &(*map)->mlc);
 	else if (!ft_cmp(line, "C ", i, 0) && !check)
-		get_path(&(*map)->c, line, i + 2, &(*map)->mlc);
+		get_path(&(*map)->c, line, i + 1, &(*map)->mlc);
 	else if (!is_map(line, *map, *l_map))
 	{
 		put_l_map(line, map, l_map);

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/31 18:24:31 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/02 16:08:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,4 +179,10 @@ void	move_map(t_cub *cub);
 void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub);
 void	find_player_mini(char **map, t_cub *cub);
 void	display_minimap(char **map, t_cub *cub);
+
+//texture
+t_tex	*get_texture(t_data *data, t_parsing *parsing);
+int		get_texel_color(t_tex *txt, int x, int y);
+void	dr_texture(t_line line, t_cub *cub, t_ray ray, int i);
+
 #endif

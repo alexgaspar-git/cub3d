@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/31 17:45:33 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/02 16:07:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 t_ray	init_ray(float ang)
 {
@@ -129,7 +129,7 @@ t_ray	get_ray(t_cub *cub, float ang)
 
 void	draw_rays(t_cub *cub)
 {
-	t_ray	ray;
+	t_ray	ray;// j'ai besoin de ray
 	int		i;
 	float	s_ang;
 	float	dist;
@@ -156,9 +156,11 @@ void	draw_rays(t_cub *cub)
 		else
 			line_o = (H / 2) - line / 2;
 		if (ray.dir == 0)
-			dr_line(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub);
+			// dr_line(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub);
+			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , 0);
 		else
-			dr_line(init_line(i, line_o, i , line + line_o, 0x7A7A7A), cub);
+			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray, 1);
+			// dr_line(init_line(i, line_o, i , line + line_o, 0x7A7A7A), cub);
 		s_ang -= STEP_ANGLE;
 		if (s_ang < 0)
 			s_ang += PI2;
