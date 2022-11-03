@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/11/02 17:16:49 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 14:45:39 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_parsing
 	char			*so;
 	char			*we;
 	char			*ea;
+	char			*p;
 	char			*f;
 	char			*c;
 	char			**map;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:02:18 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/21 14:39:18 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:47:32 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	dr_square(int x, int y, unsigned int color, t_cub *cub)
 {
@@ -40,7 +40,7 @@ void	draw_map(char **map, t_cub *cub)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '1')
+			if (map[y][x] == '1' || map[y][x] == 'P')
 				dr_square(x * (cub->grid), y * (cub->grid), 0xFFFFFF, cub);
 			if (map[y][x] == '0')
 				dr_square(x * (cub->grid), y * (cub->grid), 0xAAAAAA, cub);
@@ -54,13 +54,13 @@ void	draw_map(char **map, t_cub *cub)
 
 void	draw_player(t_cub *cub)
 {
-	int	i = -3;
-	int j = -3;
-	int	p_size = 4;
+	int	i = -7;
+	int j = -7;
+	int	p_size = 8;
 
 	while (i < p_size)
 	{
-		j = -3;
+		j = -7;
 		while (j < p_size)
 		{
 			if (i + cub->player->p_x < W && j + cub->player->p_y < H && i + cub->player->p_x > -1 && j + cub->player->p_y > -1)

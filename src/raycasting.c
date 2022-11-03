@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/02 16:07:14 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 16:10:29 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_wall(int mx, int my, t_cub *cub)
 {
 	if (mx < cub->pars->x_max && my < cub->pars->y_max
 		&& mx >= 0 && my >= 0 && cub->map[my]
-		&& cub->map[my][mx] && cub->map[my][mx] == '1')
+		&& cub->map[my][mx] && (cub->map[my][mx] == '1' || cub->map[my][mx] == 'P'))// ajouter texture mur P
 		return (1);
 	else
 		return (0);
@@ -148,9 +148,9 @@ void	draw_rays(t_cub *cub)
 		dist = calc_dist(cub->player->p_x, cub->player->p_y, ray.rx, ray.ry);
 		dist *= cos(cam_a);
 		line = (GRID * H)/dist;
-		if (line > 900)
+		if (line > H * 10)
 		{
-			line = 900;
+			line = H * 10;
 			line_o = 0;
 		}
 		else

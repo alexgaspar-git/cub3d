@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/28 00:16:35 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:47:49 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	move_map(t_cub *cub)
 {
@@ -70,7 +70,7 @@ void	display_minimap(char **map, t_cub *cub)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '1')
+			if (map[y][x] == '1' || map[y][x] == 'P')
 				dr_square_mini(x * (cub->grid) + cub->mini->p_mx, y * (cub->grid) + cub->mini->p_my, 0xFFFFFF, cub);
 			if (map[y][x] == '0')
 				dr_square_mini(x * (cub->grid) + cub->mini->p_mx, y * (cub->grid) + cub->mini->p_my, 0xAAAAAA, cub);

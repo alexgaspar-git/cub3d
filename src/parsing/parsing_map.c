@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/10/27 19:51:50 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 14:49:45 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	is_map(char *line, t_parsing *map, t_list *l_map)
 	while (line[i])
 	{
 		if (!(map->no) || !(map->so) || !(map->we)
-			|| !(map->ea) || !(map->f) || !(map->c))
+			|| !(map->ea) || !(map->f) || !(map->c) || !(map->p))
 			error_map(map->mlc, l_map, line, ERROR1 ERROR1D);
 		if (line[i] == ' ' || line[i] == '0' || line[i] == '1'
 			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-			|| line[i] == 'W')
+			|| line[i] == 'W' || line[i] == 'P')
 			i++;
 		else
 		{
@@ -140,7 +140,7 @@ void	check_map(t_parsing *map)
 		while (map->map[y][x])
 		{
 			if (map->map[y][x] != '0'
-			&& map->map[y][x] != ' ' && map->map[y][x] != '1')
+			&& map->map[y][x] != ' ' && map->map[y][x] != '1' && map->map[y][x] != 'P')
 				if (++player > 1)
 					free_list_exit(map->mlc, "only one player is accepted", 0);
 			if (map->map[y][x] != ' ' && map->map[y][x] != '1')

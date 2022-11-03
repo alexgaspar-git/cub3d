@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/02 17:14:04 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 16:59:47 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,42 @@ void	draw_bg(t_cub *cub)
 	}
 }
 
+void	open_door(char ***map, int x, int y)
+{
+	if (*map[y][x] == 'P')
+		*map[y][x] = 'O';
+	else
+		*map[y][x] = 'P';
+}
+
+void	change_door(t_cub *cub)
+{
+	int	x;
+	int	y;
+	int	check;
+
+	check = 0;
+	x = cub->player->p_x / GRID;
+	y = cub->player->p_y / GRID;
+	if (cub->player->p_dx > 0 && cub->map[y][x + 1] && (cub->map[y][x + 1] == 'P' || cub->map[y][x + 1] == 'O'))
+		open_door(&cub->map, x + 1, y);
+	else if (cub->player->p_dx < 0 && cub->map[y][x - 1] && (cub->map[y][x - 1] == 'P' || cub->map[y][x - 1] == 'O'))
+		open_door(&cub->map, x - 1, y);
+	if (cub->player->p_dy > 0 && cub->map[y + 1][x] && (cub->map[y + 1][x] == 'P' || cub->map[y + 1][x] == 'O'))
+		open_door(&cub->map, x, y + 1);
+	else if (cub->player->p_dy < 0 && cub->map[y - 1][x] && (cub->map[y - 1][x] == 'P' || cub->map[y - 1][x] == 'O'))
+		open_door(&cub->map, x, y - 1);
+}
+
 int	render(t_cub *cub)
 {
+	if (cub->key->e == 1)
+		change_door(cub);
 	move_player(cub);
 	draw_rays(cub);
-	// draw_map(cub->map, cub);
-	// draw_player(cub);
-	// dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
+	draw_map(cub->map, cub);
+	draw_player(cub);
+	dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
 	draw_bg(cub);
 	return (0);

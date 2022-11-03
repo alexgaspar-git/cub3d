@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:45:54 by lide              #+#    #+#             */
-/*   Updated: 2022/10/25 14:14:20 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 14:42:54 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	check_texture(t_parsing *map)
 		free_list_exit(map->mlc, NULL, 0);
 	if (check_space_t(map->we))
 		free_list_exit(map->mlc, NULL, 0);
+	if (check_space_t(map->p))
+		free_list_exit(map->mlc, NULL, 0);
 	if (check_colours(map->c))
 		free_list_exit(map->mlc, NULL, 0);
 	if (check_colours(map->f))
@@ -63,4 +65,5 @@ void	check_texture_xpm(t_parsing *map)
 	check_xpm(map->so, map->mlc);
 	check_xpm(map->we, map->mlc);
 	check_xpm(map->ea, map->mlc);
+	check_xpm(map->p, map->mlc);
 }

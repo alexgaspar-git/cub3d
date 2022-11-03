@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/11/02 17:16:45 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 14:54:47 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 		get_path(&(*map)->we, line, i + 2, &(*map)->mlc);
 	else if (!ft_cmp(line, "EA ", i, 1) && !check)
 		get_path(&(*map)->ea, line, i + 2, &(*map)->mlc);
+	else if (!ft_cmp(line, "P ", i, 1) && !check)
+		get_path(&(*map)->p, line, i + 1, &(*map)->mlc);
 	else if (!ft_cmp(line, "F ", i, 0) && !check)
 		get_path(&(*map)->f, line, i + 1, &(*map)->mlc);
 	else if (!ft_cmp(line, "C ", i, 0) && !check)
@@ -107,7 +109,7 @@ t_parsing	*parsing(char **argv, int i)
 	free_list(l_map);
 	check_map(map);
 	check_texture(map);
-	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
+	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|p = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->p, map->f, map->c);
 	return (map);
 }
 

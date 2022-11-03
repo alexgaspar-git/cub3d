@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/02 16:08:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/03 16:58:17 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@
 # define CASTED_RAYS 1600
 # define STEP_ANGLE FOV/CASTED_RAYS
 # define GRID 64
+# define NORTH 0
+# define WEST 1
+# define SOUTH 2
+# define EAST 3
+# define DOOR 4
 
 # include <stdio.h>
 # include <math.h>
@@ -49,6 +54,7 @@ enum {
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
+	KEY_E = 14,
 	KEY_LEFT = 123,
 	KEY_RIGHT = 124,
 };
@@ -85,6 +91,7 @@ typedef struct s_key {
 	unsigned int a;
 	unsigned int s;
 	unsigned int d;
+	unsigned int e;
 	unsigned int left;
 	unsigned int right;
 }	t_key;

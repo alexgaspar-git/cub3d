@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/28 00:16:06 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:59:24 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	*xalloc(size_t size)
 {
@@ -39,6 +39,8 @@ int	key_press(int keycode, t_cub *cub)
 		cub->key->s = 1;
 	else if (keycode == KEY_D)
 		cub->key->d = 1;
+	else if (keycode == KEY_E)
+		cub->key->e = 1;
 	else if (keycode == KEY_LEFT)
 		cub->key->left = 1;
 	else if (keycode == KEY_RIGHT)
@@ -61,6 +63,8 @@ int	key_release(int keycode, t_cub *cub)
 		cub->key->s = 0;
 	else if (keycode == KEY_D)
 		cub->key->d = 0;
+	else if (keycode == KEY_E)
+		cub->key->e = 0;
 	else if (keycode == KEY_LEFT)
 		cub->key->left = 0;
 	else if (keycode == KEY_RIGHT)
