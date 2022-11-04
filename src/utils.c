@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/03 16:59:24 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/04 13:12:15 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	key_press(int keycode, t_cub *cub)
 	else if (keycode == KEY_D)
 		cub->key->d = 1;
 	else if (keycode == KEY_E)
-		cub->key->e = 1;
+		cub->key->e *= -1;
 	else if (keycode == KEY_LEFT)
 		cub->key->left = 1;
 	else if (keycode == KEY_RIGHT)
@@ -63,8 +63,8 @@ int	key_release(int keycode, t_cub *cub)
 		cub->key->s = 0;
 	else if (keycode == KEY_D)
 		cub->key->d = 0;
-	else if (keycode == KEY_E)
-		cub->key->e = 0;
+	// else if (keycode == KEY_E)
+	// 	cub->key->e = 0;
 	else if (keycode == KEY_LEFT)
 		cub->key->left = 0;
 	else if (keycode == KEY_RIGHT)

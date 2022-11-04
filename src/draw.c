@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:02:18 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/03 15:47:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/04 14:39:58 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	draw_map(char **map, t_cub *cub)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '1' || map[y][x] == 'P')
+			if (map[y][x] == 'O' || map[y][x] == 'P')
+				dr_square(x * (cub->grid), y * (cub->grid), 0x900090, cub);
+			if (map[y][x] == '1')
 				dr_square(x * (cub->grid), y * (cub->grid), 0xFFFFFF, cub);
 			if (map[y][x] == '0')
 				dr_square(x * (cub->grid), y * (cub->grid), 0xAAAAAA, cub);

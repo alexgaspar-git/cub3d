@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/03 16:59:47 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/04 16:42:29 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	draw_bg(t_cub *cub)
 	}
 }
 
-void	open_door(char ***map, int x, int y)
+void	open_door(char **map, int x, int y)
 {
-	if (*map[y][x] == 'P')
-		*map[y][x] = 'O';
+	if ((map[y][x]) == 'P')
+		(map[y][x]) = 'O';
 	else
-		*map[y][x] = 'P';
+		(map[y][x]) = 'P';
 }
 
 void	change_door(t_cub *cub)
@@ -66,20 +66,40 @@ void	change_door(t_cub *cub)
 	check = 0;
 	x = cub->player->p_x / GRID;
 	y = cub->player->p_y / GRID;
+	printf("hello\n");
 	if (cub->player->p_dx > 0 && cub->map[y][x + 1] && (cub->map[y][x + 1] == 'P' || cub->map[y][x + 1] == 'O'))
-		open_door(&cub->map, x + 1, y);
+	{
+		printf("1\n");
+		open_door(cub->map, x + 1, y);
+	}
 	else if (cub->player->p_dx < 0 && cub->map[y][x - 1] && (cub->map[y][x - 1] == 'P' || cub->map[y][x - 1] == 'O'))
-		open_door(&cub->map, x - 1, y);
+	{
+		printf("2\n");
+		open_door(cub->map, x - 1, y);
+	}
 	if (cub->player->p_dy > 0 && cub->map[y + 1][x] && (cub->map[y + 1][x] == 'P' || cub->map[y + 1][x] == 'O'))
-		open_door(&cub->map, x, y + 1);
+	{
+		printf("3\n");
+		open_door(cub->map, x, y + 1);
+	}
 	else if (cub->player->p_dy < 0 && cub->map[y - 1][x] && (cub->map[y - 1][x] == 'P' || cub->map[y - 1][x] == 'O'))
-		open_door(&cub->map, x, y - 1);
+	{
+		printf("4\n");
+		open_door(cub->map, x, y - 1);
+		printf("4.5\n");
+	}
+	printf("yes\n");
 }
 
 int	render(t_cub *cub)
 {
-	if (cub->key->e == 1)
+	static unsigned int	check = -1;
+
+	if (cub->key->e != check)
+	{
 		change_door(cub);
+		check = cub->key->e;
+	}
 	move_player(cub);
 	draw_rays(cub);
 	draw_map(cub->map, cub);

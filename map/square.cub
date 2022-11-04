@@ -1,19 +1,19 @@
 
 NO ./textures/wall1.xpm
 SO ./textures/wall2.xpm
-WE ./textures/wall2.xpm
-EA ./textures/wall1.xpm
-P ./textures/wall1.xpm
+WE ./textures/wall3.xpm
+EA ./textures/wall4.xpm
+P ./textures/door.xpm
 C0,0,0
 F255,255,255
 
 11111111111
-10000000001
+1P0000000P1
 10010101111
-1000P000001
 10000000001
+10000P00001
 10000000101
 10000W00101
 11110000111
-11000000001
+1P0000000P1
 11111111111

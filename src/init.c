@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/02 17:14:28 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/04 13:14:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ t_cub	*init_cub(char **argv)
 
 	cub = xalloc(sizeof(t_cub));
 	cub->key = xalloc(sizeof(t_key));
+	cub->key->e = -1;//init ailleur
 	cub->mini = init_minimap();
 	cub->data = init_data();
 	cub->pars = parsing(argv, 1);
