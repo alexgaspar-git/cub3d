@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 17:25:15 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 17:27:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,10 @@ int	check_corner(t_cub *cub, int x, int y)
 	yi = cub->player->p_y / cub->grid;
 	if(cub->map[yi][x] == '1' || cub->map[y][xi] == '1' || cub->map[yi][x] == 'P' || cub->map[y][xi] == 'P')
 	{
-		// if (!cub->key->s)
-		// 	move_pixel_n(cub, y, xi, yi);
-		// else
-		// 	move_pixel_s(cub, y, xi, yi);
+		if (!cub->key->s)
+			move_pixel_n(cub, y, xi, yi);
+		else
+			move_pixel_s(cub, y, xi, yi);
 		return (1);
 	}
 	return (0);

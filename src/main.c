@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 17:25:11 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 19:16:30 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,14 @@ void	change_door(t_cub *cub)
 	check = 0;
 	x = cub->player->p_x / GRID;
 	y = cub->player->p_y / GRID;
-	printf("hello\n");
 	if (cub->player->p_dx > 0 && cub->map[y][x + 1] && (cub->map[y][x + 1] == 'P' || cub->map[y][x + 1] == 'O'))
-	{
-		printf("1\n");
 		open_door(cub->map, x + 1, y);
-	}
 	else if (cub->player->p_dx < 0 && cub->map[y][x - 1] && (cub->map[y][x - 1] == 'P' || cub->map[y][x - 1] == 'O'))
-	{
-		printf("2\n");
 		open_door(cub->map, x - 1, y);
-	}
 	if (cub->player->p_dy > 0 && cub->map[y + 1][x] && (cub->map[y + 1][x] == 'P' || cub->map[y + 1][x] == 'O'))
-	{
-		printf("3\n");
 		open_door(cub->map, x, y + 1);
-	}
 	else if (cub->player->p_dy < 0 && cub->map[y - 1][x] && (cub->map[y - 1][x] == 'P' || cub->map[y - 1][x] == 'O'))
-	{
-		printf("4\n");
 		open_door(cub->map, x, y - 1);
-		printf("4.5\n");
-	}
-	printf("yes\n");
 }
 
 int	render(t_cub *cub)

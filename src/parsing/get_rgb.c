@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rgb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:09:36 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/28 00:22:17 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:03:52 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void	ft_free_split(char **split)
 	free(split);
 }
 
-unsigned int create_rgb(int r, int g, int b)
-{   
-    return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+unsigned int	create_rgb(int r, int g, int b)
+{
+	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
 unsigned int	rgb_to_hex(char	*color)
 {
-	char	**rgb;
-	unsigned int hex;
+	char			**rgb;
+	unsigned int	hex;
 
 	rgb = ft_split(color, ',');
 	hex = create_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
