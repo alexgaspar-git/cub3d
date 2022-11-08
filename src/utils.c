@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/04 13:12:15 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 16:22:18 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,33 @@ int	key_press(int keycode, t_cub *cub)
 	return (0);
 }
 
+int		mouse_move(int x, int y, t_cub *cub)
+{
+	static int	old_x;
+
+	(void)y;
+	if (!old_x)
+		old_x = 0;
+	if (x < old_x)
+	{
+		cub->player->p_a += (float)(old_x - x)/500;
+		if (cub->player->p_a > 2 * M_PI)
+			cub->player->p_a = 0;
+		cub->player->p_dx = cos(cub->player->p_a) * 5;
+		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+	}
+	if (x > old_x)
+	{
+		cub->player->p_a -= (float)(x - old_x)/500;
+		if (cub->player->p_a < 0)
+			cub->player->p_a = 2 * M_PI;
+		cub->player->p_dx = cos(cub->player->p_a) * 5;
+		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+	}
+	old_x = x;
+	return (0);
+}
+
 int	key_release(int keycode, t_cub *cub)
 {
 	if (keycode == KEY_A)
@@ -63,8 +90,6 @@ int	key_release(int keycode, t_cub *cub)
 		cub->key->s = 0;
 	else if (keycode == KEY_D)
 		cub->key->d = 0;
-	// else if (keycode == KEY_E)
-	// 	cub->key->e = 0;
 	else if (keycode == KEY_LEFT)
 		cub->key->left = 0;
 	else if (keycode == KEY_RIGHT)
