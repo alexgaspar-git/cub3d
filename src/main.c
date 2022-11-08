@@ -6,28 +6,11 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 08:45:29 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:38:32 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void clear_window(t_data *data)
-{
-	int	x = 0;
-	int	y = 0;
-
-	while (y < H)
-	{
-		x = 0;
-		while (x < W)
-		{
-			my_mlx_pixel_put(data, x, y, BG);
-			x++;
-		}
-		y++;
-	}
-}
 
 void	draw_bg(t_cub *cub)
 {

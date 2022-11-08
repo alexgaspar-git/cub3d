@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 08:35:44 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:14:01 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_player *init_player(t_cub *cub)
 	pos_player(cub->map, player, cub);
 	player->p_dy = -sin(player->p_a) * 5;
 	player->p_dx = cos(player->p_a) * 5;
+	player->c_x = player->p_x;
+	player->c_y = player->p_y;
 	return (player);
 }
 

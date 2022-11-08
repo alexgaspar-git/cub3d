@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 09:14:58 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:15:22 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub)
 {
 	int	i = x;
 	int j = y;
-
+	
+	cub->mini->m_ox = cub->player->c_x - cub->player->p_x;
+	cub->mini->m_oy = cub->player->c_y - cub->player->p_y;
 	while (i < cub->grid + x)
 	{
 		j = y;
@@ -59,7 +61,7 @@ void minimap_bg(t_data *data)
 		x = 0;
 		while (x < MW)
 		{
-			my_mlx_pixel_put(data, x, y, BG);
+			my_mlx_pixel_put(data, x, y, MMBG);
 			x++;
 		}
 		y++;

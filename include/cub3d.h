@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 08:34:18 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:14:34 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define H 900
 # define MW 400
 # define MH 250
-# define BG 0x424b52
+# define MMBG 0x55108e
 # define border 0x0a3042
 # define PI M_PI
 # define HPI (PI / 2)
@@ -143,6 +143,8 @@ typedef struct s_player
 	float	p_dx;
 	float	p_dy;
 	float	p_a;
+	float	c_x;
+	float	c_y;
 }	t_player;
 
 typedef struct s_cub {
