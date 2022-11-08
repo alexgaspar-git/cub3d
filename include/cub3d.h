@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/03 16:58:17 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 08:34:18 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@
 # define PI2 (PI * 2)
 # define PI3 (3 * (M_PI / 2))
 # define FOV (PI / 3)
-# define HALF_FOV FOV / 2
+# define HALF_FOV (FOV / 2)
 # define CASTED_RAYS 1600
-# define STEP_ANGLE FOV/CASTED_RAYS
+# define STEP_ANGLE (FOV / CASTED_RAYS)
 # define GRID 64
 # define NORTH 0
 # define WEST 1
 # define SOUTH 2
 # define EAST 3
 # define DOOR 4
+# define DOF 10
 
 # include <stdio.h>
 # include <math.h>
@@ -129,8 +130,8 @@ typedef struct s_ray
 
 typedef struct s_mini
 {
-	int m_ox;
-	int m_oy;
+	float m_ox;
+	float m_oy;
 	int	p_mx;
 	int p_my;
 }	t_mini;

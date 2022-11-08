@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/04 16:42:29 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 08:45:29 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,12 @@ int	render(t_cub *cub)
 		change_door(cub);
 		check = cub->key->e;
 	}
-	move_player(cub);
 	draw_rays(cub);
-	draw_map(cub->map, cub);
-	draw_player(cub);
-	dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
+	display_minimap(cub->map, cub);
+	move_player(cub);
+	// draw_map(cub->map, cub);
+	// draw_player(cub);
+	// dr_line(init_line(cub->player->p_x, cub->player->p_y, cub->player->p_x + cub->player->p_dx * 20,  cub->player->p_y + cub->player->p_dy * 20, 0xFF00FF), cub);
 	mlx_put_image_to_window(cub->data->mlx, cub->data->win, cub->data->img, 0, 0);
 	draw_bg(cub);
 	return (0);

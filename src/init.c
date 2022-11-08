@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/04 13:14:38 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 08:35:44 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void	init_hooks(t_cub *cub)
 	mlx_loop(cub->data->mlx);
 }
 
-// void	get_dir(char pos, t_player *player)
-// {
-// 	if (pos == 'N')
-// 		player->p_a = HPI;
-// 	else if (pos == 'E')
-// 		player->p_a = 0;
-// 	else if (pos == 'S')
-// 		player->p_a = PI3;
-// 	else
-// 		player->p_a = PI;
-// }
+void	get_dir(char pos, t_player *player)
+{
+	if (pos == 'N')
+		player->p_a = HPI;
+	else if (pos == 'E')
+		player->p_a = 0;
+	else if (pos == 'S')
+		player->p_a = PI3;
+	else
+		player->p_a = PI;
+}
 
 void	pos_player(char **map, t_player *player, t_cub *cub)
 {
@@ -79,8 +79,9 @@ void	pos_player(char **map, t_player *player, t_cub *cub)
 		{
 			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
 			{
-				player->p_x = x * cub->grid;
-				player->p_y = y * cub->grid;
+				player->p_x = x * cub->grid + (cub->grid / 2);
+				player->p_y = y * cub->grid + (cub->grid / 2);
+				get_dir(map[y][x], player);
 				return ;
 			}
 			x++;
@@ -94,10 +95,9 @@ t_player *init_player(t_cub *cub)
 	t_player *player;
 
 	player = xalloc(sizeof(t_player));
-	player->p_dx = cos(player->p_a) * 5;
-	player->p_a = PI3;
-	player->p_dy = -sin(player->p_a) * 5;
 	pos_player(cub->map, player, cub);
+	player->p_dy = -sin(player->p_a) * 5;
+	player->p_dx = cos(player->p_a) * 5;
 	return (player);
 }
 
