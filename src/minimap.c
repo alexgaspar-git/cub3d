@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 10:15:22 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:20:08 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ void	display_minimap(char **map, t_cub *cub)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '1' || map[y][x] == 'P')
+			if (map[y][x] == '1')
 				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * cub->grid + cub->mini->p_my, 0xFFFFFF, cub);
+			if (map[y][x] == 'P')
+				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * cub->grid + cub->mini->p_my, 0x827FD2, cub);
 			if (map[y][x] == '0')
 				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * cub->grid + cub->mini->p_my, 0xAAAAAA, cub);
 			if ( map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
