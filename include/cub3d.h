@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 16:18:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 17:05:04 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PI3 (3 * (M_PI / 2))
 # define FOV (PI / 3)
 # define HALF_FOV (FOV / 2)
-# define CASTED_RAYS 1600
+# define CASTED_RAYS W
 # define STEP_ANGLE (FOV / CASTED_RAYS)
 # define GRID 64
 # define NORTH 0
@@ -157,6 +157,7 @@ typedef struct s_cub {
 	int				grid;
 	unsigned int	f;
 	unsigned int	c;
+	unsigned int	accel;
 	t_tex			*tex;
 }					t_cub;
 
@@ -178,6 +179,7 @@ void	draw_map(char **map, t_cub *cub);
 void	move_player(t_cub *cub);
 void	draw_rays(t_cub *cub);
 void	draw_rays2(t_cub *cub);
+int		mouse_move(int x, int y, t_cub *cub);
 float	calc_dist(float ax, float ay, float bx, float by);
 void	draw_3d(t_cub *cub);
 /////	test

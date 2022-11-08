@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 10:14:01 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:05:29 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_hooks(t_cub *cub)
 	mlx_hook(cub->data->win, ON_KEYUP, 1L<<1, key_release, cub);
 	mlx_hook(cub->data->win, ON_KEYDOWN, 1L<<0, key_press, cub);
 	mlx_hook(cub->data->win, ON_DESTROY, 1L<<2, close_window, cub->data);
+	mlx_hook(cub->data->win, ON_MOUSEMOVE, 1L<<7, mouse_move, cub);
 	mlx_loop_hook(cub->data->mlx, &render, cub);
 	mlx_loop(cub->data->mlx);
 }
@@ -96,8 +97,8 @@ t_player *init_player(t_cub *cub)
 
 	player = xalloc(sizeof(t_player));
 	pos_player(cub->map, player, cub);
-	player->p_dy = -sin(player->p_a) * 5;
-	player->p_dx = cos(player->p_a) * 5;
+	player->p_dy = -sin(player->p_a) * cub->accel;
+	player->p_dx = cos(player->p_a) * cub->accel;
 	player->c_x = player->p_x;
 	player->c_y = player->p_y;
 	return (player);
@@ -129,6 +130,7 @@ t_cub	*init_cub(char **argv)
 	cub->grid = GRID;
 	cub->f = rgb_to_hex(cub->pars->f);
 	cub->c = rgb_to_hex(cub->pars->c);
+	cub->accel = 5;
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
 	cub->tex = get_texture(cub->data, cub->pars);
