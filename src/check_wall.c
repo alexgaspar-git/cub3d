@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 09:28:47 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:06:17 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,15 +246,15 @@ void	move_player(t_cub *cub)
 		cub->player->p_a += 0.05;
 		if (cub->player->p_a > 2 * M_PI)
 			cub->player->p_a = 0;
-		cub->player->p_dx = cos(cub->player->p_a) * 5;
-		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+		cub->player->p_dx = cos(cub->player->p_a) * cub->accel;
+		cub->player->p_dy = -sin(cub->player->p_a) * cub->accel;
 	}
 	if (cub->key->right == 1)
 	{
 		cub->player->p_a -= 0.05;
 		if (cub->player->p_a < 0)
 			cub->player->p_a = 2 * M_PI;
-		cub->player->p_dx = cos(cub->player->p_a) * 5;
-		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+		cub->player->p_dx = cos(cub->player->p_a) * cub->accel;
+		cub->player->p_dy = -sin(cub->player->p_a) * cub->accel;
 	}
 }

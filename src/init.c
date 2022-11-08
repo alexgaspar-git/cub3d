@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 16:20:06 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:05:29 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ t_player *init_player(t_cub *cub)
 
 	player = xalloc(sizeof(t_player));
 	pos_player(cub->map, player, cub);
-	player->p_dy = -sin(player->p_a) * 5;
-	player->p_dx = cos(player->p_a) * 5;
+	player->p_dy = -sin(player->p_a) * cub->accel;
+	player->p_dx = cos(player->p_a) * cub->accel;
 	player->c_x = player->p_x;
 	player->c_y = player->p_y;
 	return (player);
@@ -130,6 +130,7 @@ t_cub	*init_cub(char **argv)
 	cub->grid = GRID;
 	cub->f = rgb_to_hex(cub->pars->f);
 	cub->c = rgb_to_hex(cub->pars->c);
+	cub->accel = 5;
 	cub->player = init_player(cub);
 	find_player_mini(cub->map, cub);
 	cub->tex = get_texture(cub->data, cub->pars);

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 16:20:30 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:05:04 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PI3 (3 * (M_PI / 2))
 # define FOV (PI / 3)
 # define HALF_FOV (FOV / 2)
-# define CASTED_RAYS 1600
+# define CASTED_RAYS W
 # define STEP_ANGLE (FOV / CASTED_RAYS)
 # define GRID 64
 # define NORTH 0
@@ -157,6 +157,7 @@ typedef struct s_cub {
 	int				grid;
 	unsigned int	f;
 	unsigned int	c;
+	unsigned int	accel;
 	t_tex			*tex;
 }					t_cub;
 

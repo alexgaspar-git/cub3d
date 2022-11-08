@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 16:09:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 16:28:10 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,26 +171,20 @@ void	draw_rays(t_cub *cub)
 		dist = calc_dist(cub->player->p_x, cub->player->p_y, ray.rx, ray.ry);
 		dist *= cos(cam_a);
 		line = (GRID * H)/dist;
-		if (line > H * 10)
-		{
-			line = H * 10;
-			line_o = 0;
-		}
-		else
-			line_o = (H / 2) - line / 2;
-		if ((cub->player->p_dy < 0) && cub->map[(int)((ray.ry/GRID) + 1)] && cub->map[(int)((ray.ry/GRID) + 1)][(int)(ray.rx/GRID)] && cub->map[(int)((ray.ry/GRID) + 1)][(int)(ray.rx/GRID)] == 'P')
-				dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
-		if ((cub->player->p_dx < 0) && cub->map[(int)((ray.ry/GRID))][(int)(ray.rx/GRID)] && cub->map[(int)((ray.ry/GRID))][(int)(ray.rx/GRID) - 1] && cub->map[(int)((ray.ry/GRID))][(int)(ray.rx/GRID) -1] == 'P')
-				dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
-		if (cub->map[(int)(ray.ry/GRID) - 1] && cub->map[(int)(ray.ry/GRID)][(int)(ray.rx/GRID) - 1] && (cub->map[(int)(ray.ry/GRID)][(int)ray.rx/GRID] == 'P' || cub->map[(int)(ray.ry/GRID) - 1][(int)ray.rx/GRID] == 'P' || cub->map[(int)(ray.ry/GRID)][(int)ray.rx/GRID - 1] == 'P'))// regarde vers le nord x +1
-			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
-			// printf("%f | %f | %d\n",ray.ry/GRID, ray.rx/GRID, (int)ray.ry/GRID);
-		else if (cub->map[(int)(ray.ry/GRID)][(int)ray.rx/GRID] == 'P')// regarde vers le nord x +1
-		{
-			// printf("%f | %f | %d\n",ray.ry/GRID, ray.rx/GRID, (int)ray.ry/GRID);
-			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
-		}
-		else if (ray.dir == 0)
+		line_o = (H / 2) - line / 2;
+		// if ((cub->player->p_dy < 0) && cub->map[(int)((ray.ry/GRID) + 1)] && cub->map[(int)((ray.ry/GRID) + 1)][(int)(ray.rx/GRID)] && cub->map[(int)((ray.ry/GRID) + 1)][(int)(ray.rx/GRID)] == 'P')
+		// 		dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
+		// if ((cub->player->p_dx < 0) && cub->map[(int)((ray.ry/GRID))][(int)(ray.rx/GRID)] && cub->map[(int)((ray.ry/GRID))][(int)(ray.rx/GRID) - 1] && cub->map[(int)((ray.ry/GRID))][(int)(ray.rx/GRID) -1] == 'P')
+		// 		dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
+		// if (cub->map[(int)(ray.ry/GRID) - 1] && cub->map[(int)(ray.ry/GRID)][(int)(ray.rx/GRID) - 1] && (cub->map[(int)(ray.ry/GRID)][(int)ray.rx/GRID] == 'P' || cub->map[(int)(ray.ry/GRID) - 1][(int)ray.rx/GRID] == 'P' || cub->map[(int)(ray.ry/GRID)][(int)ray.rx/GRID - 1] == 'P'))// regarde vers le nord x +1
+		// 	dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
+		// 	// printf("%f | %f | %d\n",ray.ry/GRID, ray.rx/GRID, (int)ray.ry/GRID);
+		// else if (cub->map[(int)(ray.ry/GRID)][(int)ray.rx/GRID] == 'P')// regarde vers le nord x +1
+		// {
+		// 	// printf("%f | %f | %d\n",ray.ry/GRID, ray.rx/GRID, (int)ray.ry/GRID);
+		// 	dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);//hor
+		// }
+		if (ray.dir == 0)
 		{
 			if (ray.ry < cub->player->p_y)
 				dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , NORTH);//hor

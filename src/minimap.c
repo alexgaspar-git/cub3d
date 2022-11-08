@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 10:20:08 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:00:39 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub)
 	int	i = x;
 	int j = y;
 	
-	cub->mini->m_ox = cub->player->c_x - cub->player->p_x;
-	cub->mini->m_oy = cub->player->c_y - cub->player->p_y;
-	while (i < cub->grid + x)
+	cub->mini->m_ox = (cub->player->c_x - cub->player->p_x)/2;
+	cub->mini->m_oy = (cub->player->c_y - cub->player->p_y)/2;
+	while (i < cub->grid/2 + x)
 	{
 		j = y;
-		while (j < cub->grid + y)
+		while (j < cub->grid/2 + y)
 		{
 			if (i + cub->mini->m_ox < MW && j + cub->mini->m_oy < MH && i + cub->mini->m_ox >= 0 && j + cub->mini->m_oy  >= 0)
 				my_mlx_pixel_put(cub->data, i + cub->mini->m_ox, j + cub->mini->m_oy, color);
@@ -36,7 +36,7 @@ void	dr_player(t_cub *cub)
 {
 	int	i = 0;
 	int j = 0;
-	int	p_size = 16;
+	int	p_size = 8;
 
 	while (i < p_size)
 	{
@@ -80,13 +80,13 @@ void	display_minimap(char **map, t_cub *cub)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * cub->grid + cub->mini->p_my, 0xFFFFFF, cub);
+				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0xFFFFFF, cub);
 			if (map[y][x] == 'P')
-				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * cub->grid + cub->mini->p_my, 0x827FD2, cub);
+				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0x827FD2, cub);
 			if (map[y][x] == '0')
-				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * cub->grid + cub->mini->p_my, 0xAAAAAA, cub);
+				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0xAAAAAA, cub);
 			if ( map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
-				dr_square_mini(x * cub->grid + cub->mini->p_mx, y * (cub->grid) + cub->mini->p_my, 0x128EAF, cub);
+				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0x128EAF, cub);
 			x++;
 		}
 		y++;
@@ -108,8 +108,8 @@ void	find_player_mini(char **map, t_cub *cub)
 		{
 			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
 			{
-				cub->mini->p_mx = MW / 2 - x * cub->grid - (cub->grid / 2);
-				cub->mini->p_my = MH / 2 - y * cub->grid - (cub->grid / 2);
+				cub->mini->p_mx = MW / 2 - x * cub->grid/2 - (cub->grid/4);
+				cub->mini->p_my = MH / 2 - y * cub->grid/2 - (cub->grid/4);
 				return ;
 			}
 			x++;
