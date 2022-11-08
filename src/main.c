@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 09:38:32 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:14:30 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	render(t_cub *cub)
 		check = cub->key->e;
 	}
 	draw_rays(cub);
-	display_minimap(cub->map, cub);
+	// display_minimap(cub->map, cub);
 	move_player(cub);
 	// draw_map(cub->map, cub);
 	// draw_player(cub);

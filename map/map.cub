@@ -2,6 +2,7 @@ NO ./textures/wall1.xpm
 SO ./textures/wall2.xpm
 WE ./textures/wall2.xpm
 EA ./textures/wall1.xpm
+P ./textures/wall1.xpm
 
 
 F165, 158, 152
