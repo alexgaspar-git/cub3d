@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:34:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 16:14:30 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/08 17:04:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	render(t_cub *cub)
 		check = cub->key->e;
 	}
 	draw_rays(cub);
-	// display_minimap(cub->map, cub);
+	display_minimap(cub->map, cub);
 	move_player(cub);
 	// draw_map(cub->map, cub);
 	// draw_player(cub);
