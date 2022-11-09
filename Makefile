@@ -1,11 +1,12 @@
 SRCS		= 	main.c \
 				bresenham.c \
 				init.c \
+				init_utils.c \
 				utils.c \
 				frame.c \
 				minimap.c \
-				draw.c \
 				is_wall.c \
+				door.c \
 				is_wall_utils.c \
 				raycasting.c \
 				open_texture.c \

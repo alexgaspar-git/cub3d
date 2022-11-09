@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 17:58:43 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:23:47 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,22 +165,33 @@ typedef struct s_cub {
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	dr_line(t_line line, t_cub *cub);
-t_cub	*init_cub(char **map);
-t_line	init_line(int x1, int y1, int x2, int y2, int color);
-void	init_hooks(t_cub *cub);
+void	dr_square(int x, int y, unsigned int color, t_cub *cub);
+void	frame_map(t_cub *cub);
+void	move_player(t_cub *cub);
+void	draw_rays(t_cub *cub);
+void	change_door(t_cub *cub);
+
+//utils
+float	round_to_grid(float pos);
+int		ft_abs(int x);
+void	get_dir(char pos, t_player *player);
+void	get_player(char **map, t_player *player, t_cub *cub);
+float	calc_dist(float ax, float ay, float bx, float by);
+void	draw_bg(t_cub *cub);
+int		is_wall(int mx, int my, t_cub *cub);
+
+//hooks
+int		render(t_cub *cub);
+int		mouse_move(int x, int y, t_cub *cub);
 int		key_press(int keycode, t_cub *cub);
 int		key_release(int keycode, t_cub *cub);
 int		close_window(t_data *data);
-int		render(t_cub *cub);
-void	frame_map(t_cub *cub);
-void	dr_square(int x, int y, unsigned int color, t_cub *cub);
-void	move_player(t_cub *cub);
-void	draw_rays(t_cub *cub);
-int		mouse_move(int x, int y, t_cub *cub);
-float	calc_dist(float ax, float ay, float bx, float by);
-float	round_to_grid(float pos);
-int		ft_abs(int x);
-void	move_player(t_cub *cub);
+
+//init
+t_cub	*init_cub(char **map);
+t_line	init_line(int x1, int y1, int x2, int y2, int color);
+void	init_hooks(t_cub *cub);
+t_ray	init_ray(float ang);
 
 //check wall
 int		check_corner(t_cub *cub, int x, int y);

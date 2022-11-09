@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 14:08:08 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/09 19:18:41 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-t_ray	init_ray(float ang)
-{
-	t_ray	ray;
-
-	ray.rx = 100000;
-	ray.ry = 100000;
-	ray.xo = 0;
-	ray.yo = 0;
-	ray.aTan = -1 / tan(ang);
-	ray.nTan = -tan(ang);
-	ray.dir = 0;
-	return (ray);
-}
-
-float	round_to_grid(float pos)
-{
-	return (((int)pos / GRID) * GRID);
-}
-
-int	is_wall(int mx, int my, t_cub *cub)
-{
-	return (mx < cub->pars->x_max && my < cub->pars->y_max
-		&& mx >= 0 && my >= 0 && cub->map[my]
-		&& cub->map[my][mx] && (cub->map[my][mx] == '1' || cub->map[my][mx] == 'P'));
-}
 
 void	loop_hor(t_ray *ray, t_cub *cub, float ang)
 {
@@ -191,9 +165,9 @@ void	draw_rays(t_cub *cub)
 		dist *= cos(cam_a);
 		line = (GRID * H)/dist;
 		line_o = (H / 2) - line / 2;
-		if (check_door(ray.ry, ray.rx, cub->map))
-			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);
-		else if (ray.dir == 0)
+		// if (check_door(ray.ry, ray.rx, cub->map))
+		// 	dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);
+		if (ray.dir == 0)
 		{
 			if (ray.ry < cub->player->p_y)
 				dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , NORTH);//hor

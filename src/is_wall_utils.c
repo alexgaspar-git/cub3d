@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:57:28 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 17:58:06 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:22:58 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	move_pixel_n(t_cub *cub, int yf, int x, int y)
 	int	x5;
 	int	x4;
 
-	y5 = (int)((cub->player->p_y - 10) / cub->grid);//5
-	y4 = (int)((cub->player->p_y + 9) / cub->grid);//4
+	y5 = (int)((cub->player->p_y - 10) / cub->grid);
+	y4 = (int)((cub->player->p_y + 9) / cub->grid);
 	x5 = (int)((cub->player->p_x - 10) / cub->grid);
 	x4 = (int)((cub->player->p_x + 9) / cub->grid);
 	if (cub->map[yf][x] != '1' && cub->map[yf][x] != 'P')

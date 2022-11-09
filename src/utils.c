@@ -6,11 +6,23 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 17:56:00 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:23:32 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+float	round_to_grid(float pos)
+{
+	return (((int)pos / GRID) * GRID);
+}
+
+int	is_wall(int mx, int my, t_cub *cub)
+{
+	return (mx < cub->pars->x_max && my < cub->pars->y_max
+		&& mx >= 0 && my >= 0 && cub->map[my]
+		&& cub->map[my][mx] && (cub->map[my][mx] == '1' || cub->map[my][mx] == 'P'));
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -28,9 +40,23 @@ int	ft_abs(int x)
 		return (x);
 }
 
-int	close_window(t_data *data)
+void	draw_bg(t_cub *cub)
 {
-	mlx_destroy_window(data->mlx, data->win);
-	exit(EXIT_SUCCESS);
-	return (0);
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < H)
+	{
+		x = 0;
+		while (x < W)
+		{
+			if (y < H / 2)
+				my_mlx_pixel_put(cub->data, x, y, cub->c);
+			else
+				my_mlx_pixel_put(cub->data, x, y, cub->f);
+			x++;
+		}
+		y++;
+	}
 }

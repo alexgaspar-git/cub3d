@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 17:04:44 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 17:58:25 by algaspar         ###   ########.fr       */
+/*   Created: 2022/11/09 18:14:16 by algaspar          #+#    #+#             */
+/*   Updated: 2022/11/09 18:14:23 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-//doit gerer s + corner et aussi map quand pas de joueur
 
 int	is_wall_front(t_cub *cub)
 {
@@ -19,9 +18,9 @@ int	is_wall_front(t_cub *cub)
 	int	y;
 
 	if (cub->player->p_dx >= 0)
-		x = (cub->player->p_x + cub->player->p_dx + 9) / cub->grid;// 4
+		x = (cub->player->p_x + cub->player->p_dx + 9) / cub->grid;
 	else
-		x = (cub->player->p_x + cub->player->p_dx - 8) / cub->grid;// 3
+		x = (cub->player->p_x + cub->player->p_dx - 8) / cub->grid;
 	if (cub->player->p_dy >= 0)
 		y = (cub->player->p_y + cub->player->p_dy + 9) / cub->grid;
 	else
