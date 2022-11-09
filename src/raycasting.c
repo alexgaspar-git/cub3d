@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 19:14:44 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/09 14:08:08 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,9 @@ int	check_door(float ry, float rx, char **map)
 	int	x2;
 
 	y = (int)(ry/GRID);
-	y2 = (int)((ry - 1)/GRID);
+	y2 = (int)((ry - 0.001)/GRID);
 	x = (int)(rx/GRID);
-	x2 = (int)((rx - 1)/GRID);
+	x2 = (int)((rx - 0.001)/GRID);
 	if (map[y][x] == 'P')
 		return (1);
 	else if (map[y2] && map[y][x2] && (map[y][x] == 'P'
