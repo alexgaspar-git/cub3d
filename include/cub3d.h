@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 17:05:04 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:58:43 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ enum {
 	KEY_E = 14,
 	KEY_LEFT = 123,
 	KEY_RIGHT = 124,
+	KEY_SHIFT = 257
 };
 
 typedef struct s_line {
@@ -95,6 +96,7 @@ typedef struct s_key {
 	unsigned int e;
 	unsigned int left;
 	unsigned int right;
+	unsigned int shift;
 }	t_key;
 
 typedef struct s_data {
@@ -157,40 +159,39 @@ typedef struct s_cub {
 	int				grid;
 	unsigned int	f;
 	unsigned int	c;
-	unsigned int	accel;
+	unsigned int	speed;
 	t_tex			*tex;
 }					t_cub;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	dr_line(t_line line, t_cub *cub);
-t_data	*init_data(void);
 t_cub	*init_cub(char **map);
 t_line	init_line(int x1, int y1, int x2, int y2, int color);
 void	init_hooks(t_cub *cub);
-void	*xalloc(size_t size);
 int		key_press(int keycode, t_cub *cub);
 int		key_release(int keycode, t_cub *cub);
 int		close_window(t_data *data);
 int		render(t_cub *cub);
 void	frame_map(t_cub *cub);
-void	draw_player(t_cub *cub);
 void	dr_square(int x, int y, unsigned int color, t_cub *cub);
-void	draw_map(char **map, t_cub *cub);
 void	move_player(t_cub *cub);
 void	draw_rays(t_cub *cub);
-void	draw_rays2(t_cub *cub);
 int		mouse_move(int x, int y, t_cub *cub);
 float	calc_dist(float ax, float ay, float bx, float by);
-void	draw_3d(t_cub *cub);
-/////	test
-void	draw_single_ray(t_cub *cub);
-/////
+float	round_to_grid(float pos);
+int		ft_abs(int x);
+void	move_player(t_cub *cub);
+
+//check wall
+int		check_corner(t_cub *cub, int x, int y);
+void	find_wall(t_cub *cub, int yf, int xf);
+int		is_wall_right(t_cub *cub);
+int		is_wall_left(t_cub *cub);
+int		is_wall_behind(t_cub *cub);
+int		is_wall_front(t_cub *cub);
 
 //minimap
-void	move_map(t_cub *cub);
-void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub);
-void	find_player_mini(char **map, t_cub *cub);
-void	display_minimap(char **map, t_cub *cub);
+void	dr_minimap(char **map, t_cub *cub);
 
 //texture
 t_tex	*get_texture(t_data *data, t_parsing *parsing);

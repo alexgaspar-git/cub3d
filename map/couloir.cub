@@ -1,7 +1,7 @@
-NO ./textures/wall1.xpm
-SO ./textures/wall2.xpm
-WE ./textures/wall3.xpm
-EA ./textures/wall4.xpm
+NO ./textures/animal.xpm
+SO ./textures/chacha.xpm
+WE ./textures/chacha.xpm
+EA ./textures/chacha.xpm
 P ./textures/door.xpm
 C0,0,0
 F255,255,255

@@ -6,27 +6,11 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:24:15 by algaspar          #+#    #+#             */
-/*   Updated: 2022/10/17 20:23:26 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:47:12 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	ft_abs(int x)
-{
-	if (x < 0)
-		return (-x);
-	else
-		return (x);
-}
 
 void	dr_line_one(t_line line, t_bres bres, t_cub *cub)
 {

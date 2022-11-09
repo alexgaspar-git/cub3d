@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 17:00:39 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:24:15 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub)
 	}
 }
 
+void	dr_cone(t_cub *cub)
+{
+	int		i = 0;
+	float	ang = cub->player->p_a - HALF_FOV;
+	float	dx = cub->player->p_dx;
+	float	dy = cub->player->p_dy;
+	float	step = FOV / 50;
+
+	while (i < 50)
+	{
+		dr_line(init_line(MW/2, MH/2, MW/2 + dx * 3, MH/2 + dy * 3, 0xAA343A40), cub);
+		dx = cos(ang) * 5;
+		dy = -sin(ang) * 5;
+		ang += step;
+		if (ang > PI2)
+			ang -= PI2;
+		i++;
+	}
+}
+
 void	dr_player(t_cub *cub)
 {
 	int	i = 0;
@@ -48,7 +68,7 @@ void	dr_player(t_cub *cub)
 		}
 		i++;
 	}
-	dr_line(init_line(MW/2, MH/2, MW/2 + cub->player->p_dx * 10, MH/2 + cub->player->p_dy * 10, 0xFF00FF), cub);
+	dr_cone(cub);
 }
 
 void minimap_bg(t_data *data)
@@ -68,16 +88,23 @@ void minimap_bg(t_data *data)
 	}
 }
 
-void	display_minimap(char **map, t_cub *cub)
+void	dr_minimap(char **map, t_cub *cub)
 {
-	int	x = 0;
-	int	y = 0;
-
-	minimap_bg(cub->data);
-	while (map[y])
-	{
+	int	player_x = (int)round_to_grid(cub->player->p_x)/64;
+	int	player_y = (int)round_to_grid(cub->player->p_y)/64;
+	int	x = player_x - 6;
+	int	y = player_y - 6;
+	if (x < 0)
 		x = 0;
-		while (map[y][x])
+	if (y < 0)
+		y = 0;
+	minimap_bg(cub->data);
+	while (y < cub->pars->y_max && y < player_y + 5)
+	{
+		x = player_x - 6;
+		if (x < 0)
+			x = 0;
+		while (x < cub->pars->x_max && x < player_x + 8)
 		{
 			if (map[y][x] == '1')
 				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0xFFFFFF, cub);
@@ -85,7 +112,7 @@ void	display_minimap(char **map, t_cub *cub)
 				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0x827FD2, cub);
 			if (map[y][x] == '0')
 				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0xAAAAAA, cub);
-			if ( map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
+			if ((map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W'))
 				dr_square_mini(x * cub->grid/2 + cub->mini->p_mx, y * cub->grid/2 + cub->mini->p_my, 0x128EAF, cub);
 			x++;
 		}
@@ -93,27 +120,4 @@ void	display_minimap(char **map, t_cub *cub)
 	}
 	dr_player(cub);
 	frame_map(cub);
-}
-
-void	find_player_mini(char **map, t_cub *cub)
-{
-	int	x;
-	int y;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'N' || map[y][x] == 'E' ||  map[y][x] == 'S' || map[y][x] == 'W')
-			{
-				cub->mini->p_mx = MW / 2 - x * cub->grid/2 - (cub->grid/4);
-				cub->mini->p_my = MH / 2 - y * cub->grid/2 - (cub->grid/4);
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
 }

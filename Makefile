@@ -5,9 +5,12 @@ SRCS		= 	main.c \
 				frame.c \
 				minimap.c \
 				draw.c \
-				check_wall.c \
+				is_wall.c \
+				is_wall_utils.c \
 				raycasting.c \
-				open_texture.c\
+				open_texture.c \
+				move_player.c \
+				hook_functions.c \
 				dr_texture.c\
 				parsing/free.c\
 				parsing/list.c\
