@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_wall_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:57:28 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 18:22:58 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:29:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	add_pixel(float *c, int key, int nb)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 19:18:41 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:29:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,8 @@ void	draw_rays(t_cub *cub)
 		dist *= cos(cam_a);
 		line = (GRID * H)/dist;
 		line_o = (H / 2) - line / 2;
-		// if (check_door(ray.ry, ray.rx, cub->map))
-		// 	dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);
+		if (check_door(ray.ry, ray.rx, cub->map))
+			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);
 		if (ray.dir == 0)
 		{
 			if (ray.ry < cub->player->p_y)
