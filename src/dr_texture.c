@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:44:29 by lide              #+#    #+#             */
-/*   Updated: 2022/11/08 16:17:45 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/10 14:40:16 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	dr_texture(t_line line, t_cub *cub, t_ray ray, int i)
 	// printf("x = %f\n", fx);
 	if (line.y1 < 0)
 	{
-		y = diff * -line.y1;
+		y = diff * (-line.y1);
 		line.y1 = 0;
 	}
 	if (line.y2 > H)

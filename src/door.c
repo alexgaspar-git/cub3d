@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:07:43 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 18:18:11 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:00:06 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	open_door(char **map, int x, int y)
 {

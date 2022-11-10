@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/10 14:29:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/10 15:12:37 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ t_ray	get_ray(t_cub *cub, float ang)
 		return (ver);
 }
 
-int	check_door(float ry, float rx, char **map)
+int	check_door(float ry, float rx, t_cub *cub)
 {
 	int	y;
 	int	x;
@@ -135,10 +135,13 @@ int	check_door(float ry, float rx, char **map)
 	y2 = (int)((ry - 0.001)/GRID);
 	x = (int)(rx/GRID);
 	x2 = (int)((rx - 0.001)/GRID);
-	if (map[y][x] == 'P')
+	if (y < 0 || y > cub->pars->y_max || y2 < 0 || y2 > cub->pars->y_max
+		|| x < 0 || x > cub->pars->x_max || x2 < 0 || x2 > cub->pars->x_max)
+		return (0);
+	if (cub->map[y][x] == 'P')
 		return (1);
-	else if (map[y2] && map[y][x2] && (map[y][x] == 'P'
-		|| map[y2][x] == 'P' || map[y][x2] == 'P'))
+	else if (cub->map[y2] && cub->map[y][x2] && (cub->map[y][x] == 'P'
+		|| cub->map[y2][x] == 'P' || cub->map[y][x2] == 'P'))
 		return (1);
 	return (0);
 }
@@ -165,9 +168,9 @@ void	draw_rays(t_cub *cub)
 		dist *= cos(cam_a);
 		line = (GRID * H)/dist;
 		line_o = (H / 2) - line / 2;
-		if (check_door(ray.ry, ray.rx, cub->map))
+		if (check_door(ray.ry, ray.rx, cub))
 			dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , DOOR);
-		if (ray.dir == 0)
+		else if (ray.dir == 0)
 		{
 			if (ray.ry < cub->player->p_y)
 				dr_texture(init_line(i, line_o, i, line + line_o, 0xA6A6A6), cub, ray , NORTH);//hor
