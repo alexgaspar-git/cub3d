@@ -8,6 +8,7 @@ SRCS		= 	main.c \
 				is_wall.c \
 				door.c \
 				is_wall_utils.c \
+				get_ray.c \
 				raycasting.c \
 				open_texture.c \
 				move_player.c \

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 19:04:50 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:28:15 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,6 @@ t_player	*init_player(t_cub *cub)
 	return (player);
 }
 
-t_mini	*init_minimap(t_cub *cub)
-{
-	t_mini	*mini;
-
-	mini = l_malloc(sizeof(t_mini), &cub->pars->mlc);
-	mini->m_ox = 0;
-	mini->m_oy = 0;
-	mini->p_mx = 0;
-	mini->p_mx = 0;
-	return (mini);
-}
-
 t_key	*init_key(t_cub *cub)
 {
 	t_key *key;
@@ -83,7 +71,6 @@ t_cub	*init_cub(char **argv)
 	cub->pars = pars;
 	cub->map = pars->map;
 	cub->data = init_data(cub);
-	cub->mini = init_minimap(cub);
 	cub->key = init_key(cub);
 	cub->grid = GRID;
 	cub->f = rgb_to_hex(cub->pars->f);

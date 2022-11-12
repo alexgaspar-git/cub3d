@@ -5,8 +5,8 @@ EA ./textures/wall1.xpm
 P ./textures/wall1.xpm
 
 
-F 1,1,1,,,,, 
-C 2,2,2,,,,,
+F 51,36,9
+C 12,150,27
 
 
 

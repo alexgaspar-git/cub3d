@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:48:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/10 14:58:54 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/12 17:36:06 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ int	render(t_cub *cub)
 	move_player(cub);
 	mlx_put_image_to_window(cub->data->mlx,
 		cub->data->win, cub->data->img, 0, 0);
-	draw_bg(cub);
 	return (0);
 }

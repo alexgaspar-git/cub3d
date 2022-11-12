@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:54 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 18:21:59 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:26:36 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ t_ray	init_ray(float ang)
 	ray.aTan = -1 / tan(ang);
 	ray.nTan = -tan(ang);
 	ray.dir = 0;
+	ray.dist = 0;
+	ray.line = 0;
+	ray.line_o = 0;
+	ray.cam_a = 0;
 	return (ray);
 }
 
@@ -76,8 +80,8 @@ void	get_player(char **map, t_player *player, t_cub *cub)
 			{
 				player->p_x = x * cub->grid + (cub->grid / 2);
 				player->p_y = y * cub->grid + (cub->grid / 2);
-				cub->mini->p_mx = MW / 2 - x * cub->grid / 2 - (cub->grid / 4);
-				cub->mini->p_my = MH / 2 - y * cub->grid / 2 - (cub->grid / 4);
+				player->p_mx = MW / 2 - x * cub->grid / 2 - (cub->grid / 4);
+				player->p_my = MH / 2 - y * cub->grid / 2 - (cub->grid / 4);
 				get_dir(map[y][x], player);
 				return ;
 			}

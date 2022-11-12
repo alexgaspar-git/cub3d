@@ -6,14 +6,14 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 18:23:47 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:28:26 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define W 1600
-# define H 900
+# define W 1200
+# define H 1200
 # define MW 400
 # define MH 250
 # define MMBG 0x55108e
@@ -24,8 +24,7 @@
 # define PI3 (3 * (M_PI / 2))
 # define FOV (PI / 3)
 # define HALF_FOV (FOV / 2)
-# define CASTED_RAYS W
-# define STEP_ANGLE (FOV / CASTED_RAYS)
+# define STEP_ANGLE (FOV / W)
 # define GRID 64
 # define NORTH 0
 # define WEST 1
@@ -128,15 +127,11 @@ typedef struct s_ray
 	float	aTan;
 	float	nTan;
 	int		dir;
+	float	dist;
+	float	line;
+	float 	line_o;
+	float	cam_a;
 }	t_ray;
-
-typedef struct s_mini
-{
-	float m_ox;
-	float m_oy;
-	int	p_mx;
-	int p_my;
-}	t_mini;
 
 typedef struct s_player
 {
@@ -147,13 +142,14 @@ typedef struct s_player
 	float	p_a;
 	float	c_x;
 	float	c_y;
+	int		p_mx;
+	int		p_my;
 }	t_player;
 
 typedef struct s_cub {
 	t_data			*data;
 	t_key			*key;
 	t_parsing		*pars;
-	t_mini			*mini;
 	t_player		*player;
 	char			**map;
 	int				grid;
@@ -170,6 +166,7 @@ void	frame_map(t_cub *cub);
 void	move_player(t_cub *cub);
 void	draw_rays(t_cub *cub);
 void	change_door(t_cub *cub);
+t_ray	get_ray(t_cub *cub, float ang);
 
 //utils
 float	round_to_grid(float pos);
