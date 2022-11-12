@@ -6,14 +6,14 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:28:26 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:14:46 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define W 1200
-# define H 1200
+# define W 1600
+# define H 1050
 # define MW 400
 # define MH 250
 # define MMBG 0x55108e
@@ -135,15 +135,15 @@ typedef struct s_ray
 
 typedef struct s_player
 {
-	float	p_x;
-	float	p_y;
-	float	p_dx;
-	float	p_dy;
-	float	p_a;
-	float	c_x;
-	float	c_y;
-	int		p_mx;
-	int		p_my;
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	ang;
+	float	cx;
+	float	cy;
+	int		mx;
+	int		my;
 }	t_player;
 
 typedef struct s_cub {
@@ -152,7 +152,6 @@ typedef struct s_cub {
 	t_parsing		*pars;
 	t_player		*player;
 	char			**map;
-	int				grid;
 	unsigned int	f;
 	unsigned int	c;
 	unsigned int	speed;
@@ -172,7 +171,7 @@ t_ray	get_ray(t_cub *cub, float ang);
 float	round_to_grid(float pos);
 int		ft_abs(int x);
 void	get_dir(char pos, t_player *player);
-void	get_player(char **map, t_player *player, t_cub *cub);
+void	get_player(char **map, t_player *player);
 float	calc_dist(float ax, float ay, float bx, float by);
 void	draw_bg(t_cub *cub);
 int		is_wall(int mx, int my, t_cub *cub);
@@ -190,6 +189,7 @@ t_line	init_line(int x1, int y1, int x2, int y2, int color);
 void	init_hooks(t_cub *cub);
 t_ray	init_ray(float ang);
 
+
 //check wall
 int		check_corner(t_cub *cub, int x, int y);
 void	find_wall(t_cub *cub, int yf, int xf);
@@ -199,7 +199,11 @@ int		is_wall_behind(t_cub *cub);
 int		is_wall_front(t_cub *cub);
 
 //minimap
-void	dr_minimap(char **map, t_cub *cub);
+void	minimap(char **map, t_cub *cub);
+void	init_dr_mini(int px, int py, int *sx, int *sy);
+void	check_mini(int sx, int sy, t_cub *cub, char **map);
+void	dr_cone(t_cub *cub);
+void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub);
 
 //texture
 t_tex	*get_texture(t_data *data, t_parsing *parsing);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:51:49 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/10 14:47:13 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/12 18:36:38 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	move_player_angle(t_cub *cub)
 {
 	if (cub->key->left == 1)
 	{
-		cub->player->p_a += 0.05;
-		if (cub->player->p_a > 2 * M_PI)
-			cub->player->p_a = 0;
-		cub->player->p_dx = cos(cub->player->p_a) * 5;
-		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+		cub->player->ang += 0.05;
+		if (cub->player->ang > 2 * M_PI)
+			cub->player->ang = 0;
+		cub->player->dx = cos(cub->player->ang) * 5;
+		cub->player->dy = -sin(cub->player->ang) * 5;
 	}
 	if (cub->key->right == 1)
 	{
-		cub->player->p_a -= 0.05;
-		if (cub->player->p_a < 0)
-			cub->player->p_a = 2 * M_PI;
-		cub->player->p_dx = cos(cub->player->p_a) * 5;
-		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+		cub->player->ang -= 0.05;
+		if (cub->player->ang < 0)
+			cub->player->ang = 2 * M_PI;
+		cub->player->dx = cos(cub->player->ang) * 5;
+		cub->player->dy = -sin(cub->player->ang) * 5;
 	}
 }
 
@@ -38,16 +38,16 @@ void	move_player_front(t_cub *cub)
 	{
 		if (!is_wall_front(cub))
 		{
-			cub->player->p_x += cub->player->p_dx * cub->speed;
-			cub->player->p_y += cub->player->p_dy * cub->speed;
+			cub->player->x += cub->player->dx * cub->speed;
+			cub->player->y += cub->player->dy * cub->speed;
 		}
 	}
 	if (cub->key->s == 1)
 	{
 		if (!is_wall_behind(cub))
 		{
-			cub->player->p_x -= cub->player->p_dx * cub->speed;
-			cub->player->p_y -= cub->player->p_dy * cub->speed;
+			cub->player->x -= cub->player->dx * cub->speed;
+			cub->player->y -= cub->player->dy * cub->speed;
 		}
 	}
 }
@@ -58,16 +58,16 @@ void	move_player_side(t_cub *cub)
 	{
 		if (!is_wall_left(cub))
 		{
-			cub->player->p_x += cub->player->p_dy * cub->speed;
-			cub->player->p_y -= cub->player->p_dx * cub->speed;
+			cub->player->x += cub->player->dy * cub->speed;
+			cub->player->y -= cub->player->dx * cub->speed;
 		}
 	}
 	if (cub->key->d == 1)
 	{
 		if (!is_wall_right(cub))
 		{
-			cub->player->p_x -= cub->player->p_dy * cub->speed;
-			cub->player->p_y += cub->player->p_dx * cub->speed;
+			cub->player->x -= cub->player->dy * cub->speed;
+			cub->player->y += cub->player->dx * cub->speed;
 		}
 	}
 }

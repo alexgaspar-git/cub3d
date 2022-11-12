@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:28:15 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:19:26 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ t_player	*init_player(t_cub *cub)
 	t_player	*player;
 
 	player = l_malloc(sizeof(t_player), &cub->pars->mlc);
-	get_player(cub->map, player, cub);
-	player->p_dy = -sin(player->p_a) * 5;
-	player->p_dx = cos(player->p_a) * 5;
-	player->c_x = player->p_x;
-	player->c_y = player->p_y;
+	get_player(cub->map, player);
+	player->dy = -sin(player->ang) * 5;
+	player->dx = cos(player->ang) * 5;
+	player->cx = player->x;
+	player->cy = player->y;
 	return (player);
 }
 
 t_key	*init_key(t_cub *cub)
 {
-	t_key *key;
+	t_key	*key;
 
 	key = l_malloc(sizeof(t_key), &cub->pars->mlc);
 	key->left = 0;
@@ -72,7 +72,6 @@ t_cub	*init_cub(char **argv)
 	cub->map = pars->map;
 	cub->data = init_data(cub);
 	cub->key = init_key(cub);
-	cub->grid = GRID;
 	cub->f = rgb_to_hex(cub->pars->f);
 	cub->c = rgb_to_hex(cub->pars->c);
 	cub->speed = 1;

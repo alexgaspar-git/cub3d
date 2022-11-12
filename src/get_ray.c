@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:44:35 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:15:14 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:35:27 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ static t_ray	cast_hor(t_cub *cub, float ang)
 	ray = init_ray(ang);
 	if (ang > 0 && ang < PI)
 	{
-		ray.ry = round_to_grid(cub->player->p_y);
-		ray.rx = (cub->player->p_y - ray.ry) * -ray.aTan + cub->player->p_x;
+		ray.ry = round_to_grid(cub->player->y);
+		ray.rx = (cub->player->y - ray.ry) * -ray.aTan + cub->player->x;
 		ray.yo = -GRID;
 		ray.xo = -ray.yo * -ray.aTan;
 	}
 	else if (ang > PI && ang < PI2)
 	{
-		ray.ry = round_to_grid(cub->player->p_y) + GRID;
-		ray.rx = (cub->player->p_y - ray.ry) * -ray.aTan + cub->player->p_x;
+		ray.ry = round_to_grid(cub->player->y) + GRID;
+		ray.rx = (cub->player->y - ray.ry) * -ray.aTan + cub->player->x;
 		ray.yo = GRID;
 		ray.xo = -ray.yo * -ray.aTan;
 	}
 	loop_hor(&ray, cub, ang);
-	ray.dist = calc_dist(cub->player->p_x, cub->player->p_y, ray.rx, ray.ry);
+	ray.dist = calc_dist(cub->player->x, cub->player->y, ray.rx, ray.ry);
 	return (ray);
 }
 
@@ -88,20 +88,20 @@ static t_ray	cast_ver(t_cub *cub, float ang)
 	ray.dir = 1;
 	if (ang > HPI && ang < PI3)
 	{
-		ray.rx = round_to_grid(cub->player->p_x);
-		ray.ry = (cub->player->p_x - ray.rx) * -ray.nTan + cub->player->p_y;
+		ray.rx = round_to_grid(cub->player->x);
+		ray.ry = (cub->player->x - ray.rx) * -ray.nTan + cub->player->y;
 		ray.xo = -GRID;
 		ray.yo = -ray.xo * -ray.nTan;
 	}
 	else if (ang < HPI || ang > PI3)
 	{
-		ray.rx = round_to_grid(cub->player->p_x) + GRID;
-		ray.ry = (cub->player->p_x - ray.rx) * -ray.nTan + cub->player->p_y;
+		ray.rx = round_to_grid(cub->player->x) + GRID;
+		ray.ry = (cub->player->x - ray.rx) * -ray.nTan + cub->player->y;
 		ray.xo = GRID;
 		ray.yo = -ray.xo * -ray.nTan;
 	}
 	loop_ver(&ray, cub, ang);
-	ray.dist = calc_dist(cub->player->p_x, cub->player->p_y, ray.rx, ray.ry);
+	ray.dist = calc_dist(cub->player->x, cub->player->y, ray.rx, ray.ry);
 	return (ray);
 }
 

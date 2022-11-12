@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:14:16 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 18:14:23 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:39:16 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	is_wall_front(t_cub *cub)
 	int	x;
 	int	y;
 
-	if (cub->player->p_dx >= 0)
-		x = (cub->player->p_x + cub->player->p_dx + 9) / cub->grid;
+	if (cub->player->dx >= 0)
+		x = (cub->player->x + cub->player->dx + 9) / GRID;
 	else
-		x = (cub->player->p_x + cub->player->p_dx - 8) / cub->grid;
-	if (cub->player->p_dy >= 0)
-		y = (cub->player->p_y + cub->player->p_dy + 9) / cub->grid;
+		x = (cub->player->x + cub->player->dx - 8) / GRID;
+	if (cub->player->dy >= 0)
+		y = (cub->player->y + cub->player->dy + 9) / GRID;
 	else
-		y = (cub->player->p_y + cub->player->p_dy - 8) / cub->grid;
+		y = (cub->player->y + cub->player->dy - 8) / GRID;
 	if ((cub->map[y][x] == '1' || cub->map[y][x] == 'P'))
 	{
 		find_wall(cub, y, x);
@@ -40,14 +40,14 @@ int	is_wall_behind(t_cub *cub)
 	int	x;
 	int	y;
 
-	if (cub->player->p_dx >= 0)
-		x = (cub->player->p_x - cub->player->p_dx - 9) / cub->grid;
+	if (cub->player->dx >= 0)
+		x = (cub->player->x - cub->player->dx - 9) / GRID;
 	else
-		x = (cub->player->p_x - cub->player->p_dx + 8) / cub->grid;
-	if (cub->player->p_dy >= 0)
-		y = (cub->player->p_y - cub->player->p_dy - 9) / cub->grid;
+		x = (cub->player->x - cub->player->dx + 8) / GRID;
+	if (cub->player->dy >= 0)
+		y = (cub->player->y - cub->player->dy - 9) / GRID;
 	else
-		y = (cub->player->p_y - cub->player->p_dy + 8) / cub->grid;
+		y = (cub->player->y - cub->player->dy + 8) / GRID;
 	if ((cub->map[y][x] == '1' || cub->map[y][x] == 'P'))
 	{
 		find_wall(cub, y, x);
@@ -63,14 +63,14 @@ int	is_wall_left(t_cub *cub)
 	int	x;
 	int	y;
 
-	if (cub->player->p_dy >= 0)
-		x = (cub->player->p_x + cub->player->p_dy + 9) / cub->grid;
+	if (cub->player->dy >= 0)
+		x = (cub->player->x + cub->player->dy + 9) / GRID;
 	else
-		x = (cub->player->p_x + cub->player->p_dy - 8) / cub->grid;
-	if (cub->player->p_dx >= 0)
-		y = (cub->player->p_y - cub->player->p_dx - 9) / cub->grid;
+		x = (cub->player->x + cub->player->dy - 8) / GRID;
+	if (cub->player->dx >= 0)
+		y = (cub->player->y - cub->player->dx - 9) / GRID;
 	else
-		y = (cub->player->p_y - cub->player->p_dx + 8) / cub->grid;
+		y = (cub->player->y - cub->player->dx + 8) / GRID;
 	if ((cub->map[y][x] == '1' || cub->map[y][x] == 'P'))
 	{
 		find_wall(cub, y, x);
@@ -86,14 +86,14 @@ int	is_wall_right(t_cub *cub)
 	int	x;
 	int	y;
 
-	if (cub->player->p_dy >= 0)
-		x = (cub->player->p_x - cub->player->p_dy - 9) / cub->grid;
+	if (cub->player->dy >= 0)
+		x = (cub->player->x - cub->player->dy - 9) / GRID;
 	else
-		x = (cub->player->p_x - cub->player->p_dy + 8) / cub->grid;
-	if (cub->player->p_dx >= 0)
-		y = (cub->player->p_y + cub->player->p_dx + 9) / cub->grid;
+		x = (cub->player->x - cub->player->dy + 8) / GRID;
+	if (cub->player->dx >= 0)
+		y = (cub->player->y + cub->player->dx + 9) / GRID;
 	else
-		y = (cub->player->p_y + cub->player->p_dx - 8) / cub->grid;
+		y = (cub->player->y + cub->player->dx - 8) / GRID;
 	if ((cub->map[y][x] == '1' || cub->map[y][x] == 'P'))
 	{
 		find_wall(cub, y, x);

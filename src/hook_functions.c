@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:48:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 17:36:06 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 20:52:03 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ int	mouse_move(int x, int y, t_cub *cub)
 		old_x = 0;
 	if (x < old_x)
 	{
-		cub->player->p_a += (float)(old_x - x) / 500;
-		if (cub->player->p_a > 2 * M_PI)
-			cub->player->p_a = 0;
-		cub->player->p_dx = cos(cub->player->p_a) * 5;
-		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+		cub->player->ang += (float)(old_x - x) / 500;
+		if (cub->player->ang > 2 * M_PI)
+			cub->player->ang = 0;
+		cub->player->dx = cos(cub->player->ang) * 5;
+		cub->player->dy = -sin(cub->player->ang) * 5;
 	}
 	if (x > old_x)
 	{
-		cub->player->p_a -= (float)(x - old_x) / 500;
-		if (cub->player->p_a < 0)
-			cub->player->p_a = 2 * M_PI;
-		cub->player->p_dx = cos(cub->player->p_a) * 5;
-		cub->player->p_dy = -sin(cub->player->p_a) * 5;
+		cub->player->ang -= (float)(x - old_x) / 500;
+		if (cub->player->ang < 0)
+			cub->player->ang = 2 * M_PI;
+		cub->player->dx = cos(cub->player->ang) * 5;
+		cub->player->dy = -sin(cub->player->ang) * 5;
 	}
 	old_x = x;
 	return (0);
@@ -101,7 +101,7 @@ int	render(t_cub *cub)
 		check = cub->key->e;
 	}
 	draw_rays(cub);
-	dr_minimap(cub->map, cub);
+	minimap(cub->map, cub);
 	move_player(cub);
 	mlx_put_image_to_window(cub->data->mlx,
 		cub->data->win, cub->data->img, 0, 0);

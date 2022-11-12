@@ -5,6 +5,7 @@ SRCS		= 	main.c \
 				utils.c \
 				frame.c \
 				minimap.c \
+				minimap_utils.c \
 				is_wall.c \
 				door.c \
 				is_wall_utils.c \

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:18:25 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:20:14 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_door(float ry, float rx, t_cub *cub)
 
 void	get_line(t_cub *cub, t_ray *ray, float s_ang)
 {
-	ray->cam_a = cub->player->p_a - s_ang;
+	ray->cam_a = cub->player->ang - s_ang;
 	ray->dist *= cos(ray->cam_a);
 	ray->line = (GRID * H) / ray->dist;
 	ray->line_o = (H / 2) - ray->line / 2;
@@ -58,14 +58,14 @@ void	dr_render(t_cub *cub, t_ray ray, int i)
 		dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, DOOR);
 	else if (ray.dir == 0)
 	{
-		if (ray.ry < cub->player->p_y) //hor
+		if (ray.ry < cub->player->y)
 			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, NORTH);
-		else // j'ai changé le "else if" en "else" je sais pas si ça change qqchose
+		else
 			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, SOUTH);
 	}
 	else
 	{
-		if (ray.rx < cub->player->p_x) //ver
+		if (ray.rx < cub->player->x)
 			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, WEST);
 		else
 			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, EAST);
@@ -78,7 +78,7 @@ void	draw_rays(t_cub *cub)
 	float	s_ang;
 	int		i;
 
-	s_ang = cub->player->p_a + HALF_FOV;
+	s_ang = cub->player->ang + HALF_FOV;
 	if (s_ang > PI2)
 		s_ang -= PI2;
 	i = 0;

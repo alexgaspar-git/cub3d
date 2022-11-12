@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:46:47 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/09 18:23:32 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:20:30 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	is_wall(int mx, int my, t_cub *cub)
 {
 	return (mx < cub->pars->x_max && my < cub->pars->y_max
 		&& mx >= 0 && my >= 0 && cub->map[my]
-		&& cub->map[my][mx] && (cub->map[my][mx] == '1' || cub->map[my][mx] == 'P'));
+		&& cub->map[my][mx] && (cub->map[my][mx] == '1'
+		|| cub->map[my][mx] == 'P'));
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
