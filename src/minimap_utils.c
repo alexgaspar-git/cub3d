@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:10:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 21:18:00 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:47:27 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_dr_mini(int px, int py, int *sx, int *sy)
 {
-	*sx = px - 4;
+	*sx = px - 6;
 	if (*sx < 0)
 		*sx = 0;
-	*sy = py - 4;
+	*sy = py - 6;
 	if (*sy < 0)
 		*sy = 0;
 }
@@ -29,7 +29,10 @@ void	check_mini(int sx, int sy, t_cub *cub, char **map)
 			sy * GRID / 2 + cub->player->my, 0xFFFFFF, cub);
 	if (map[sy][sx] == 'P')
 		dr_square_mini(sx * GRID / 2 + cub->player->mx,
-			sy * GRID / 2 + cub->player->my, 0x827FD2, cub);
+			sy * GRID / 2 + cub->player->my, 0x4A46B0, cub);
+	if (map[sy][sx] == 'O')
+		dr_square_mini(sx * GRID / 2 + cub->player->mx,
+			sy * GRID / 2 + cub->player->my, 0x9C9AD9, cub);
 	if (map[sy][sx] == '0')
 		dr_square_mini(sx * GRID / 2 + cub->player->mx,
 			sy * GRID / 2 + cub->player->my, 0xAAAAAA, cub);

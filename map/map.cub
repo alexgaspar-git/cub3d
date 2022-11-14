@@ -1,14 +1,11 @@
-NO ./textures/wall1.xpm
-SO ./textures/wall2.xpm
-WE ./textures/wall2.xpm
-EA ./textures/wall1.xpm
+NO ./textures/metalwall.xpm
+SO ./textures/metalwall.xpm
+WE ./textures/metalwall.xpm
+EA ./textures/metalwall.xpm
 P ./textures/wall1.xpm
 
-
-F 51,36,9
-C 12,150,27
-
-
+C 42,42,42
+F 79,79,79
 
                                        111111111111111111111 11111111111111
                                        1000000000000000000001000000000000001

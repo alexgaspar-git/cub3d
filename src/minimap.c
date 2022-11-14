@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:02:24 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 21:18:51 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:47:50 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	dr_minimap(char **map, t_cub *cub)
 	px = (int)round_to_grid(cub->player->x) / 64;
 	py = (int)round_to_grid(cub->player->y) / 64;
 	init_dr_mini(px, py, &sx, &sy);
-	while (sy < cub->pars->y_max && sy < py + 5)
+	while (sy < cub->pars->y_max && sy < py + 6)
 	{
 		sx = px - 6;
 		if (sx < 0)

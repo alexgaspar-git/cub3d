@@ -6,17 +6,17 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 21:14:46 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:46:37 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define W 1600
-# define H 1050
-# define MW 400
-# define MH 250
-# define MMBG 0x55108e
+# define W 1400
+# define H 1120
+# define MW 350
+# define MH 280
+# define MMBG 0x0A0A0A
 # define border 0x0a3042
 # define PI M_PI
 # define HPI (PI / 2)
