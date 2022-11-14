@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:21:45 by lide              #+#    #+#             */
-/*   Updated: 2022/11/03 14:56:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/14 17:54:19 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_texel_color(t_tex *txt, int x, int y)
 	return (color);
 }
 
-void	init_tex(t_data *data ,t_tex *tex, char *direction, t_list *mlc)
+void	init_tex(t_data *data, t_tex *tex, char *direction, t_list *mlc)
 {
 	tex->img = mlx_xpm_file_to_image(data->mlx, direction, &tex->w, &tex->h);
 	if (!tex->img)

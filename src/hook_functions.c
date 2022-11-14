@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:48:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 09:16:50 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:17:49 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	fps_counter(void)
 
 	fps = 0;
 	n_frame++;
-	gettimeofday(&t, NULL);
+	gettimeofday(&t, NULL);//pas le droit d'utiliser gettimeofday
 	if (t.tv_sec > second)
 	{
 		fps = n_frame;
