@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 11:46:37 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:30:58 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,15 @@
 # define MW 350
 # define MH 280
 # define MMBG 0x0A0A0A
-# define border 0x0a3042
+# define BORDER 0x0a3042
 # define PI M_PI
-# define HPI (PI / 2)
-# define PI2 (PI * 2)
-# define PI3 (3 * (M_PI / 2))
-# define FOV (PI / 3)
-# define HALF_FOV (FOV / 2)
-# define STEP_ANGLE (FOV / W)
 # define GRID 64
 # define NORTH 0
 # define WEST 1
 # define SOUTH 2
 # define EAST 3
 # define DOOR 4
-# define DOF 50
+# define DOF 1000
 
 # include <stdio.h>
 # include <math.h>
@@ -61,11 +55,11 @@ enum {
 };
 
 typedef struct s_line {
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-	int color;
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
+	int	color;
 }	t_line;
 
 typedef struct s_bres
@@ -82,20 +76,20 @@ typedef struct s_bres
 
 typedef struct s_draw
 {
-	int x;
-	int y;
-	int px;
+	int	x;
+	int	y;
+	int	px;
 }	t_draw;
 
 typedef struct s_key {
-	unsigned int w;
-	unsigned int a;
-	unsigned int s;
-	unsigned int d;
-	unsigned int e;
-	unsigned int left;
-	unsigned int right;
-	unsigned int shift;
+	unsigned int	w;
+	unsigned int	a;
+	unsigned int	s;
+	unsigned int	d;
+	unsigned int	e;
+	unsigned int	left;
+	unsigned int	right;
+	unsigned int	shift;
 }	t_key;
 
 typedef struct s_data {
@@ -124,12 +118,12 @@ typedef struct s_ray
 	float	ry;
 	float	xo;
 	float	yo;
-	float	aTan;
-	float	nTan;
+	float	a_tan;
+	float	n_tan;
 	int		dir;
 	float	dist;
 	float	line;
-	float 	line_o;
+	float	line_o;
 	float	cam_a;
 }	t_ray;
 
@@ -188,7 +182,6 @@ t_cub	*init_cub(char **map);
 t_line	init_line(int x1, int y1, int x2, int y2, int color);
 void	init_hooks(t_cub *cub);
 t_ray	init_ray(float ang);
-
 
 //check wall
 int		check_corner(t_cub *cub, int x, int y);

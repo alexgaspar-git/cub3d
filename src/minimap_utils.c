@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:10:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 11:47:27 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:27:15 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	dr_cone(t_cub *cub)
 	float	step;
 
 	i = 0;
-	ang = cub->player->ang - HALF_FOV;
+	ang = cub->player->ang - (PI / 6);
 	dx = cub->player->dx;
 	dy = cub->player->dy;
-	step = FOV / 50;
+	step = (PI / 3) / 50;
 	while (i < 50)
 	{
 		dr_line(init_line(MW / 2, MH / 2,
@@ -62,8 +62,8 @@ void	dr_cone(t_cub *cub)
 		dx = cos(ang) * 5;
 		dy = -sin(ang) * 5;
 		ang += step;
-		if (ang > PI2)
-			ang -= PI2;
+		if (ang > (PI * 2))
+			ang -= (PI * 2);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 11:14:58 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:27:15 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	draw_rays(t_cub *cub)
 	float	s_ang;
 	int		i;
 
-	s_ang = cub->player->ang + HALF_FOV;
-	if (s_ang > PI2)
-		s_ang -= PI2;
+	s_ang = cub->player->ang + (PI / 6);
+	if (s_ang > (PI * 2))
+		s_ang -= (PI * 2);
 	i = 0;
 	while (i < W)
 	{
@@ -91,9 +91,9 @@ void	draw_rays(t_cub *cub)
 		dr_render(cub, ray, i);
 		if (ray.line + ray.line_o < H)
 			dr_line(init_line(i, ray.line + ray.line_o, i, H, cub->f), cub);
-		s_ang -= STEP_ANGLE;
+		s_ang -= ((PI / 3) / W);
 		if (s_ang < 0)
-			s_ang += PI2;
+			s_ang += (PI * 2);
 		i++;
 	}
 }

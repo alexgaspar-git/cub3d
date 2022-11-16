@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:54 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:39:54 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:30:58 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_ray	init_ray(float ang)
 	ray.ry = 100000;
 	ray.xo = 0;
 	ray.yo = 0;
-	ray.aTan = -1 / tan(ang);
-	ray.nTan = -tan(ang);
+	ray.a_tan = -1 / tan(ang);
+	ray.n_tan = -tan(ang);
 	ray.dir = 0;
 	ray.dist = 0;
 	ray.line = 0;
@@ -55,11 +55,11 @@ t_ray	init_ray(float ang)
 void	get_dir(char pos, t_player *player)
 {
 	if (pos == 'N')
-		player->ang = HPI;
+		player->ang = (PI / 2);
 	else if (pos == 'E')
 		player->ang = 0;
 	else if (pos == 'S')
-		player->ang = PI3;
+		player->ang = (3 * (PI / 2));
 	else
 		player->ang = PI;
 }
