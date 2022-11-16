@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 11:46:37 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:47:36 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ enum {
 };
 
 typedef struct s_line {
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-	int color;
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
+	int	color;
 }	t_line;
 
 typedef struct s_bres

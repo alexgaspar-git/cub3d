@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:54 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:39:54 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:27:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
-t_line	init_line(int x1, int y1, int x2, int y2, int color)
+t_line	init_line(int x1, int y1, int x2, int y2, int color)// a part pour le cone devant player pas besoin de deux x
 {
 	t_line	line;
 

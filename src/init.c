@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 21:19:26 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:14:23 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_cub	*init_cub(char **argv)
 	t_cub		*cub;
 
 	pars = parsing(argv, 1);
+	check_map(pars);
+	check_texture(pars);
 	cub = l_malloc(sizeof(t_cub), &pars->mlc);
 	cub->pars = pars;
 	cub->map = pars->map;

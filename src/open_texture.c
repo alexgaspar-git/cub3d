@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:21:45 by lide              #+#    #+#             */
-/*   Updated: 2022/11/14 17:54:19 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/16 14:31:05 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	init_tex(t_data *data, t_tex *tex, char *direction, t_list *mlc)
 {
 	tex->img = mlx_xpm_file_to_image(data->mlx, direction, &tex->w, &tex->h);
 	if (!tex->img)
-		free_list_exit(mlc, "wrong xpm file or xpm path doesn't exist function", 0);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel, &tex->line_length, &tex->endian);
+		free_list_exit
+			(mlc, "wrong xpm file or xpm path doesn't exist", 0);
+	tex->addr = mlx_get_data_addr
+		(tex->img, &tex->bits_per_pixel, &tex->line_length, &tex->endian);
 	if (!tex->addr)
 		free_list_exit(mlc, "get_data_addr function", 0);
 }
