@@ -3,26 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 18:00:54 by algaspar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/11/16 17:30:58 by algaspar         ###   ########.fr       */
-=======
-/*   Updated: 2022/11/16 14:27:50 by lide             ###   ########.fr       */
->>>>>>> f7f7c4a7209e3deb27cbabac3b15462a875536a1
+/*   Created: 2022/11/16 17:49:46 by algaspar          #+#    #+#             */
+/*   Updated: 2022/11/16 18:22:01 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_line	init_line(int x1, int y1, int x2, int y2, int color)// a part pour le cone devant player pas besoin de deux x
+t_point	init_point(int x, int y)
+{
+	t_point	point;
+
+	point.x = x;
+	point.y = y;
+	return (point);
+}
+
+t_line	init_line_x(t_point a, t_point b, unsigned int color)
+{
+	t_line	line;
+
+	line.x1 = a.x;
+	line.y1 = a.y;
+	line.x2 = b.x;
+	line.y2 = b.y;
+	line.color = color;
+	return (line);
+}
+
+t_line	init_line(int x1, int y1, int y2, int color)
 {
 	t_line	line;
 
 	line.x1 = x1;
 	line.y1 = y1;
-	line.x2 = x2;
+	line.x2 = x1;
 	line.y2 = y2;
 	line.color = color;
 	return (line);

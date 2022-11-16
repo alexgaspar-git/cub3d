@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:10:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 17:27:15 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:01:01 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ void	dr_cone(t_cub *cub)
 	step = (PI / 3) / 50;
 	while (i < 50)
 	{
-		dr_line(init_line(MW / 2, MH / 2,
-				MW / 2 + dx * 3, MH / 2 + dy * 3, 0xAA343A40), cub);
+		dr_line(init_line_x(
+				init_point(MW / 2, MH / 2),
+				init_point(MW / 2 + dx * 3, MH / 2 + dy * 3),
+				0xAA343A40), cub);
 		dx = cos(ang) * 5;
 		dy = -sin(ang) * 5;
 		ang += step;

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 17:27:15 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:20:48 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,20 @@ void	dr_render(t_cub *cub, t_ray ray, int i)
 	offset = ray.line_o;
 	bot = ray.line + ray.line_o;
 	if (check_door(ray.ry, ray.rx, cub))
-		dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, DOOR);
+		dr_texture(init_line(i, offset, bot, 0xA6A6A6), cub, ray, DOOR);
 	else if (ray.dir == 0)
 	{
 		if (ray.ry < cub->player->y)
-			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, NORTH);
+			dr_texture(init_line(i, offset, bot, 0xA6A6A6), cub, ray, NORTH);
 		else
-			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, SOUTH);
+			dr_texture(init_line(i, offset, bot, 0xA6A6A6), cub, ray, SOUTH);
 	}
 	else
 	{
 		if (ray.rx < cub->player->x)
-			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, WEST);
+			dr_texture(init_line(i, offset, bot, 0xA6A6A6), cub, ray, WEST);
 		else
-			dr_texture(init_line(i, offset, i, bot, 0xA6A6A6), cub, ray, EAST);
+			dr_texture(init_line(i, offset, bot, 0xA6A6A6), cub, ray, EAST);
 	}
 }
 
@@ -87,10 +87,10 @@ void	draw_rays(t_cub *cub)
 		ray = get_ray(cub, s_ang);
 		get_line(cub, &ray, s_ang);
 		if (ray.line_o > 0)
-			dr_line(init_line(i, 0, i, ray.line_o, cub->c), cub);
+			dr_line(init_line(i, 0, ray.line_o, cub->c), cub);
 		dr_render(cub, ray, i);
 		if (ray.line + ray.line_o < H)
-			dr_line(init_line(i, ray.line + ray.line_o, i, H, cub->f), cub);
+			dr_line(init_line(i, ray.line + ray.line_o, H, cub->f), cub);
 		s_ang -= ((PI / 3) / W);
 		if (s_ang < 0)
 			s_ang += (PI * 2);

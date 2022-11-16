@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:49:02 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 17:49:06 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:23:06 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,26 +90,6 @@ int	key_release(int keycode, t_cub *cub)
 		cub->key->shift = 0;
 	return (0);
 }
-#include <sys/time.h>
-
-static void	fps_counter(void)
-{
-	static int		n_frame = 0;
-	static int		second = 0;
-	struct timeval	t;
-	int				fps;
-
-	fps = 0;
-	n_frame++;
-	gettimeofday(&t, NULL);//pas le droit d'utiliser gettimeofday
-	if (t.tv_sec > second)
-	{
-		fps = n_frame;
-		printf("%d\n", fps);
-		n_frame = 0;
-		second = t.tv_sec;
-	}
-}
 
 int	render(t_cub *cub)
 {
@@ -123,7 +103,6 @@ int	render(t_cub *cub)
 	draw_rays(cub);
 	minimap(cub->map, cub);
 	move_player(cub);
-	fps_counter();
 	mlx_put_image_to_window(cub->data->mlx,
 		cub->data->win, cub->data->img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 17:48:28 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:22:13 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ enum {
 	KEY_RIGHT = 124,
 	KEY_SHIFT = 257
 };
+
+typedef struct s_point {
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_line {
 	int	x1;
@@ -179,7 +184,9 @@ int		close_window(t_data *data);
 
 //init
 t_cub	*init_cub(char **map);
-t_line	init_line(int x1, int y1, int x2, int y2, int color);
+t_line	init_line_x(t_point a, t_point b, unsigned int color);
+t_line	init_line(int x1, int y1, int y2, int color);
+t_point	init_point(int x, int y);
 void	init_hooks(t_cub *cub);
 t_ray	init_ray(float ang);
 
