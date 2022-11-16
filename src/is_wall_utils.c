@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_wall_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:57:28 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/12 18:39:16 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:52:01 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	add_pixel(float *c, int key, int nb)
 		*c += nb;
 	else
 		*c -= nb;
+}
+
+int	move_pixel_check(char c)
+{
+	return (c != '1' && c != 'P');
 }
 
 void	move_pixel_n(t_cub *cub, int yf, int x, int y)
@@ -33,16 +38,16 @@ void	move_pixel_n(t_cub *cub, int yf, int x, int y)
 	x4 = (int)((cub->player->x + 9) / GRID);
 	if (cub->map[yf][x] != '1' && cub->map[yf][x] != 'P')
 	{
-		if (cub->player->dy < -0.5 && (cub->map[y5][x] != '1' && cub->map[y5][x] != 'P'))
+		if (cub->player->dy < -0.5 && move_pixel_check(cub->map[y5][x]))
 			add_pixel(&(cub->player->y), cub->key->s, -1);
-		else if (cub->player->dy > 0.5 && (cub->map[y4][x] != '1' && cub->map[y4][x] != 'P'))
+		else if (cub->player->dy > 0.5 && move_pixel_check(cub->map[y4][x]))
 			add_pixel(&(cub->player->y), cub->key->s, 1);
 	}
 	else
 	{
-		if (cub->player->dx < -0.5 && (cub->map[y][x5] != '1' && cub->map[y][x5] != 'P'))
+		if (cub->player->dx < -0.5 && move_pixel_check(cub->map[y][x5]))
 			add_pixel(&(cub->player->x), cub->key->s, -1);
-		else if (cub->player->dx > 0.5 && (cub->map[y][x4] != '1' && cub->map[y][x4] != 'P'))
+		else if (cub->player->dx > 0.5 && move_pixel_check(cub->map[y][x4]))
 			add_pixel(&(cub->player->x), cub->key->s, 1);
 	}
 }
@@ -60,16 +65,16 @@ void	move_pixel_s(t_cub *cub, int yf, int x, int y)
 	x4 = (int)((cub->player->x + 9) / GRID);
 	if (cub->map[yf][x] != '1' && cub->map[yf][x] != 'P')
 	{
-		if (cub->player->dy < -0.5 && (cub->map[y4][x] != '1' && cub->map[y4][x] != 'P'))
+		if (cub->player->dy < -0.5 && move_pixel_check(cub->map[y4][x]))
 			add_pixel(&(cub->player->y), cub->key->s, -1);
-		else if (cub->player->dy > 0.5 && (cub->map[y5][x] != '1' && cub->map[y5][x] != 'P'))
+		else if (cub->player->dy > 0.5 && move_pixel_check(cub->map[y5][x]))
 			add_pixel(&(cub->player->y), cub->key->s, 1);
 	}
 	else
 	{
-		if (cub->player->dx < -0.5 && (cub->map[y][x4] != '1' && cub->map[y][x4] != 'P'))
+		if (cub->player->dx < -0.5 && move_pixel_check(cub->map[y][x4]))
 			add_pixel(&(cub->player->x), cub->key->s, -1);
-		else if (cub->player->dx > 0.5 && (cub->map[y][x5] != '1' && cub->map[y][x5] != 'P'))
+		else if (cub->player->dx > 0.5 && move_pixel_check(cub->map[y][x5]))
 			add_pixel(&(cub->player->x), cub->key->s, 1);
 	}
 }
@@ -83,18 +88,17 @@ void	find_wall(t_cub *cub, int yf, int xf)
 	y = (int)(cub->player->y / GRID);
 	if (x > xf && (cub->map[yf][x] != '1' && cub->map[yf][x] != 'P'))
 		cub->player->x = ((xf + 1) * GRID) + 8;
-	else if(x < xf && (cub->map[yf][x] != '1' && cub->map[yf][x] != 'P'))
+	else if (x < xf && (cub->map[yf][x] != '1' && cub->map[yf][x] != 'P'))
 		cub->player->x = (xf * GRID) - 9;
 	else if (y > yf)
 		cub->player->y = ((yf + 1) * GRID) + 8;
-	else if(y < yf)
+	else if (y < yf)
 		cub->player->y = (yf * GRID) - 9;
 	if (!cub->key->s)
 		move_pixel_n(cub, yf, x, y);
 	else
 		move_pixel_s(cub, yf, x, y);
 }
-
 
 int	check_corner(t_cub *cub, int x, int y)
 {
@@ -103,7 +107,8 @@ int	check_corner(t_cub *cub, int x, int y)
 
 	xi = cub->player->x / GRID;
 	yi = cub->player->y / GRID;
-	if(cub->map[yi][x] == '1' || cub->map[y][xi] == '1' || cub->map[yi][x] == 'P' || cub->map[y][xi] == 'P')
+	if (cub->map[yi][x] == '1' || cub->map[y][xi] == '1'
+		|| cub->map[yi][x] == 'P' || cub->map[y][xi] == 'P')
 	{
 		if (!cub->key->s)
 			move_pixel_n(cub, y, xi, yi);

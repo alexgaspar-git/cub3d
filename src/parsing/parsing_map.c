@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/11/03 14:49:45 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/16 17:31:24 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,19 @@ void	find_map_limits(t_parsing *map)
 	map->y_max = y;
 }
 
+void	check_map2(t_parsing *map, int *player, int *x, int y)
+{
+	if (map->map[y][*x] != '0'
+		&& map->map[y][*x] != ' ' && map->map[y][*x] != '1'
+		&& map->map[y][*x] != 'P')
+		if (++(*player) > 1)
+			free_list_exit(map->mlc, "only one player is accepted", 0);
+	if (map->map[y][*x] != ' ' && map->map[y][*x] != '1')
+		if (y == 0 || check_map_wall(map->map, y, *x))
+			free_list_exit(map->mlc, "map is not closed", 0);
+	(*x)++;
+}
+
 void	check_map(t_parsing *map)
 {
 	int	y;
@@ -138,16 +151,7 @@ void	check_map(t_parsing *map)
 	{
 		x = 0;
 		while (map->map[y][x])
-		{
-			if (map->map[y][x] != '0'
-			&& map->map[y][x] != ' ' && map->map[y][x] != '1' && map->map[y][x] != 'P')
-				if (++player > 1)
-					free_list_exit(map->mlc, "only one player is accepted", 0);
-			if (map->map[y][x] != ' ' && map->map[y][x] != '1')
-				if (y == 0 || check_map_wall(map->map, y, x))
-					free_list_exit(map->mlc, "map is not closed", 0);
-			x++;
-		}
+			check_map2(map, &player, &x, y);
 		y++;
 	}
 	if (player == 0)

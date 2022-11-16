@@ -1,8 +1,8 @@
 
-NO ./textures/texture1.xpm
-SO ./textures/texture1.xpm
-WE ./textures/texture1.xpm
-EA ./textures/texture1.xpm
+NO ./textures/s1.xpm
+SO ./textures/s3.xpm
+WE ./textures/s4.xpm
+EA ./textures/s2.xpm
 P ./textures/door.xpm
 C0,0,0
 F255,255,255

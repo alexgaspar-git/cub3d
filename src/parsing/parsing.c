@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/11/03 14:54:47 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/16 17:22:31 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 	*info = new;
 }
 
+void	check_line2(char*line, t_parsing **map, t_list **l_map, int *check)
+{
+	if (!is_map(line, *map, *l_map))
+	{
+		put_l_map(line, map, l_map);
+		*check = 1;
+	}
+}
+
 void	check_line(char *line, t_parsing **map, t_list **l_map)
 {
 	static int	check;
@@ -75,11 +84,8 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 		get_path(&(*map)->f, line, i + 1, &(*map)->mlc);
 	else if (!ft_cmp(line, "C ", i, 0) && !check)
 		get_path(&(*map)->c, line, i + 1, &(*map)->mlc);
-	else if (!is_map(line, *map, *l_map))
-	{
-		put_l_map(line, map, l_map);
-		check = 1;
-	}
+	else
+		check_line2(line, map, l_map, &check);
 }
 
 t_parsing	*parsing(char **argv, int i)
@@ -107,32 +113,6 @@ t_parsing	*parsing(char **argv, int i)
 	}
 	list_to_char(&map, &l_map);
 	free_list(l_map);
-	check_map(map);
-	check_texture(map);
-	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|p = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->p, map->f, map->c);
 	return (map);
 }
-
-
-// int	main(int argc, char **argv)
-// {
-// 	t_parsing	*map;
-
-// 	if (argc < 2)
-// 	{
-// 		printf("cub3d need a map\n");
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	if (argc > 2)
-// 	{
-// 		printf("too much information\n");
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	if (check_name(argv[1]))
-// 		exit(EXIT_FAILURE);
-// 	map = parsing(argv, 1);
-// 	printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->f, map->c);
-// 	for (int i = 0; map->map[i]; i++)
-// 		printf("%s\n", map->map[i]);
-// 	free_list(map->mlc);
-// }
+	// printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|p = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->p, map->f, map->c);

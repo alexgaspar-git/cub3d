@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 17:48:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 15:32:31 by algaspar         ###   ########.fr       */
+/*   Created: 2022/11/16 17:49:02 by algaspar          #+#    #+#             */
+/*   Updated: 2022/11/16 17:49:06 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	fps_counter(void)
 
 	fps = 0;
 	n_frame++;
-	gettimeofday(&t, NULL);
+	gettimeofday(&t, NULL);//pas le droit d'utiliser gettimeofday
 	if (t.tv_sec > second)
 	{
 		fps = n_frame;
