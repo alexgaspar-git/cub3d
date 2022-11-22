@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:24 by lide              #+#    #+#             */
-/*   Updated: 2022/11/08 19:06:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 17:31:00 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	list_to_char(t_parsing **map, t_list **l_map)
 	tmp = *l_map;
 	while (tmp->adr != NULL)
 	{
-		save[i] = ft_strdup(tmp->adr, (*map)->mlc, max);
+		save[i] = ft_strdup(tmp->adr, &(*map)->mlc, max);
 		if (!save[i++])
 			free_list_exit(*l_map, "list_to_char : strdup", 1);
 		tmp = tmp->next;

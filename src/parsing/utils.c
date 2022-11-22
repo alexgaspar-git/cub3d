@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:51 by lide              #+#    #+#             */
-/*   Updated: 2022/11/08 18:02:32 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 17:30:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ char	*ft_substr(char *s, int start, int len, t_list **adr)
 	return (s2);
 }
 
-char	*ft_strdup(char *s1, t_list *mlc, int max)
+char	*ft_strdup(char *s1, t_list **mlc, int max)
 {
 	char	*s2;
 	int		i;
 
-	s2 = l_malloc(sizeof(char) * (max + 1), &mlc);
+	s2 = l_malloc(sizeof(char) * (max + 1), mlc);
 	if (!s2)
 		return (NULL);
 	i = 0;

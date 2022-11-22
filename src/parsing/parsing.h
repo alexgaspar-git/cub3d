@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/11/08 19:12:58 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 17:31:17 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			list_to_char(t_parsing **map, t_list **l_map);
 int				len1(char *str);
 int				ft_cmp(const char *s1, const char *s2, int start, int len);
 char			*ft_substr(char *s, int start, int len, t_list **adr);
-char			*ft_strdup(char *s1, t_list *mlc, int max);
+char			*ft_strdup(char *s1, t_list **mlc, int max);
 void			skip_w_space(char *str, int *i);
 
 void			check_map(t_parsing *map);

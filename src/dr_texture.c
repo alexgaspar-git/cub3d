@@ -6,13 +6,13 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:44:29 by lide              #+#    #+#             */
-/*   Updated: 2022/11/14 17:15:52 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 16:20:14 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-float	find_wall_x(float rx, float ry)
+float	find_wall_x(float rx, float ry, int i)
 {
 	float	x;
 	float	y;
@@ -26,9 +26,14 @@ float	find_wall_x(float rx, float ry)
 	if (y < 0)
 		y = 1 + y;
 	if (x == 0.000)
+	{
+		if (i == SOUTH || i == WEST)
+			y = 1 - y;
 		return (y);
-	else
-		return (x);
+	}
+	if (i == SOUTH || i == WEST)
+		x = 1 - x;
+	return (x);
 }
 
 void	dr_texture(t_line line, t_cub *cub, t_ray ray, int i)
@@ -39,7 +44,7 @@ void	dr_texture(t_line line, t_cub *cub, t_ray ray, int i)
 	float		fx;
 	float		y;
 
-	fx = find_wall_x(ray.rx, ray.ry);
+	fx = find_wall_x(ray.rx, ray.ry, i);
 	x = ((float)(cub->tex[i].w) * fx);
 	diff = (float)(cub->tex[i].h) / (line.y2 - line.y1);
 	y = 0;

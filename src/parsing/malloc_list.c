@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:37:34 by lide              #+#    #+#             */
-/*   Updated: 2022/10/13 18:46:09 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 17:38:41 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*l_malloc(size_t size, t_list **adr)
 	{
 		new = ft_lstnew();
 		if (!new)
-			free_list(*adr);
+			free_list(*adr);//printf exit et free ptr
 		new->adr = ptr;
 		new->before = *adr;
 		(*adr)->next = new;

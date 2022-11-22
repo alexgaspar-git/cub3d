@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/11/16 17:22:31 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 17:50:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 	*info = new;
 }
 
-void	check_line2(char*line, t_parsing **map, t_list **l_map, int *check)
+void	check_line2(char *line, t_parsing **map, t_list **l_map, int *check)
 {
-	if (!is_map(line, *map, *l_map))
+	if (!is_map(line, *map, *l_map))// free ligne vide dans map
 	{
 		put_l_map(line, map, l_map);
 		*check = 1;

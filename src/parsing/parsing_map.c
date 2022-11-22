@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/11/16 17:31:24 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/22 17:47:22 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	put_l_map(char *line, t_parsing **map, t_list **l_map)
 
 	if (check_last(line, map, l_map))
 		return ;
-	(*l_map)->adr = line;
+	(*l_map)->adr = line;// le probleme est la !
 	new = ft_lstnew();
 	if (!new)
 	{
