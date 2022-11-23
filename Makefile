@@ -40,7 +40,7 @@ MAKE		= make
 
 RM			= rm -rf
 
-CFLAGS		= -Wall -Werror -Wextra -Iinclude -O3
+CFLAGS		= -Wall -Werror -Wextra -Iinclude
 $(NAME):	$(OBJS)
 			$(CC) ${CFLAGS} -o $(NAME) -lmlx -framework OpenGL -framework AppKit $(OBJS)
 

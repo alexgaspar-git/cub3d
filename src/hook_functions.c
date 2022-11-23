@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:49:02 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/22 17:36:33 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:40:22 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	key_press(int keycode, t_cub *cub)
 		mlx_destroy_image(cub->data->mlx, cub->data->img);
 		mlx_destroy_window(cub->data->mlx, cub->data->win);
 		free_list(cub->pars->mlc);
-		system("leaks cub3d");
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:35 by lide              #+#    #+#             */
-/*   Updated: 2022/11/22 17:47:22 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:36:40 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ void	put_l_map(char *line, t_parsing **map, t_list **l_map)
 	t_list		*new;
 
 	if (check_last(line, map, l_map))
+	{
+		free(line);
 		return ;
-	(*l_map)->adr = line;// le probleme est la !
+	}
+	(*l_map)->adr = line;
 	new = ft_lstnew();
 	if (!new)
 	{

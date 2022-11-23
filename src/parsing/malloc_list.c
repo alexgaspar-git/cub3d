@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:37:34 by lide              #+#    #+#             */
-/*   Updated: 2022/11/22 17:38:41 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:51:27 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,21 @@ t_list	*ft_lstnew(void)
 	return (list);
 }
 
+void	free_l_malloc_error(void *ptr, t_list **adr)
+{
+	(void)ptr;
+	free_list(*adr);
+	free(ptr);
+	exit(EXIT_FAILURE);
+}
+
 void	*l_malloc(size_t size, t_list **adr)
 {
 	void	*ptr;
 	t_list	*new;
+	static int i;
 
+	i++;
 	ptr = malloc(size);
 	if (!ptr)
 	{
@@ -62,7 +72,7 @@ void	*l_malloc(size_t size, t_list **adr)
 	{
 		new = ft_lstnew();
 		if (!new)
-			free_list(*adr);//printf exit et free ptr
+			free_l_malloc_error(ptr, adr);
 		new->adr = ptr;
 		new->before = *adr;
 		(*adr)->next = new;

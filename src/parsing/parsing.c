@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/11/22 17:50:18 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/23 18:38:19 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 
 void	check_line2(char *line, t_parsing **map, t_list **l_map, int *check)
 {
-	if (!is_map(line, *map, *l_map))// free ligne vide dans map
+	if (!is_map(line, *map, *l_map))
 	{
 		put_l_map(line, map, l_map);
 		*check = 1;
@@ -67,7 +67,10 @@ void	check_line(char *line, t_parsing **map, t_list **l_map)
 	int			i;
 
 	if (line[0] == 0 && !check)
+	{
+		free(line);
 		return ;
+	}
 	i = 0;
 	skip_w_space(line, &i);
 	if (!ft_cmp(line, "NO ", i, 1) && !check)
@@ -115,4 +118,3 @@ t_parsing	*parsing(char **argv, int i)
 	free_list(l_map);
 	return (map);
 }
-	// printf("|no = %s|\n|so = %s|\n|we = %s|\n|ea = %s|\n|p = %s|\n|f = %s|\n|c = %s|\n", map->no, map->so, map->we, map->ea, map->p, map->f, map->c);
