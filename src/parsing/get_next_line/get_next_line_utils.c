@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:17 by lide              #+#    #+#             */
-/*   Updated: 2022/10/24 16:16:01 by lide             ###   ########.fr       */
+/*   Updated: 2022/11/24 18:56:02 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
+#include "stdio.h"
 char	*ft_line(char *save, int len)
 {
 	char	*s1;
 	int		i;
 
-	s1 = malloc(sizeof(char) * (len));
+	if (save[len - 1] == '\n')
+		len -= 1;
+	s1 = malloc(sizeof(char) * (len + 1));
 	if (!s1)
 	{
 		write(2, "Error\n", 6);
@@ -67,8 +70,10 @@ char	*ft_line(char *save, int len)
 		return (NULL);
 	}
 	i = -1;
-	while (++i < len - 1)
+	while (++i < len)
+	{
 		s1[i] = save[i];
+	}
 	s1[i] = 0;
 	return (s1);
 }
