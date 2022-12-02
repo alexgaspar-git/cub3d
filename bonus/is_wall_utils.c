@@ -6,19 +6,11 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:57:28 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 16:40:48 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:44:14 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-
-void	add_pixel(float *c, int key, int nb)
-{
-	if (!key)
-		*c += nb;
-	else
-		*c -= nb;
-}
 
 int	move_pixel_check(char c)
 {

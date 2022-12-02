@@ -6,6 +6,7 @@ SRCS		= 	main.c \
 				frame.c \
 				is_wall.c \
 				get_player_dir.c \
+				add_pixel.c \
 				is_wall_utils.c \
 				get_ray.c \
 				raycasting.c \
@@ -43,7 +44,8 @@ SRCS_BONUS	= 	main.c \
 				open_texture.c \
 				move_player.c \
 				hook_functions.c \
-				dr_texture.c\
+				dr_texture.c \
+				add_pixel.c \
 				parsing/free.c\
 				parsing/list.c\
 				parsing/utils.c\

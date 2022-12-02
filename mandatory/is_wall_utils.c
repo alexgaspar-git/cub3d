@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_wall_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:57:28 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 14:54:11 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 16:44:50 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	add_pixel(float *c, int key, int nb)
-{
-	if (!key)
-		*c += nb;
-	else
-		*c -= nb;
-}
 
 int	move_pixel_check(char c)
 {
