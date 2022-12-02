@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 16:00:25 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:13:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 t_data	*init_data(t_cub *cub)
 {
@@ -56,6 +56,7 @@ t_key	*init_key(t_cub *cub)
 	key->a = 0;
 	key->s = 0;
 	key->d = 0;
+	key->e = -1;
 	key->shift = 0;
 	return (key);
 }

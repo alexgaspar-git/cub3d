@@ -6,11 +6,11 @@
 /*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:51:49 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 16:01:23 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:15:15 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	move_player_angle(t_cub *cub)
 {
@@ -74,6 +74,8 @@ void	move_player_side(t_cub *cub)
 
 void	move_player(t_cub *cub)
 {
+	if (cub->key->shift == 1)
+		cub->speed = 2;
 	move_player_front(cub);
 	move_player_side(cub);
 	move_player_angle(cub);

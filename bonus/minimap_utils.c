@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:10:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 14:56:20 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:12:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	init_dr_mini(int px, int py, int *sx, int *sy)
 {
@@ -27,6 +27,12 @@ void	check_mini(int sx, int sy, t_cub *cub, char **map)
 	if (map[sy][sx] == '1')
 		dr_square_mini(sx * GRID / 2 + cub->player->mx,
 			sy * GRID / 2 + cub->player->my, 0xFFFFFF, cub);
+	if (map[sy][sx] == 'P')
+		dr_square_mini(sx * GRID / 2 + cub->player->mx,
+			sy * GRID / 2 + cub->player->my, 0x4A46B0, cub);
+	if (map[sy][sx] == 'O')
+		dr_square_mini(sx * GRID / 2 + cub->player->mx,
+			sy * GRID / 2 + cub->player->my, 0x9C9AD9, cub);
 	if (map[sy][sx] == '0')
 		dr_square_mini(sx * GRID / 2 + cub->player->mx,
 			sy * GRID / 2 + cub->player->my, 0xAAAAAA, cub);

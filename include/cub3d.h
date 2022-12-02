@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 15:25:49 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 16:07:52 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ enum {
 	KEY_D = 2,
 	KEY_LEFT = 123,
 	KEY_RIGHT = 124,
-	KEY_SHIFT = 257
 };
 
 typedef struct s_point {
@@ -173,7 +172,6 @@ int		is_wall(int mx, int my, t_cub *cub);
 
 //hooks
 int		render(t_cub *cub);
-int		mouse_move(int x, int y, t_cub *cub);
 int		key_press(int keycode, t_cub *cub);
 int		key_release(int keycode, t_cub *cub);
 int		close_window(t_data *data);
@@ -193,13 +191,6 @@ int		is_wall_right(t_cub *cub);
 int		is_wall_left(t_cub *cub);
 int		is_wall_behind(t_cub *cub);
 int		is_wall_front(t_cub *cub);
-
-//minimap
-void	minimap(char **map, t_cub *cub);
-void	init_dr_mini(int px, int py, int *sx, int *sy);
-void	check_mini(int sx, int sy, t_cub *cub, char **map);
-void	dr_cone(t_cub *cub);
-void	dr_square_mini(int x, int y, unsigned int color, t_cub *cub);
 
 //texture
 t_tex	*get_texture(t_data *data, t_parsing *parsing);

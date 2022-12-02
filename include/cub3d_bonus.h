@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 15:17:42 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 16:12:01 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "mlx.h"
-# include "../src/parsing/parsing_bonus.h"
+# include "../bonus/parsing/parsing_bonus.h"
 
 enum {
 	ON_KEYDOWN = 2,
