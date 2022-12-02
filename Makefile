@@ -5,6 +5,7 @@ SRCS		= 	main.c \
 				utils.c \
 				frame.c \
 				is_wall.c \
+				get_player_dir.c \
 				is_wall_utils.c \
 				get_ray.c \
 				raycasting.c \
@@ -35,6 +36,7 @@ SRCS_BONUS	= 	main.c \
 				minimap_utils.c \
 				is_wall.c \
 				door.c \
+				get_player_dir.c
 				is_wall_utils.c \
 				get_ray.c \
 				raycasting.c \
