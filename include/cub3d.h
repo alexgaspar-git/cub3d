@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 16:07:52 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:30:48 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_cub {
 	t_tex			*tex;
 }					t_cub;
 
+void	add_pixel(float *c, int key, int nb);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	dr_line(t_line line, t_cub *cub);
 void	dr_square(int x, int y, unsigned int color, t_cub *cub);
@@ -174,7 +175,7 @@ int		is_wall(int mx, int my, t_cub *cub);
 int		render(t_cub *cub);
 int		key_press(int keycode, t_cub *cub);
 int		key_release(int keycode, t_cub *cub);
-int		close_window(t_data *data);
+int		close_window(t_cub *cub);
 
 //init
 t_cub	*init_cub(char **map);

@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:37:34 by lide              #+#    #+#             */
-/*   Updated: 2022/11/23 18:51:27 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 16:58:20 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ void	*l_malloc(size_t size, t_list **adr)
 {
 	void	*ptr;
 	t_list	*new;
-	static int i;
 
-	i++;
 	ptr = malloc(size);
 	if (!ptr)
 	{

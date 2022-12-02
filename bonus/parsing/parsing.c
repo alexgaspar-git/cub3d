@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 15:16:18 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 17:03:08 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,15 @@ void	check_line2(char *line, t_parsing **map, t_list **l_map, int *check)
 	}
 }
 
-void	check_line(char *line, t_parsing **map, t_list **l_map)
+void	check_line(char *line, t_parsing **map, t_list **l_map, int i)
 {
 	static int	check;
-	int			i;
 
 	if (line[0] == 0 && !check)
 	{
 		free(line);
 		return ;
 	}
-	i = 0;
 	skip_w_space(line, &i);
 	if (!ft_cmp(line, "NO ", i, 1) && !check)
 		get_path(&(*map)->no, line, i + 2, &(*map)->mlc);
@@ -112,7 +110,7 @@ t_parsing	*parsing(char **argv, int i)
 			free_map_lmap(map->mlc, l_map);
 		else if (i == 0)
 			break ;
-		check_line(line, &map, &l_map);
+		check_line(line, &map, &l_map, 0);
 	}
 	list_to_char(&map, &l_map);
 	free_list(l_map);

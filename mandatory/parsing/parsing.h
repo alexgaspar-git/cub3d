@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 14:48:06 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 17:15:29 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char			*ft_strdup(char *s1, t_list **mlc, int max);
 void			skip_w_space(char *str, int *i);
 
 void			check_map(t_parsing *map);
+int				check_map_wall(char **map, const int y, const int x);
 void			put_l_map(char *line, t_parsing **map, t_list **l_map);
 int				is_map(char *line, t_parsing *map, t_list *l_map);
 

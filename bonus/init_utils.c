@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:49:46 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 16:39:40 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:27:28 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_hooks(t_cub *cub)
 {
 	mlx_hook(cub->data->win, ON_KEYUP, 1L << 1, key_release, cub);
 	mlx_hook(cub->data->win, ON_KEYDOWN, 1L << 0, key_press, cub);
-	mlx_hook(cub->data->win, ON_DESTROY, 1L << 2, close_window, cub->data);
+	mlx_hook(cub->data->win, ON_DESTROY, 1L << 2, close_window, cub);
 	mlx_hook(cub->data->win, ON_MOUSEMOVE, 0, mouse_move, cub);
 	mlx_loop_hook(cub->data->mlx, &render, cub);
 	mlx_loop(cub->data->mlx);

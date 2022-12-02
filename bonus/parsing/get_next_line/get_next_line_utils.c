@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:17 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 15:16:50 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 16:46:58 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-#include "stdio.h"
 char	*ft_line(char *save, int len)
 {
 	char	*s1;

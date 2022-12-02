@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 15:17:55 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 17:18:56 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include "get_next_line/get_next_line_bonus.h"
 
-# define ERROR1 "Cub3d need NO/SO/WE/EA texture and F/C color."
+# define ERROR1 "Cub3D need NO/SO/WE/EA/P texture and F/C color."
 # define ERROR1D " the map content has to be in the last place"
 
 typedef struct s_list
@@ -58,6 +58,7 @@ char			*ft_strdup(char *s1, t_list **mlc, int max);
 void			skip_w_space(char *str, int *i);
 
 void			check_map(t_parsing *map);
+int				check_map_wall(char **map, const int y, const int x);
 void			put_l_map(char *line, t_parsing **map, t_list **l_map);
 int				is_map(char *line, t_parsing *map, t_list *l_map);
 

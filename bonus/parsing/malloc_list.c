@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:37:34 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 15:16:18 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 16:57:58 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ void	free_l_malloc_error(void *ptr, t_list **adr)
 
 void	*l_malloc(size_t size, t_list **adr)
 {
-	void	*ptr;
-	t_list	*new;
-	static int i;
+	void		*ptr;
+	t_list		*new;
 
-	i++;
 	ptr = malloc(size);
 	if (!ptr)
 	{

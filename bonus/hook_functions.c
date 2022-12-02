@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   hook_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:49:02 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 16:35:19 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:32:35 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
-int	close_window(t_data *data)
+int	close_window(t_cub *cub)
 {
-	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_image(cub->data->mlx, cub->data->img);
+	mlx_destroy_window(cub->data->mlx, cub->data->win);
+	free_list(cub->pars->mlc);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -26,7 +28,6 @@ int	mouse_move(int x, int y, t_cub *cub)
 	if (old_x == -10000000)
 		old_x = x;
 	(void)y;
-	printf("x = %d | old_x = %d | ang = %f\n", x, old_x, cub->player->ang);
 	if (x < old_x)
 	{
 		cub->player->ang += (float)(old_x - x) / 500;
