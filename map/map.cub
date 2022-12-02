@@ -1,7 +1,7 @@
 NO ./textures/metalwall.xpm
-SO ./textures/metalwall.xpm
+SO ./textures/south.xpm
 WE ./textures/metalwall.xpm
-EA ./textures/metalwall.xpm
+EA ./textures/north.xpm
 P ./textures/wall1.xpm
 
 C 42,42,42

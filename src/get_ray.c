@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:44:35 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 17:30:58 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:12:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 static void	loop_hor(t_ray *ray, t_cub *cub, float ang)
 {

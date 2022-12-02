@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:17 by lide              #+#    #+#             */
-/*   Updated: 2022/11/24 18:56:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:16:50 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	backspace(char *s)
 {

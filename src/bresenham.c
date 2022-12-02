@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:24:15 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/10 14:51:21 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:13:38 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	dr_line_one(t_line line, t_bres bres, t_cub *cub)
 {

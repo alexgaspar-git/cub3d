@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:08:24 by lide              #+#    #+#             */
-/*   Updated: 2022/11/24 18:55:45 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:16:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 char	*ft_strjoin(char *s1, char *s2, int i, int j)

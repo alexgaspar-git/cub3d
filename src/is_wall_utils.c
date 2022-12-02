@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:57:28 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/14 17:52:01 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:13:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	add_pixel(float *c, int key, int nb)
 {

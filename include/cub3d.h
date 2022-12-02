@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 18:22:13 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:25:49 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define WEST 1
 # define SOUTH 2
 # define EAST 3
-# define DOOR 4
 # define DOF 1000
 
 # include <stdio.h>
@@ -33,7 +32,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "mlx.h"
-# include "../src/parsing/parsing.h"
+# include "../mandatory/parsing/parsing.h"
 
 enum {
 	ON_KEYDOWN = 2,
@@ -48,7 +47,6 @@ enum {
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
-	KEY_E = 14,
 	KEY_LEFT = 123,
 	KEY_RIGHT = 124,
 	KEY_SHIFT = 257
@@ -91,7 +89,6 @@ typedef struct s_key {
 	unsigned int	a;
 	unsigned int	s;
 	unsigned int	d;
-	unsigned int	e;
 	unsigned int	left;
 	unsigned int	right;
 	unsigned int	shift;
@@ -163,7 +160,6 @@ void	dr_square(int x, int y, unsigned int color, t_cub *cub);
 void	frame_map(t_cub *cub);
 void	move_player(t_cub *cub);
 void	draw_rays(t_cub *cub);
-void	change_door(t_cub *cub);
 t_ray	get_ray(t_cub *cub, float ang);
 
 //utils

@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:09:36 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/08 19:03:52 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:16:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 int	ft_isdigit(int c)
 {

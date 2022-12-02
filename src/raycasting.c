@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:25:31 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/22 16:20:22 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:12:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 float	calc_dist(float ax, float ay, float bx, float by)
 {

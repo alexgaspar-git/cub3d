@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   frame.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:06:11 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 17:27:59 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:12:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 static void	frame_one(t_cub *cub)
 {

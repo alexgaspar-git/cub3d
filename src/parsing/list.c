@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:24 by lide              #+#    #+#             */
-/*   Updated: 2022/11/22 17:31:00 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:16:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 void	init_parsing(t_parsing	**map, t_list *l_map)
 {

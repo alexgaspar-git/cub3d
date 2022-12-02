@@ -6,11 +6,11 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:05:51 by lide              #+#    #+#             */
-/*   Updated: 2022/11/22 17:30:50 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:16:18 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 int	len1(char *str)
 {

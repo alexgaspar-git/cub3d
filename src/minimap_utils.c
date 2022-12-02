@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 21:10:57 by algaspar          #+#    #+#             */
-/*   Updated: 2022/11/16 18:01:01 by algaspar         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:12:43 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	init_dr_mini(int px, int py, int *sx, int *sy)
 {

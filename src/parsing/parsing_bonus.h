@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:41:51 by lide              #+#    #+#             */
-/*   Updated: 2022/11/22 17:31:17 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/02 15:17:55 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "get_next_line/get_next_line.h"
-// # include "wraloc/wraloc.h"
+# include "get_next_line/get_next_line_bonus.h"
 
 # define ERROR1 "Cub3d need NO/SO/WE/EA texture and F/C color."
 # define ERROR1D " the map content has to be in the last place"
