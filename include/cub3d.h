@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
+/*   By: algaspar <algaspar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:34:03 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/02 17:30:48 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/05 15:15:48 by algaspar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ void	add_pixel(float *c, int key, int nb);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	dr_line(t_line line, t_cub *cub);
 void	dr_square(int x, int y, unsigned int color, t_cub *cub);
-void	frame_map(t_cub *cub);
 void	move_player(t_cub *cub);
 void	draw_rays(t_cub *cub);
 t_ray	get_ray(t_cub *cub, float ang);

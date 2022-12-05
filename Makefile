@@ -3,7 +3,6 @@ SRCS		= 	main.c \
 				init.c \
 				init_utils.c \
 				utils.c \
-				frame.c \
 				is_wall.c \
 				get_player_dir.c \
 				add_pixel.c \
