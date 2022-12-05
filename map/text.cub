@@ -2,6 +2,7 @@ NO ./textures/s1.xpm
 SO ./textures/s1.xpm
 WE ./textures/s1.xpm
 EA ./textures/s1.xpm
+P ./textures/s1.xpm
 C 225,30,0
 F 220,100,0
 
