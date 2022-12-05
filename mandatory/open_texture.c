@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:21:45 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 15:23:39 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/05 18:43:21 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_tex	*get_texture(t_data *data, t_parsing *parsing)
 	t_tex	*tex;
 
 	tex = l_malloc((sizeof (t_tex) * 5), &parsing->mlc);
+	if (!tex)
+		print_exit("init_data", 1);
 	init_tex(data, &tex[NORTH], parsing->no, parsing->mlc);
 	init_tex(data, &tex[WEST], parsing->we, parsing->mlc);
 	init_tex(data, &tex[SOUTH], parsing->so, parsing->mlc);

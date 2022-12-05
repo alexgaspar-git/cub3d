@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/05 14:16:40 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/05 18:46:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ t_data	*init_data(t_cub *cub)
 	t_data	*data;
 
 	data = l_malloc(sizeof(t_data), &cub->pars->mlc);
-	if (data != NULL)
-	{
-		data->mlx = mlx_init();
-		if (data->mlx == NULL)
-			return (NULL);
-		data->win = mlx_new_window(data->mlx, W, H, "cub3d");
-		if (data->win == NULL)
-			return (NULL);
-		data->img = mlx_new_image(data->mlx, W, H);
-		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
-				&data->line_length, &data->endian);
-	}
+	if (!data)
+		print_exit("init_data", 1);
+	data->mlx = mlx_init();
+	if (data->mlx == NULL)//test
+		free_list_exit(cub->pars->mlc, "init_data", 1);
+	data->win = mlx_new_window(data->mlx, W, H, "cub3d");
+	if (data->win == NULL)
+		free_list_exit(cub->pars->mlc, "init_data", 1);
+	data->img = mlx_new_image(data->mlx, W, H);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_length, &data->endian);
 	return (data);
 }
 
@@ -37,6 +36,8 @@ t_player	*init_player(t_cub *cub)
 	t_player	*player;
 
 	player = l_malloc(sizeof(t_player), &cub->pars->mlc);
+	if (!player)
+		print_exit("init_player", 1);
 	get_player(cub->map, player);
 	player->dy = -sin(player->ang) * 5;
 	player->dx = cos(player->ang) * 5;
@@ -50,6 +51,8 @@ t_key	*init_key(t_cub *cub)
 	t_key	*key;
 
 	key = l_malloc(sizeof(t_key), &cub->pars->mlc);
+	if (!key)
+		print_exit("init_key", 1);
 	key->left = 0;
 	key->right = 0;
 	key->w = 0;
@@ -70,6 +73,8 @@ t_cub	*init_cub(char **argv)
 	check_map(pars);
 	check_texture(pars);
 	cub = l_malloc(sizeof(t_cub), &pars->mlc);
+	if (!cub)
+		print_exit("init_cub", 1);
 	cub->pars = pars;
 	cub->map = pars->map;
 	cub->data = init_data(cub);

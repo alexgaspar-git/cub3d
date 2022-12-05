@@ -3,8 +3,8 @@ WE ./textures/chacha.xpm
 SO ./textures/West.xpm
 EA ./textures/north.xpm
 
-C0,0,0
-F255,255,255
+C 0,0,0
+F 255,255,255
 
 11111111111
 10000000011
