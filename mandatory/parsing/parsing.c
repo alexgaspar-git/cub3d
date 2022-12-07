@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:32:23 by lide              #+#    #+#             */
-/*   Updated: 2022/12/02 14:47:02 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/07 16:22:16 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	get_path(char **info, char *line, int i, t_list **adr)
 		exit(EXIT_FAILURE);
 	}
 	len = len1(&line[i]);
+	while ((line[len + i - 1] >= 9 && line[len + i - 1] <= 13)
+		|| line[len + i - 1] == ' ')
+		len--;
 	new = ft_substr(line, i, len, adr);
 	if (!new)
 	{

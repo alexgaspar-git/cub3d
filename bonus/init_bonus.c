@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:39:33 by algaspar          #+#    #+#             */
-/*   Updated: 2022/12/05 18:46:10 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/07 16:16:59 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	*init_data(t_cub *cub)
 	if (!data)
 		print_exit("init_data", 1);
 	data->mlx = mlx_init();
-	if (data->mlx == NULL)//test
+	if (data->mlx == NULL)
 		free_list_exit(cub->pars->mlc, "init_data", 1);
 	data->win = mlx_new_window(data->mlx, W, H, "cub3d");
 	if (data->win == NULL)

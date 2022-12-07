@@ -6,7 +6,7 @@
 /*   By: lide <lide@student.s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:15:52 by lide              #+#    #+#             */
-/*   Updated: 2022/12/05 17:06:39 by lide             ###   ########.fr       */
+/*   Updated: 2022/12/07 16:46:10 by lide             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	check_colours(char *colour)
 			&& !((colour[i] >= 9 && colour[i] <= 13) || colour[i] == ' '))
 		{
 			print_error("too much information for the C or F");
-			exit(EXIT_FAILURE);// peut etre free;
+			return (1);
 		}
 		i++;
 	}
